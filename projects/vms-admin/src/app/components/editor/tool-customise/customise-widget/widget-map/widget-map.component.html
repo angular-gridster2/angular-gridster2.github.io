@@ -1,0 +1,27 @@
+<div (click)="$event.stopImmediatePropagation()" class="topleft_icon row p-1 m-1">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center text-primary my-2">
+            <div class="d-flex justify-content-start align-items-center">
+                <img src="assets/images/Icon-Edit tool-Customise.png" alt="Icon-Edit tool-Customise">
+                <span class="h6 m-0 pl-1 font-weight-bold">/Widget/Map</span>
+            </div>
+            <img src="assets/images/Icon-Edit tool-Close.png" alt="Icon-Edit tool-Close" (click)="onClose(); $event.stopImmediatePropagation()" class="cursor_pointer">
+        </div>
+        <!-- Threshold ~ Icon -->
+        <div style="max-height: 200px" class="scroll-gray">
+            <div *ngFor="let row of formArr; let i=index;" class="row mx-0 my-2 align-items-center">
+                <div class="col-2 d-flex justify-content-center align-items-center rounded_blue cursor_pointer"
+                    [class.active]="cacheId == i" (click)="onShowSelectIconBox(i)" style="width: 30px; height: 35px;">
+                    <i [class]="row.icon" [style]="{'color': row.color}"></i>
+                </div>
+                <div class="col-7">
+                    <input type="text" [value]="row.threshold" (input)="onChangeThreshold($event.target.value, i)" class="form-control">
+                </div>
+                <div class="col-2">
+                    <img src="assets/images/Icon-increase-Blue.png" (click)="removeControl(i)" alt="Icon-increase-Blue" class="cursor_pointer">
+                </div>
+            </div>
+        </div>
+        <img src="assets/images/Icon-add fill-Blue.png" (click)="addControl()" class="ml-2 mb-3 cursor_pointer" alt="Icon-add fill-Blue">
+    </div>
+</div>

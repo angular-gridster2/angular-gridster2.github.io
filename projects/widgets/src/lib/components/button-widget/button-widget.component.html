@@ -1,0 +1,8 @@
+<button
+  [id]="widget?.id"
+  [class]="widget.config?.buttonStyle | i18nSelect: buttonStyles"
+  [style.color]="widget.config?.color"
+  [ngStyle]="{'background' : getBackground(widget.config?.bgStyle, widget.config?.background)}"
+  class="button-widget-content btn">
+  {{widget.config?.value}}
+</button>

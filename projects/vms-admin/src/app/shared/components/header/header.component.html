@@ -1,0 +1,57 @@
+<main [class.theme_light]="background == 'white'" [class.theme_dark]="background == 'blue'">
+  <ng-container *ngIf="mode === 1">
+    <header [class.theme_light]="background == 'white'" [class.theme_dark]="background == 'blue'">
+      <!-- Left -->
+      <div class="header_left">
+        <a [routerLink]="['/']">
+          <img src="assets/images/Logo-The Deliver-{{background === 'white' ? 'Dark' : 'Light'}}.png" width="160"
+            alt="Logo-The Deliver" />
+        </a>
+        <a [routerLink]="['/select-template']">Template</a>
+      </div>
+      <!-- Right -->
+      <div class="header_right">
+        <ul>
+          <li (click)="login()" class="cursor_pointer">Sign in</li>
+          <li>
+            <button class="btn btn-light btn_pill" (click)="signup()">Get started</button>
+          </li>
+        </ul>
+      </div>
+    </header>
+  </ng-container>
+
+  <ng-container *ngIf="mode === 2">
+    <header [class.theme_light]="background == 'white'" [class.theme_dark]="background == 'blue'">
+      <!-- Left -->
+      <div class="header_left">
+        <a [routerLink]="['/']">
+          <img src="assets/images/Logo-The Deliver-{{background === 'white' ? 'Dark' : 'Light'}}.png" width="160"
+            alt="Logo-The Deliver" />
+        </a>
+        <a [routerLink]="['/select-template']">Template</a>
+        <a [routerLink]="['/mysite']" (click)="onReload()">My Sites</a>
+      </div>
+      <!-- Right -->
+      <div class="header_right">
+        <i class="feather-bell cursor_pointer" style="font-size: 24px;" (click)="showNotifications()"></i>
+        <div class="avatar">
+          <img src="https://i0.wp.com/danongonline.com.vn/wp-content/uploads/2018/02/anh-girl-xinh-9x-kute-24.jpg"
+            class="rounded-circle" width="48" height="48" alt="avatar" />
+          <span class="rounded-circle bg-success"></span>
+        </div>
+        <div class="dropdown" (mousedown)="onDropdown()">
+          <h4 class="d-table-cell align-middle font-weight-bold dropdown-toggle-custom cursor_pointer" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Rachel Bradley
+          </h4>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" [routerLink]="['/profile']" style="color:#0000E8">My Profile</a>
+            <a class="dropdown-item" [routerLink]="['/']" style="color:#EA857A;border-top: 1px solid #EAEAEA;">Log out</a>
+          </div>
+        </div>
+      </div>
+      <app-notifications *ngIf="isShowNotifications"></app-notifications>
+    </header>
+  </ng-container>
+</main>

@@ -1,0 +1,60 @@
+@import '../tool-customise.component.scss';
+
+// widget
+.customise_text {
+  @include box;
+  width: 280px;
+  font-size: 14px;
+  font-family: "SF Pro Text-Medium" !important;
+
+  .color {
+    width: 24px;
+    height: 24px;
+    // margin: 6px;
+    margin: 4px;
+    border-radius: 5px;
+
+    &:hover {
+      border: 1px solid #0000e8;
+    }
+  }
+
+  textarea {
+    font-size: 14px;
+    line-height: 1;
+    max-height: 200px;
+  }
+
+  input[type="text"] {
+    font-size: 20px;
+  }
+
+  [class^="feather-align"] {
+    font-size: 30px;
+
+    &:hover {
+      color: #0000e8;
+    }
+
+    &.active {
+      color: #0000e8;
+    }
+  }
+
+  .border_button {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background: transparent;
+  }
+
+}
+::ng-deep {
+    .ui-dropdown {
+      .ui-dropdown-label {
+        padding-left: 0 !important;
+        font-size: 16px;
+        color: #212121;
+        font-weight: bold;
+      }
+    }
+}

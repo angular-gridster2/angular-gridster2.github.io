@@ -1,0 +1,167 @@
+:host ::ng-deep {
+  .gauge2 {
+    color: #FFFFFF;
+
+    ngx-gauge,
+    .display_center {
+      width: 100% !important;
+      height: 100% !important;
+      position: absolute;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .mode_square {
+
+    .display_center {
+      padding-bottom: 30%;
+
+      span {
+        font-size: 18px;
+        position: absolute;
+        text-align: center;
+        color: #FFFFFF;
+        font-family: "SF Pro Rounded-Bold";
+      }
+
+      i {
+        font-size: 20px;
+        margin-top: 33%;
+      }
+    }
+
+    .gauge_ {
+      &arch, &semi {
+        canvas {
+          margin-bottom: 8%;
+        }
+      }
+    }
+
+    ngx-gauge {
+      justify-content: center;
+      top: -8%;
+
+      canvas {
+        width: 58%;
+      }
+
+      .reading-block {
+        display: none;
+      }
+
+      .reading-label {
+        bottom: 0px;
+        font-size: 16px !important;
+        transform: none !important;
+        font-family: "SF Pro Text-Regular";
+      }
+    }
+  }
+
+  .mode_rectangle {
+    i {
+      font-size: 20px;
+    }
+
+    .gauge_ {
+      &arch, &semi {
+        canvas {
+          margin-bottom: 8%;
+        }
+      }
+    }
+
+    ngx-gauge {
+      justify-content: center;
+      top: 0;
+
+      canvas {
+        width: 58%;
+      }
+
+      .reading-block {
+        display: none;
+      }
+
+      .reading-label {
+        display: none;
+      }
+
+    }
+
+    .center_variable {
+      font-size: 18px;
+      margin: 4% 0;
+      color: #FFFFFF;
+      font-family: "SF Pro Rounded-Bold";
+      line-height: normal;
+    }
+
+    .bottom_variable {
+      font-size: 18px;
+      text-align: center;
+      color: #959393;
+      font-family: "SF Pro Text-Regular";
+    }
+  }
+
+  .mode_vertical {
+    i {
+      font-size: 20px;
+    }
+
+    .gauge_ {
+      &arch, &semi {
+        canvas {
+          margin-bottom: 8%;
+        }
+      }
+    }
+
+    .gauge_container {
+      .value_container {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 26%;
+        left: 50%;
+        text-align: center;
+      }
+    }
+
+    ngx-gauge {
+      justify-content: center;
+      top: 0;
+      height: 50% !important;
+
+      canvas {
+        width: 58%;
+      }
+
+      .reading-block {
+        display: none;
+      }
+
+      .reading-label {
+        display: none;
+      }
+
+    }
+
+    .center_variable {
+      font-size: 18px;
+      margin: 15% 0;
+      color: #FFFFFF;
+      font-family: "SF Pro Rounded-Bold";
+      line-height: normal;
+    }
+
+    .bottom_variable {
+      font-size: 16px;
+      text-align: center;
+      color: #959393;
+      font-family: "SF Pro Text-Regular";
+    }
+  }
+}

@@ -1,0 +1,9 @@
+<img
+  [src]="widget?.config?.src" 
+  [alt]="widget?.config?.alt" 
+  [ngClass]="widget?.config?.class" 
+  [ngStyle]="widget?.config?.styles"
+  [class.disabled]="widget?.config?.disabled"
+  [class.d-none]="hiden && widget?.config?.disabled"
+  [style.width.%]="100"
+  [style.height.%]="100">

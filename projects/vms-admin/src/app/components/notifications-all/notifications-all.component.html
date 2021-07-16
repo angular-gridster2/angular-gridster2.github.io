@@ -1,0 +1,71 @@
+<main>
+    <!-- header -->
+    <app-header [mode]="2" [background]="'white'"></app-header>
+    <!-- content -->
+    <section>
+        <div class="row m-0">
+            <div class="col-12 ">
+                <div class="header d-flex justify-content-between">
+                    <h1 class="m-0">Notifications</h1>
+                    <div class="d-flex flex-wrap align-items-center">
+                        <h4 class="m-0">1-25 of 521</h4>
+                        <h2 class="m-0"> Mark all as read</h2>
+                    </div>
+                </div>
+            </div>
+            <div *ngFor="let noti of returnedSliceItem; let i = index" class="row content">
+                <div (click)="SeeDetails()" class="col-1 parent-noti">
+                    <div class="logo-rounded">
+                        <img class="logo" src="../../../../assets/images/Logo-The Deliver.png">
+                    </div>
+                </div>
+                <div class="col-10 ml-4" style="cursor: pointer;" (click)="SeeDetails()">
+                    <span class="content-text">{{noti.notiText}}</span>
+                    <p class="date">{{noti.notiDate}}</p>
+                </div>
+                <div class="col-1 dropdown">
+                    <i [ngClass]="{'active': selectedIndex == noti.id }" (click)="setSelected(noti.id)"
+                        id="dropdownMenuStatus" data-toggle="dropdown" aria-haspopup="true" class="fas fa-ellipsis-v"
+                        style="color:#C4C4C4"></i>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuStatus">
+                        <li role="menuitem">
+                            <a class="dropdown-item" href="javascript:void(0)"><i class="feather-trash-2">
+                                </i><span>Delete</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Paging -->
+    <div class="paginate">
+        <pagination (pageChanged)="pageChangedProjects($event)" [totalItems]="dataNoti.length" [maxSize]="5"
+            [(ngModel)]="currentPage" [itemsPerPage]="12" [boundaryLinks]="true"
+            [customPreviousTemplate]="prevTemplate" [customNextTemplate]="nextTemplate"
+            [customPageTemplate]="pageTemplate">
+        </pagination>
+        <ng-template #pageTemplate let-page let-disabled="disabled" let-currentPage="currentPage">
+            <span [class.font-weight-bold]="page.number === currentPage">{{ page.number }}</span>
+        </ng-template>
+
+        <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+            <ng-container *ngIf="!disabled">
+                <i class="feather-arrow-right"></i>
+            </ng-container>
+            <ng-container *ngIf="disabled">
+                <i class="feather-arrow-right"></i>
+            </ng-container>
+        </ng-template>
+
+        <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+            <ng-container *ngIf="!disabled">
+                <i class="feather-arrow-left"></i>
+            </ng-container>
+            <ng-container *ngIf="disabled">
+                <i class="feather-arrow-left"></i>
+            </ng-container>
+        </ng-template>
+    </div>
+    <!-- footer -->
+    <app-footer></app-footer>
+</main>

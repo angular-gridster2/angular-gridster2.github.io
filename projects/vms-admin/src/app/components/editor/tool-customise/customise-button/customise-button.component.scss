@@ -1,0 +1,57 @@
+@import '../tool-customise.component.scss';
+
+// widget
+.customise_button {
+  @include box;
+  width: 300px;
+  font-family: SF Pro Text-Medium !important;
+
+  input {
+    font-weight: bold;
+    text-align: center;
+    background-color: #9FFFB1;
+  }
+
+  .round_corner {
+    border: 0;
+  }
+
+  .capsule {
+    @extend .round_corner;
+    border-radius: 30px;
+  }
+
+  .rectangle {
+    @extend .round_corner;
+    border-radius: 0;
+  }
+
+  .solid {
+    background: #9FFFB1 0% 0% no-repeat padding-box;
+  }
+
+  .gradient_1 {
+    background: transparent linear-gradient(180deg, #9FFFB1 0%, #508059 100%) 0% 0% no-repeat padding-box;
+  }
+
+  .gradient_2 {
+    background: transparent linear-gradient(98deg, #9FFFB1 0%, #508059 100%) 0% 0% no-repeat padding-box;
+  }
+
+  ::placeholder {
+    color: #0000e8;
+  }
+
+  .active {
+    padding: 4px;
+    border: 1px solid #0000e8;
+  }
+
+  .radius_0 {
+    border-radius: 0;
+  }
+
+  button {
+    height: 35px;
+  }
+}

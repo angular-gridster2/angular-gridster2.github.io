@@ -1,0 +1,7 @@
+@import "../../tool-customise.component.scss";
+
+.topleft_icon,
+.center_icon {
+  @include box;
+  @include border_color(".rounded_blue", #0000e8);
+}

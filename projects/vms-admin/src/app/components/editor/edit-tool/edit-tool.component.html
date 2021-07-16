@@ -1,0 +1,478 @@
+<div class="edit_tool d-flex align-items-center" style="width:0px">
+    <div *ngIf="editBtnActive != 0 && !isDrag" class="backdrop-edit-tool-sidebar"></div>
+    <div class="edit_btn">
+        <div class="pages" (click)="onToggleButton(1)" [class.edit_btn_active]="editBtnActive == 1">
+            <div id="top"></div>
+            <img src="assets/images/Icon-Edit menu-Pages.png" alt="Icon-Edit menu-Pages"
+                style=" height:38px; width:33px">
+            <div id="bottom"></div>
+        </div>
+        <div class="theme" (click)="onToggleButton(2)" [class.edit_btn_active]="editBtnActive == 2">
+            <div id="top"></div>
+            <img src="assets/images/Icon-Edit menu-Theme.png" alt="Icon-Edit menu-Theme" width="32">
+            <div id="bottom"></div>
+        </div>
+        <div class="widget" (click)="togleWidgetEnable ? onToggleButton(3) : false"
+            [class.edit_btn_active]="editBtnActive == 3" [class.disable]="!togleWidgetEnable">
+            <div id="top"></div>
+            <img src="assets/images/Icon-Edit menu-Widget.png" alt="Icon-Edit menu-Widget" width="32">
+            <div id="bottom"></div>
+        </div>
+        <div class="text" (click)="onToggleButton(4)" [class.edit_btn_active]="editBtnActive == 4">
+            <div id="top"></div>
+            <img src="assets/images/Icon-Edit menu-Text.png" alt="Icon-Edit menu-Text" style="width:26.67px">
+            <div id="bottom"></div>
+        </div>
+        <div class="tool" (click)="onToggleButton(5)" [class.edit_btn_active]="editBtnActive == 5">
+            <div id="top"></div>
+            <img src="assets/images/Icon-Edit menu-Tools.png" alt="Icon-Edit menu-Tools" width="32">
+            <div id="bottom"></div>
+        </div>
+    </div>
+    <div class="edit_container">
+        <div class="pages" [hidden]="!(editBtnActive == 1)">
+            <div class="row mx-0 my-0" style="min-width: 550px;max-height: 706px">
+                <!-- col left -->
+                <div class="col-7 py-3" style="min-height:706px; overflow:scroll-gray; padding-left: 30px;">
+                    <div class="d-flex align-items-center justify-content-start">
+                        <img (click)="editBtnActive = null" src="assets/images/Icon-Arrows-Normal-left-BLue.png"
+                            alt="Icon-Arrows-Normal-left-BLue" class="cursor_pointer">
+                        <div class="ml-3 pages_title">
+                            <span class="h5 font-weight-6">Pages</span>
+                        </div>
+                    </div>
+                    <div class="d-block mt-3 mb-2">
+                        <p class="text-secondary font-regular" style="font-size: 14px;">Log in</p>
+                        <a [routerLink]="['/editor']" [queryParams]="{ page: 'login' }"
+                            routerLinkActive="active" style="font-size: 16px;"><span>Page: Login</span></a>
+                    </div>
+                    <hr>
+                    <div class="d-block mt-3 mb-2">
+                        <p class="text-secondary font-regular" style="font-size: 14px;">Dashboard</p>
+                    </div>
+                    <div class="d-block">
+                        <!-- Loop ngFor -->
+                        <ul class="list-unstyled scroll-gray">
+                            <li *ngFor="let item of dashboardItems"
+                                class="d-flex justify-content-between align-items-center my-2" style="cursor: pointer"
+                                [class.text-primary]="item.id==(currentItem && currentItem.id)"
+                                (click)="currentItem=item;currentItem.id">
+                                <span style="font-size: 16px;">Page: {{ item.name }}</span>
+                                <img src="assets/images/Icon-option-Light.png" alt="Icon-option-Light">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center text-primary my-3" (click)="createDashboard()"
+                        style="cursor:pointer">
+                        <a style="color: #0000e8;">Add new Dashboard</a>
+                        <img src="assets/images/Icon-add-Blue.png" alt="Icon-add-Blue">
+                    </div>
+                    <hr>
+                    <div class="d-block my-4">
+                        <p class="text-secondary font-regular" style="font-size: 14px;">Thing</p>
+                        <a [routerLink]="['/editor']" [queryParams]="{ page: 'all-thing' }" [routerLinkActive]="'active'" style="font-size: 16px;">
+                            <span>Page: All Thing</span>
+                        </a>
+                    </div>
+                    <div class="d-block my-4">
+                        <a [routerLink]="['/editor']" [queryParams]="{ page: 'thing-detail' }" [routerLinkActive]="'active'" style="font-size: 16px;">
+                            <span>Page: Thing Detail</span>
+                        </a>
+                    </div>
+                    <hr>
+                    <div class="d-block my-4">
+                        <p class="text-secondary font-regular" style="font-size: 14px;">User Management</p>
+                        <a [routerLink]="['/editor']" [queryParams]="{ page: 'user-management' }" [routerLinkActive]="'active'"
+                            style="font-size: 16px;"><span>Page: User Management</span></a>
+                    </div>
+                    <hr>
+                    <div class="d-block my-4">
+                        <p class="text-secondary font-regular" style="font-size: 14px;">User Information</p>
+                        <a [routerLink]="[ '/editor' ]" [queryParams]="{ page: 'user-information' }"
+                            routerLinkActive="active"><span style="font-size: 16px;">Page: User Information</span></a>
+                    </div>
+                </div>
+                <!-- col right -->
+                <div class="col-5 py-3 box_grey">
+                    <ng-container *ngIf="currentItem && currentItem.id">
+                        <span class="h6 text-primary">Page: {{currentItem.name}}</span>
+                        <div class="row mb-3 mt-4" [routerLink]="['/editor']"
+                            [queryParams]="{ page: currentItem.id, layout: 'full' }">
+                            <div class="col-2"><img src="assets/images/Icon-Arrows-Normal-Right-Black.png"
+                                    alt="Icon-Arrows-Normal-Right-Black"></div>
+                            <div class="col-10 d-flex align-items-center cursor_pointer">Go to Dashboard</div>
+                        </div>
+                        <div class="row my-4" (click)="onDuplicate(currentItem.id)">
+                            <div class="col-2"><i class="fa fa-lg fa-clone"></i></div>
+                            <div class="col-10 d-flex align-items-center cursor_pointer">Dublicate Dashboard</div>
+                        </div>
+                        <div class="row my-4" (click)="rename=currentItem.id;newDashboardName=currentItem.name">
+                            <div class="col-2"><i class="fa-lg feather-edit"></i></div>
+                            <div class="col-10 d-flex align-items-center cursor_pointer">Rename</div>
+                        </div>
+                        <div class="row my-2" (click)="onDeleteDashboard(currentItem.id)">
+                            <div class="col-2"><i class="fa-lg feather-trash-2" style="color:#F46363"></i></div>
+                            <div class="col-10 d-flex align-items-center text-danger cursor_pointer">Delete</div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+        <div class="theme" [hidden]="!(editBtnActive == 2)">
+            <div class="row mx-2 my-3">
+                <div class="col-12">
+                    <div class="d-flex align-items-center justify-content-start">
+                        <img (click)="editBtnActive = null" src="assets/images/Icon-Arrows-Normal-left-BLue.png"
+                            alt="Icon-Arrows-Normal-left-BLue" class="cursor_pointer">
+                        <div class="ml-3">
+                            <span class="h5 font-weight-6">Theme</span>
+                        </div>
+                    </div>
+                    <div class="mt-3 mb-2 text-secondary">Main Theme</div>
+                    <div class="row main_theme">
+                        <div class="col-6" style="left: -8px;">
+                            <div class="light w-100 d-flex align-items-center justify-content-center cursor_pointer" 
+                            style="min-width: 199px; max-width: 199px;
+                            min-height: 115px; max-height: 115px;" (click)="mainThemeKey='light';changeThemeColor(secondaryThemeKey)">
+                                <div class="blue_line"></div>
+                                <img src="assets/images/cut-align-center-blue.png" alt="align-center light" width="70">
+                            </div>
+                            <p class="text-center mt-2 mb-0" [ngClass]="mainThemeKey=='light'?'active':''">Light</p>
+                        </div>
+                        <div class="col-6" style="left: -7px;">
+                            <div class="dark w-100 d-flex align-items-center justify-content-center cursor_pointer"
+                            style="max-width: 199px; min-width: 199px;
+                            max-height:115px; min-height: 115px;" (click)="mainThemeKey='dark';changeThemeColor(secondaryThemeKey)">
+                                <img src="assets/images/cut-align-center-white.png" alt="align-center dark" width="70">
+                            </div>
+                            <p class="text-center mt-2 mb-0" [ngClass]="mainThemeKey=='dark'?'active':''">Dark</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="mt-3 text-secondary">Color Theme</div>
+                    <div class="color_Theme row">
+                        <div (click)="onShowColorPickerTheme()"
+                            class="col-2 rounded-lg d-flex align-items-center justify-content-center cursor_pointer"
+                            style="border: 3px solid #E0E0E0;">
+                            <i class="feather-plus " style="font-size: 26px; color: #e0e0e0;"></i>
+                        </div>
+                        <div class="col-2 rounded-lg cursor_pointer" style="background-color: #000000;"
+                            (click)="changeThemeColor('gray')"></div>
+                        <div class="col-2 rounded-lg cursor_pointer" style="background-color: #9FFFB1;"
+                            (click)="changeThemeColor('default')"></div>
+                        <div class="col-2 rounded-lg cursor_pointer" style="background-color: #97C9DE;"
+                            (click)="changeThemeColor('blue')"></div>
+                        <div class="col-2 rounded-lg cursor_pointer" style="background-color: #919DEB;"
+                            (click)="changeThemeColor('violet')"></div>
+                        <div class="col-2 rounded-lg cursor_pointer" style="background-color: #C58ECC;"
+                            (click)="changeThemeColor('purple')"></div>
+                        <div class="col-2 rounded-lg cursor_pointer" style="background-color: #E8829A;"
+                            (click)="changeThemeColor('pink')"></div>
+                        <div class="col-2 rounded-lg cursor_pointer" style="background-color: #EA857A;"
+                            (click)="changeThemeColor('orange')"></div>
+                        <div class="col-2 rounded-lg cursor_pointer" style="background-color: #9DCB7A;"
+                            (click)="changeThemeColor('lightGreen')"></div>
+                        <div class="col-2 rounded-lg cursor_pointer" style="background-color: #73B18D;"
+                            (click)="changeThemeColor('darkGreen')"></div>
+                        <div class="col-2 rounded-lg cursor_pointer" style="background-color: #70AFAA;"
+                            (click)="changeThemeColor('teal')"></div>
+                    </div>
+                    <hr>
+                    <div class="mt-3 text-secondary">Default font color</div>
+                    <div class="default_color row">
+                        <div (click)="onShowColorPickerTheme()"
+                            class="col-2 rounded-lg d-flex align-items-center justify-content-center cursor_pointer"
+                            style="border: 3px solid #E0E0E0;">
+                            <i class="feather-plus" style="font-size: 26px; color: #e0e0e0;"></i>
+                        </div>
+                        <div class="col-2 rounded-lg cursor_pointer" style="background-color: #000000;"
+                            (click)="changeFontColor('#000000')"></div>
+                        <div class="col-2 rounded-lg cursor_pointer" style="background-color: #9FFFB1;"
+                            (click)="changeFontColor('#9FFFB1')"></div>
+                        <div class="col-2 rounded-lg cursor_pointer" style="background-color: #97C9DE;"
+                            (click)="changeFontColor('#97C9DE')"></div>
+                        <div class="col-2 rounded-lg cursor_pointer" style="background-color: #919DEB;"
+                            (click)="changeFontColor('#919DEB')"></div>
+                        <div class="col-2 rounded-lg cursor_pointer" style="background-color: #C58ECC;"
+                            (click)="changeFontColor('#C58ECC')"></div>
+                        <div class="col-2 rounded-lg cursor_pointer" style="background-color: #E8829A;"
+                            (click)="changeFontColor('#E8829A')"></div>
+                        <div class="col-2 rounded-lg cursor_pointer" style="background-color: #EA857A;"
+                            (click)="changeFontColor('#EA857A')"></div>
+                        <div class="col-2 rounded-lg cursor_pointer" style="background-color: #9DCB7A;"
+                            (click)="changeFontColor('#9DCB7A')"></div>
+                        <div class="col-2 rounded-lg cursor_pointer" style="background-color: #73B18D;"
+                            (click)="changeFontColor('#73B18D')"></div>
+                        <div class="col-2 rounded-lg cursor_pointer" style="background-color: #70AFAA;"
+                            (click)="changeFontColor('#70AFAA')"></div>
+                    </div>
+                </div>
+                <div class="position-absolute color_picker row p-1 m-1" *ngIf="showColorPickerTheme">
+                    <div class="col-12 mb-3">
+                        <div class="d-flex justify-content-between align-items-center text-primary my-2">
+                            <div class="d-flex justify-content-start align-items-center">
+                                <img src="assets/images/Icon-Edit tool-Customise.png" alt="Icon-Edit tool-Customise">
+                                <span class="h6 m-0 pl-1 font-weight-bold">Color</span>
+                            </div>
+                            <img src="assets/images/Icon-Edit tool-Close.png" alt="Icon-Edit tool-Close"
+                                (click)="showColorPickerTheme = false" class="cursor_pointer">
+                        </div>
+                        <app-custom-color-picker (change)="changeColor($event)"></app-custom-color-picker>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widget" [hidden]="!(editBtnActive == 3)">
+            <div class="row mx-0 my-0 position-relative h-100">
+                <div class="col-5 widget_left box_grey">
+                    <div class="d-flex align-items-center justify-content-start title">
+                        <img (click)="editBtnActive = null" src="assets/images/Icon-Arrows-Normal-left-BLue.png"
+                            alt="Icon-Arrows-Normal-left-BLue">
+                        <div class="ml-2">
+                            <span>Widget</span>
+                        </div>
+                    </div>
+                    <ul class="list-unstyled text-secondary m-0">
+                        <ng-container *ngFor="let key of keys(); let i = index">
+                            <li *ngIf="widgetType(key) =='component'"
+                                [class.text-primary]="widgetSettingActiveName == key && widgetSettingActive == i"
+                                (click)="widgetSettingActive=i; widgetSettingActiveName = key">
+                                {{widgetName(key)}}
+                            </li>
+                        </ng-container>
+                    </ul>
+                    <hr>
+                    <div class="dashboard_setting" [class.text-primary]="widgetSettingActive == 8"
+                        [class.text-secondary]="widgetSettingActive != 8" (click)="widgetSettingActive = 8">Dashboard Setting</div>
+                </div>
+                <!-- Demo -->
+                <div class="col-7 widget_right sidebar_demo" *ngIf="widgetSettingActive != 8">
+                    <div class="h5 font-weight-6 text-primary ml-2">{{ widgetName(widgetSettingActiveName) }}</div>
+                    <div *ngFor="let default of widgetDefault(widgetSettingActiveName)" class="float-left drag-item view_demo"
+                        draggable="true" (dragstart)="onDragStart($event,widgetSettingActiveName,default)" (dragend)="onDragEnd()">
+                        <app-widget-container 
+                            [item]="{ widget: { name: widgetSettingActiveName, config: default } }" 
+                            [globalConfig]="globalConfig"
+                            [viewOnly]="true"
+                            [disableResizeAndButton]="false">
+                        </app-widget-container>
+                    </div>
+                </div>
+                <!-- Dashboard setting -->
+                <div class="col-7 widget_right"  *ngIf="widgetSettingActive == 8">
+                    <div class="title">Dashboard Setting</div>
+                    <!-- Choose Dashboard  -->
+                    <div class="choose_dashboard">
+                        <div class="title">Choose Dashboard</div>
+                        <p-dropdown [options]="dashboardItems" placeholder="Choose Dashboard" [virtualScroll]="true" [itemSize]="31"
+                            [styleClass]="'w-100 dropdown_style'" [filter]="false"></p-dropdown>
+                    </div>
+                    <hr style="margin: 30px 0">
+                    <!-- Dashboard Name -->
+                    <div class="dashboard_name">
+                        <div class="title">Dashboard Name</div>
+                        <p-dropdown [options]="dashboardItems" placeholder="Choose Dashboard" [virtualScroll]="true" [itemSize]="31"
+                        [styleClass]="'w-100 dropdown_style'" [filter]="false"></p-dropdown>
+                    </div>
+                    <!-- Display Density -->
+                    <div class="display_density">
+                        <div class="title">Display Density</div>
+                        <div class="row">
+                            <div class="col-4">
+                                <!-- btn radio  -->
+                                <div class="d-flex align-items-start justify-content-between">
+                                    <input type="radio" class="col-2" value="default" [(ngModel)]="displayDensity"
+                                        name="display" checked>
+                                    <label class="col-10 m-0"
+                                        [class.text-primary]="displayDensity == 'default'">Default</label>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <input type="radio" class="col-2" value="compact" [(ngModel)]="displayDensity"
+                                        name="display">
+                                    <label class="col-10 m-0"
+                                        [class.text-primary]="displayDensity == 'compact'">Compact</label>
+                                </div>
+                                <div class="d-flex align-items-end justify-content-between">
+                                    <input type="radio" class="col-2" value="cozy" [(ngModel)]="displayDensity"
+                                        name="display">
+                                    <label class="col-10 m-0"
+                                        [class.text-primary]="displayDensity == 'cozy'">Cozy</label>
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <!-- Display Density -->
+                                <div class="display_default container-fluid h-100 w-100">
+                                    <div class="row" style="height: 64%;">
+                                        <div class="col-6 w-50 bg-demo">
+                                        </div>
+                                        <div class="col-6 w-50">
+                                            <div class="row h-50">
+                                                <div class="col-6 bg-demo">
+                                                </div>
+                                                <div class="col-6 bg-demo">
+                                                </div>
+                                            </div>
+                                            <div class="row h-50">
+                                                <div class="col-6 bg-demo">
+                                                </div>
+                                                <div class="col-6 bg-demo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="height: 35%;">
+                                        <div class="col-6 w-50 bg-demo">
+                                        </div>
+                                        <div class="col-6 w-50">
+                                            <div class="row h-100">
+                                                <div class="col-6 w-50 bg-demo">
+                                                </div>
+                                                <div class="col-6 w-50 bg-demo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Widget Background -->
+                    <div class="widget_background">
+                        <div class="title">Widget Background</div>
+                        <div class="row scroll-gray">
+                            <!-- Widget Background -->
+                            <div (click)="onShowColorPickerWidget()"
+                                class="col-2 rounded-lg d-flex align-items-center justify-content-center"
+                                style="border: 3px solid #E0E0E0;">
+                                <i class="feather-plus" style="font-size: 26px; color: #e0e0e0;"></i>
+                            </div>
+                            <div class="col-2 rounded-lg" style="background-color: #000000;"
+                                (click)="onChangeDashboardBg('#000000')"></div>
+                            <div class="col-2 rounded-lg" style="background-color: #9FFFB1;"
+                                (click)="onChangeDashboardBg('#9FFFB1')"></div>
+                            <div class="col-2 rounded-lg" style="background-color: #97C9DE;"
+                                (click)="onChangeDashboardBg('#97C9DE')"></div>
+                            <div class="col-2 rounded-lg" style="background-color: #919DEB;"
+                                (click)="onChangeDashboardBg('#919DEB')"></div>
+                            <div class="col-2 rounded-lg" style="background-color: #C58ECC;"
+                                (click)="onChangeDashboardBg('#C58ECC')"></div>
+                            <div class="col-2 rounded-lg" style="background-color: #E8829A;"
+                                (click)="onChangeDashboardBg('#E8829A')"></div>
+                            <div class="col-2 rounded-lg" style="background-color: #EA857A;"
+                                (click)="onChangeDashboardBg('#EA857A')"></div>
+                            <div class="col-2 rounded-lg" style="background-color: #9DCB7A;"
+                                (click)="onChangeDashboardBg('#9DCB7A')"></div>
+                            <div class="col-2 rounded-lg" style="background-color: #73B18D;"
+                                (click)="onChangeDashboardBg('#73B18D')"></div>
+                            <div class="col-2 rounded-lg" style="background-color: #70AFAA;"
+                                (click)="onChangeDashboardBg('#70AFAA')"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Select color -->
+                <div class="position-absolute color_picker row p-1 m-1" *ngIf="showColorPickerWidget">
+                    <div class="col-12 mb-3">
+                        <div class="d-flex justify-content-between align-items-center text-primary my-2">
+                            <div class="d-flex justify-content-start align-items-center">
+                                <img src="assets/images/Icon-Edit tool-Customise.png" alt="Icon-Edit tool-Customise">
+                                <span class="h6 m-0 pl-1 font-weight-bold">Color</span>
+                            </div>
+                            <img src="assets/images/Icon-Edit tool-Close.png" alt="Icon-Edit tool-Close"
+                                (click)="showColorPickerWidget = false">
+                        </div>
+                        <app-custom-color-picker (change)="changeColor($event)"></app-custom-color-picker>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text" [hidden]="!(editBtnActive == 4)">
+            <div class="row mx-2 my-3">
+                <div class="col-12" style="top:25px">
+                    <div (click)="editBtnActive = null" class="d-flex align-items-center justify-content-start">
+                        <img src="assets/images/Icon-Arrows-Normal-left-BLue.png" alt="Icon-Arrows-Normal-left-BLue"
+                            class="cursor_pointer">
+                        <div class="ml-2 text_title">
+                            <span class="h5 text-dark">Text</span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between my-3">
+                        <div class="ml-3">
+                            <span class="h2 font-heavy" style="font-size: 40px;">Header</span>
+                        </div>
+                        <img src="assets/images/Icon-add-Blue.png" alt="Icon-add-Blue" class="cursor_pointer">
+                    </div>
+                    <hr>
+                    <div class="d-flex align-items-center justify-content-between my-4">
+                        <div class="ml-3">
+                            <span class="h4 font-regular" style="font-size: 24px;">Sub Header</span>
+                        </div>
+                        <img src="assets/images/Icon-add-Blue.png" alt="Icon-add-Blue" class="cursor_pointer">
+                    </div>
+                    <hr>
+                    <div class="d-flex align-items-center justify-content-between my-4">
+                        <div class="ml-3">
+                            <span class="h5 font-regular" style="font-size:20px">Description</span>
+                        </div>
+                        <img src="assets/images/Icon-add-Blue.png" alt="Icon-add-Blue" class="cursor_pointer">
+                    </div>
+                    <hr>
+                    <div class="d-flex align-items-center justify-content-between my-4">
+                        <div class="ml-3">
+                            <span class="font-regular" style="font-size: 16px;">Detail</span>
+                        </div>
+                        <img src="assets/images/Icon-add-Blue.png" alt="Icon-add-Blue" class="cursor_pointer">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tool" [hidden]="!(editBtnActive == 5)">
+            <div class="row mx-2 my-3">
+                <div class="col-12 mb-2">
+                    <div class="d-flex align-items-center justify-content-start">
+                        <!-- <img (click)="editBtnActive = null" src="assets/images/Icon-Arrows-Normal-left-BLue.png"
+                            alt="Icon-Arrows-Normal-left-BLue" class="cursor_pointer"> -->
+                        <i class="fas fa-arrow-left"></i>
+                        <div class="ml-3 tool_title">
+                            <span class="h5 text-dark">Tool</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 my-2 text-center">
+                    <img src="assets/images/cut-rectangle.png" alt="rectangle" width="60" class="cursor_pointer">
+                    <p class="mt-2 text-secondary">Rectangle</p>
+                </div>
+                <div class="col-4 my-2 text-center">
+                    <img src="assets/images/cut-elipses.png" alt="elipses" width="60" class="cursor_pointer">
+                    <p class="mt-2 text-secondary">Ellipses</p>
+                </div>
+                <div class="col-4 my-2 text-center">
+                    <img src="assets/images/cut-line.png" alt="line" width="60" class="cursor_pointer">
+                    <p class="mt-2 text-secondary">Line</p>
+                </div>
+                <div class="col-4 my-2 text-center">
+                    <img src="assets/images/cut-triangle.png" alt="triangle" width="60" class="cursor_pointer">
+                    <p class="mt-2 text-secondary">Triangle</p>
+                </div>
+                <div class="col-4 my-2 text-center">
+                    <img src="assets/images/cut-star.png" alt="star" width="60" class="cursor_pointer">
+                    <p class="mt-2 text-secondary">Star</p>
+                </div>
+                <div class="col-4 my-2 text-center">
+                    <img src="assets/images/cut-heart.png" alt="heart" width="60" class="cursor_pointer">
+                    <p class="mt-2 text-secondary">Heart</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="ngprime-modal-change-dashboard-name">
+    <p-dialog modal="true" header="Dashboard Name" [(visible)]="rename" [style]="{width: '400px', height: '200px'}" [baseZIndex]="10000" [closable]="false">
+      <div class="p-body">
+        <input class="form-control" [(ngModel)]="newDashboardName"/>
+      </div>
+      <div class="p-footer d-flex">
+        <button type="button" class="btn btn-primary btn_pill mr-2" (click)="changeDashboardName()">Save</button>
+        <button type="button" class="btn btn-danger btn_pill" (click)="rename=null">Cancel</button>
+      </div>
+    </p-dialog>
+</div>

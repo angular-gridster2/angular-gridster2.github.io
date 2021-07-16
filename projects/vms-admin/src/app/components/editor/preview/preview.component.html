@@ -1,0 +1,24 @@
+<div class="w-100 h-100 position-relative" [ngStyle]="{ background: page.type=='auth'?pageConfig.themeAuthBackground:pageConfig.themeBackground }">
+    <div class="w-100 h-100" style="zoom: 0.7;">
+        <app-topbar *ngIf="page.type && page.type!='auth'" [globalConfig]="pageConfig" [breadcumb]="page.key" [viewOnly]="true"></app-topbar>
+        <div *ngIf="page && page.type=='dashboard'" class="dashboard-grid-container" [ngStyle]="{border: !dataLayout.length?'dashed 1px #ffffff':'none'}">
+            <div *ngIf="!dataLayout.length" class="w-100 h-100 d-flex position-absolute justify-content-center text-white" style="align-items: center;font-size: 32px; font-family: 'SF Pro Text-Thin';">
+              <div>
+                <div class="mb-3">Drag Widget</div> 
+                <div>To this area</div>
+              </div>
+            </div>
+            <gridster *ngIf="refreshed" [options]="options2" style="background:transparent">
+                <gridster-item [item]="item" *ngFor="let item of dataLayout;">
+                    <app-widget-container [item]="item" [viewOnly]="true" [globalConfig]="pageConfig"></app-widget-container>
+                </gridster-item>
+            </gridster>
+        </div>
+        <gridster *ngIf="page && page.type!='dashboard' && refreshed" [options]="options" style="background:transparent">
+            <gridster-item [item]="item" *ngFor="let item of dataLayout;">
+                <app-widget-container [item]="item" [viewOnly]="true" [globalConfig]="pageConfig"></app-widget-container>
+            </gridster-item>
+        </gridster>
+    </div>
+</div>
+

@@ -1,0 +1,40 @@
+.grid-container{
+  width: 100vw;
+  height: 100vh;
+}
+
+.grid-container ::ng-deep {
+  gridster-item {
+    background: none !important;
+    overflow: initial !important;
+  }
+
+  gridster-preview {
+    background: none !important;
+  }
+}
+
+.dashboard-grid-container{
+  position: relative;
+  width:100%;
+  height: calc(100vh - 130px);
+  margin:auto;
+  margin-bottom: 20px;
+  padding:20px 21%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.page-grid-container{
+  position: relative;
+  width:100%;
+  height: calc(100vh - 110px);
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.scroll-gray::-webkit-scrollbar-thumb{
+  background: #333333;
+  border: 1px solid #333333;
+}
+

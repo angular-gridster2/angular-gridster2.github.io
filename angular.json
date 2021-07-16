@@ -1,0 +1,456 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "vms-admin": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/vms-admin",
+      "sourceRoot": "projects/vms-admin/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-builders/custom-webpack:browser",
+          "options": {
+            "customWebpackConfig": {
+              "path": "projects/vms-admin/extra-webpack.config.js",
+              "mergeStrategies": {
+                "module.rules": "prepend"
+              },
+              "replaceDuplicatePlugins": true
+            },
+            "outputPath": "dist/vms-admin",
+            "index": "projects/vms-admin/src/index.html",
+            "main": "projects/vms-admin/src/main.ts",
+            "polyfills": "projects/vms-admin/src/polyfills.ts",
+            "tsConfig": "projects/vms-admin/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/vms-admin/src/favicon.ico",
+              "projects/vms-admin/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "projects/vms-admin/src/assets/css/font-feather.css",
+              "projects/vms-admin/src/styles.scss"
+            ],
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.js",
+              "./node_modules/zingchart/zingchart.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/vms-admin/src/environments/environment.ts",
+                  "with": "projects/vms-admin/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-builders/custom-webpack:dev-server",
+          "options": {
+            "customWebpackConfig": {
+              "path": "projects/vms-admin/extra-webpack.config.js",
+              "mergeStrategies": {
+                "module.rules": "prepend"
+              },
+              "replaceDuplicatePlugins": true
+            },
+            "browserTarget": "vms-admin:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "vms-admin:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "vms-admin:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/vms-admin/src/test.ts",
+            "polyfills": "projects/vms-admin/src/polyfills.ts",
+            "tsConfig": "projects/vms-admin/tsconfig.spec.json",
+            "karmaConfig": "projects/vms-admin/karma.conf.js",
+            "assets": [
+              "projects/vms-admin/src/favicon.ico",
+              "projects/vms-admin/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "projects/vms-admin/src/styles.scss"
+            ],
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/vms-admin/tsconfig.app.json",
+              "projects/vms-admin/tsconfig.spec.json",
+              "projects/vms-admin/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/vms-admin/e2e/protractor.conf.js",
+            "devServerTarget": "vms-admin:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "vms-admin:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "widgets": {
+      "projectType": "library",
+      "root": "projects/widgets",
+      "sourceRoot": "projects/widgets/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/widgets/tsconfig.lib.json",
+            "project": "projects/widgets/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/widgets/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/widgets/src/test.ts",
+            "tsConfig": "projects/widgets/tsconfig.spec.json",
+            "karmaConfig": "projects/widgets/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/widgets/tsconfig.lib.json",
+              "projects/widgets/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "vms-site": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/vms-site",
+      "sourceRoot": "projects/vms-site/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-builders/custom-webpack:browser",
+          "options": {
+            "customWebpackConfig": {
+              "path": "projects/vms-site/extra-webpack.config.js",
+              "mergeStrategies": {
+                "module.rules": "prepend"
+              },
+              "replaceDuplicatePlugins": true
+            },
+            "outputPath": "dist/vms-site",
+            "index": "projects/vms-site/src/index.html",
+            "main": "projects/vms-site/src/main.ts",
+            "polyfills": "projects/vms-site/src/polyfills.ts",
+            "tsConfig": "projects/vms-site/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/vms-site/src/favicon.ico",
+              "projects/vms-site/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "projects/vms-site/src/assets/css/font-feather.css",
+              "projects/vms-site/src/styles.scss"
+            ],
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.js",
+              "./node_modules/zingchart/zingchart.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/vms-site/src/environments/environment.ts",
+                  "with": "projects/vms-site/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-builders/custom-webpack:dev-server",
+          "options": {
+            "customWebpackConfig": {
+              "path": "projects/vms-site/extra-webpack.config.js",
+              "mergeStrategies": {
+                "module.rules": "prepend"
+              },
+              "replaceDuplicatePlugins": true
+            },
+            "browserTarget": "vms-site:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "vms-site:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "vms-site:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/vms-site/src/test.ts",
+            "polyfills": "projects/vms-site/src/polyfills.ts",
+            "tsConfig": "projects/vms-site/tsconfig.spec.json",
+            "karmaConfig": "projects/vms-site/karma.conf.js",
+            "assets": [
+              "projects/vms-site/src/favicon.ico",
+              "projects/vms-site/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "projects/vms-site/src/styles.scss"
+            ],
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/vms-site/tsconfig.app.json",
+              "projects/vms-site/tsconfig.spec.json",
+              "projects/vms-site/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/vms-site/e2e/protractor.conf.js",
+            "devServerTarget": "vms-site:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "vms-site:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "vms-supper-admin": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/vms-supper-admin",
+      "sourceRoot": "projects/vms-supper-admin/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/vms-supper-admin",
+            "index": "projects/vms-supper-admin/src/index.html",
+            "main": "projects/vms-supper-admin/src/main.ts",
+            "polyfills": "projects/vms-supper-admin/src/polyfills.ts",
+            "tsConfig": "projects/vms-supper-admin/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/vms-supper-admin/src/favicon.ico",
+              "projects/vms-supper-admin/src/assets"
+            ],
+            "styles": [
+              "projects/vms-supper-admin/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/vms-supper-admin/src/environments/environment.ts",
+                  "with": "projects/vms-supper-admin/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "vms-supper-admin:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "vms-supper-admin:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "vms-supper-admin:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/vms-supper-admin/src/test.ts",
+            "polyfills": "projects/vms-supper-admin/src/polyfills.ts",
+            "tsConfig": "projects/vms-supper-admin/tsconfig.spec.json",
+            "karmaConfig": "projects/vms-supper-admin/karma.conf.js",
+            "assets": [
+              "projects/vms-supper-admin/src/favicon.ico",
+              "projects/vms-supper-admin/src/assets"
+            ],
+            "styles": [
+              "projects/vms-supper-admin/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/vms-supper-admin/tsconfig.app.json",
+              "projects/vms-supper-admin/tsconfig.spec.json",
+              "projects/vms-supper-admin/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/vms-supper-admin/e2e/protractor.conf.js",
+            "devServerTarget": "vms-supper-admin:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "vms-supper-admin:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "vms-admin",
+  "cli": {
+    "analytics": "c7e675d9-7948-4249-a0bf-d3f144c1a0d6"
+  }
+}

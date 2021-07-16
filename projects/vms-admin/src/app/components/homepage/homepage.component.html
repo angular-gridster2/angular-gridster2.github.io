@@ -1,0 +1,88 @@
+<div id="homepage">
+  <app-header></app-header>
+  <app-banner [isHome]="true" [bgType]="true"></app-banner>
+  <div class="grid">
+    <div class="grid__container">
+      <div class="row" style="justify-content: center;">
+        <div class="gird_graphic">
+          <img src="assets/images/Graphic-Creating Tools.png" alt="" />
+        </div>
+        <div class="grid__container--content">
+          <span class="_title">Creating Tools</span>
+          <span class="_content">The freedom to Create the Website You Want</span>
+          <p>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+            dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+          </p>
+        </div>
+      </div>
+      <div class="row popular_template" style="justify-content: center;">
+        <div class="grid__container--content">
+          <span class="_title">Popular Templates</span>
+          <span class="_content">Pixel Perfect Design In Template</span>
+          <p>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+            dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+          </p>
+        </div>
+        <div class="gird_graphic">
+          <img src="assets/images/Graphic-Popular Templates.png" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="grid__template">
+      <h3>Template</h3>
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6 grid__template--box">
+          <!-- <img src="assets/images/dark.png" alt="" /> -->
+          <!-- fix bug tiennx -->
+          <img src="assets/images/cut-dark-theme.png" alt="" />
+          <div class="box__content">
+            <h5 class="title__template">
+              Dark Theme
+            </h5>
+            <p>Description</p>
+            <div class="explore">
+              <button (click)="showTemplatePreview('dark.default')">
+                Explore
+                <span class="material-icons">
+                  arrow_right_alt
+                </span>
+              </button>
+              <span class="material-icons three-dots cursor_pointer">
+                more_vert
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6 grid__template--box">
+          <!-- <img src="assets/images/light.png" alt="" /> -->
+          <!-- fix bug tiennx -->
+          <img src="assets/images/cut-light-theme.png" alt="" />
+          <div class="box__content">
+            <h5 class="title__template">
+              Light Theme
+            </h5>
+            <p>Description</p>
+            <div class="explore">
+              <button (click)="showTemplatePreview('light.default')">
+                Explore
+                <span class="material-icons">
+                  arrow_right_alt
+                </span>
+              </button>
+              <span class="material-icons three-dots cursor_pointer">
+                more_vert
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a [routerLink]="['/select-template']">More Templates
+        <span class="material-icons arrow-explore">
+          arrow_right_alt
+        </span></a>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

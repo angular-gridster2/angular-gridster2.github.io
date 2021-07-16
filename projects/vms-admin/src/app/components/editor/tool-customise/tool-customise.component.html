@@ -1,0 +1,44 @@
+<!-- constomise -->
+<div #myBounds *ngIf="isShowCustomiseWidget || isShowCustomiseButton || isShowCustomiseText || isShowCustomiseTextbox || isShowCustomiseRectangle"
+   class="tool_customise" [ngStyle]="calcContainer()">
+  <!-- LEVEL 1 -->
+  <app-customise-widget [currentWidget]="currentWidget" [myBounds]="myBounds" *ngIf="isShowCustomiseWidget" style="float: left"></app-customise-widget>
+  <app-customise-button [currentWidget]="currentWidget" [myBounds]="myBounds" *ngIf="isShowCustomiseButton" style="float: left"></app-customise-button>
+  <app-customise-text [currentWidget]="currentWidget" [myBounds]="myBounds" *ngIf="isShowCustomiseText" style="float: left"></app-customise-text>
+  <app-customise-textbox [currentWidget]="currentWidget" [myBounds]="myBounds" *ngIf="isShowCustomiseTextbox" style="float: left"></app-customise-textbox>
+  <app-customise-rectangle [currentWidget]="currentWidget" [myBounds]="myBounds" *ngIf="isShowCustomiseRectangle" style="float: left"></app-customise-rectangle>
+
+  <!-- Group column -->
+  <div class="float-left">
+    <!-- widget gauge LEVEL 1 -->
+    <app-widget-gauge [currentWidget]="currentWidget" [myBounds]="myBounds" *ngIf="isGaugeBox"></app-widget-gauge>
+    <!-- topleft-icon LEVEL 1+ -->
+    <app-center-top-left-icon [currentWidget]="currentWidget" [myBounds]="myBounds" [title]="'/Top-left/Icon'" *ngIf="isShowTopLeftIcon">
+    </app-center-top-left-icon>
+    <!-- center variable LEVEL 1+ -->
+    <app-center-variable [currentWidget]="currentWidget" [myBounds]="myBounds" *ngIf="isCenterVariable"></app-center-variable>
+    <!-- bottom variable LEVEL 1+ -->
+    <app-bottom-variable [currentWidget]="currentWidget" [myBounds]="myBounds" *ngIf="isBottomVariable"></app-bottom-variable>
+  </div>
+  
+  <div class="float-left">
+    <!-- widget map LEVEL 1+ -->
+    <app-widget-map [currentWidget]="currentWidget" [myBounds]="myBounds" *ngIf="isMapBox"></app-widget-map>
+    <!-- widget graph LEVEL 1+ -->
+    <app-widget-graph [currentWidget]="currentWidget" [myBounds]="myBounds" *ngIf="isGraphBox"></app-widget-graph>
+  </div>
+
+  <!-- center-icon LEVEL 1+ -->
+  <div class="float-left">
+    <app-center-top-left-icon [currentWidget]="currentWidget" [myBounds]="myBounds" [title]="'/Center/Icon'" *ngIf="isShowCenterIcon">
+    </app-center-top-left-icon>
+  </div>
+
+  <!-- Group column -->
+  <div class="float-left">
+    <!-- select icon LEVEL 1+ -->
+    <app-select-icon [currentWidget]="currentWidget" [myBounds]="myBounds" *ngIf="isShowSelectIcon"></app-select-icon>
+    <!-- select color LEVEL 1+ -->
+    <app-select-color [currentWidget]="currentWidget" [myBounds]="myBounds" [title]="selectColorTitle" *ngIf="isShowSelectColor"></app-select-color>
+  </div>
+</div>

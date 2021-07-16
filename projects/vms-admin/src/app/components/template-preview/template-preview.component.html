@@ -1,0 +1,84 @@
+<main>
+  <!-- header  -->
+  <app-header [mode]="2" [background]="'white'"></app-header>
+
+  <!-- content -->
+  <section>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a [routerLink]="['/select-template']">All Template</a>
+        </li>
+        <li class="breadcrumb-item active">
+          <a href="javascript:void(0)">Preview</a>
+        </li>
+      </ol>
+    </nav>
+    <div class="use_template row">
+      <div class="description col-xs-12 col-md-6 text-center text-md-left">
+        <h1 class="text-capitalize"><span>{{mainTheme}}</span> Theme</h1>
+        <p class="mb-0">Description</p>
+      </div>
+      <div class="create_project col-xs-12 col-md-6 d-flex justify-content-center justify-content-md-end mt-3 mt-md-0">
+        <div class="create_project_center text-center">
+          <p>Create a Project</p>
+          <button class="btn btn-primary" type="button" (click)="onUseThisTemplate()">
+            Use This Template
+          </button>
+        </div>
+      </div>
+    </div>
+    <hr class="hr_1" />
+    <div class="page row">
+      <div class="select_option col-xs-12 col-md-4">
+        <div class="select_page">
+          <label>Select Pages</label>
+          <div class="dropdown">
+            <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Page: {{page.name}}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a *ngFor="let p of pagesList" class="dropdown-item cursor_pointer" (click)="page=p">{{p.name}}</a>
+            </div>
+          </div>
+        </div>
+        <div class="select_color">
+          <label>Change Colour</label>
+          <div class="colors">
+            <div class="rounded-circle circle1" [ngClass]="themeActive=='gray'?'theme-active':''" (click)="selectTheme('gray')"
+              data-color="33, 33, 33"></div>
+            <div class="rounded-circle circle2" [ngClass]="themeActive=='default'?'theme-active':''" (click)="selectTheme('default')"
+              data-color="159, 255, 177"></div>
+            <div class="rounded-circle circle3" [ngClass]="themeActive=='blue'?'theme-active':''" (click)="selectTheme('blue')"
+              data-color="151, 201, 222"></div>
+            <div class="rounded-circle circle4" [ngClass]="themeActive=='violet'?'theme-active':''" (click)="selectTheme('violet')"
+              data-color="145, 157, 235"></div>
+            <div class="rounded-circle circle5" [ngClass]="themeActive=='purple'?'theme-active':''" (click)="selectTheme('purple')"
+              data-color="197, 142, 204"></div>
+            <div class="rounded-circle circle6" [ngClass]="themeActive=='pink'?'theme-active':''" (click)="selectTheme('pink')"
+              data-color="232, 130, 154"></div>
+            <div class="rounded-circle circle7" [ngClass]="themeActive=='orange'?'theme-active':''" (click)="selectTheme('orange')"
+              data-color="234, 133, 122"></div>
+            <div class="rounded-circle circle8" [ngClass]="themeActive=='lightGreen'?'theme-active':''" (click)="selectTheme('lightGreen')"
+              data-color="157, 203, 122"></div>
+            <div class="rounded-circle circle9" [ngClass]="themeActive=='darkGreen'?'theme-active':''" (click)="selectTheme('darkGreen')"
+              data-color="115, 177, 141"></div>
+            <div class="rounded-circle circle10" [ngClass]="themeActive=='teal'?'theme-active':''" (click)="selectTheme('teal')"
+              data-color="112, 175, 170"></div>
+          </div>
+        </div>
+      </div>
+      <div class="p-0 col-xs-12 col-md-8" style="white-space: nowrap;">
+        <div class="preview-screen-outer">
+          <div class="preview-screen">
+            <app-preview [page]="page" [pageConfig]="themeConfig"></app-preview>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="hr_2" />
+  </section>
+  <!-- footer  -->
+  <app-footer></app-footer>
+</main>

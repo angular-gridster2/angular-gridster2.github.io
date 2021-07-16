@@ -1,0 +1,154 @@
+:host {
+  width: 100%;
+  min-width: 1349px;
+  max-width: 1440px;
+  margin: 0 auto;
+  height: 1024px;
+
+  .make_background {
+    width: 100%;
+    min-width: 1349px;
+    margin: 0 auto;
+    height: 1024px;
+
+    &::after,
+    &::before {
+      content: " ";
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 1024px;
+      z-index: -1;
+    }
+
+    &::before {
+      left: 0;
+      background-color: #0000e8;
+    }
+
+    &::after {
+      right: 0;
+      background-color: #ffffff;
+    }
+  }
+  form {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    @mixin form {
+      width: 350px;
+      position: absolute;
+      margin-left: 125px;
+      // margin-left: 286.5px;
+
+      .back-step {
+        text-align: left;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #605f5f;
+        font-family: "SF Pro Text-Regular";
+        margin-bottom: 28.53px;
+
+        i {
+          font-size: 22px;
+          position: relative;
+          left: -5px;
+        }
+      }
+
+      .btn {
+        height: 48px;
+        font-size: 16px;
+        font-family: "SF Pro Text-Bold";
+
+        &:disabled {
+          color: #979797;
+          background-color: #c8c8c8;
+          border: 1px solid #b9b9b9;
+        }
+      }
+    }
+
+    .content {
+      @include form();
+      top: 216px;
+      transition: all 0.3s linear;
+
+      .title {
+        text-align: left;
+
+        h2 {
+          margin: 0;
+          color: #212121;
+          line-height: unset;
+          font-size: 32px;
+          font-family: "SF Pro Text-Heavy";
+        }
+
+        div {
+          width: 299px;
+          height: 64px;
+          font-size: 15px;
+          font-family: "SF Pro Text-Regular";
+          margin-top: 12.29px;
+          margin-bottom: 37.5px;
+
+          p {
+            font-size: 14px;
+            margin-bottom: 4px;
+          }
+
+          p:nth-child(1),
+          p:nth-child(3) {
+            color: #605f5f;
+            font-family: "SF Pro Text-Regular";
+          }
+
+          p:nth-child(2) {
+            color: #0000e8;
+            font-family: "SF Pro Text-Semibold";
+          }
+        }
+      }
+
+      .inp-otp {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        input {
+          width: 45px;
+          height: 47px;
+          border-radius: 6px;
+          font-size: 14px;
+          font-family: "SF Pro Text-Medium";
+          text-align: center;
+        }
+      }
+
+      .otp-message {
+        color: #959393;
+        font-size: 14px;
+        font-family: "SF Pro Text-Regular";
+        margin: 22.7px 0 50.42px;
+      }
+
+      .time-send-OTP {
+        color: #959393;
+        text-align: center;
+        font-size: 18px;
+        font-family: "SF Pro Text-Bold";
+        margin-top: 34px;
+      }
+    }
+
+    //xóa dấu tăng giảm
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}

@@ -1,0 +1,98 @@
+<div [ngDraggable]="true" [handle]="DragHandle" [bounds]="myBounds" [inBounds]="true" (click)="$event.stopImmediatePropagation()" class="customise_rectangle row p-1 m-1">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center text-primary my-2">
+            <div class="d-flex justify-content-start align-items-center cursor_move" #DragHandle>
+                <img src="assets/images/Icon-Edit tool-Customise.png" alt="Icon-Edit tool-Customise">
+                <span class="h6 m-0 pl-1 font-weight-bold">Customise/Rectangle</span>
+            </div>
+            <img src="assets/images/Icon-Edit tool-Close.png" alt="Icon-Edit tool-Close" (click)="onClose(); $event.stopImmediatePropagation()" class="cursor_pointer">
+        </div>
+        <!-- Fill -->
+        <div class="row px-2 align-items-center">
+            <div class="col-2">
+                <input type="checkbox" class="form-control">
+            </div>
+            <div class="col-10 text-secondary p-0">Fill</div>
+        </div>
+        <div class="row px-2 mt-2 mb-2">
+            <div class="col-2"></div>
+            <div class="col-10 row p-0 m-0 align-items-center justify-content-between">
+                <div class="col-2 pl-0">12%</div>
+                <div class="col-10 pr-0">
+                    <input type="range" [value]="12" class="w-100 d-flex align-items-center" (input)="onOpacity($event.target.value)"> 
+                </div>
+            </div>
+        </div>
+        <div class="row px-2 mt-2 mb-2">
+            <div class="col-2"></div>
+            <div class="col-10 row p-0 m-0">
+                <div class="color" style="background: #FFFFFF;" (click)="currentWidget.widget.config.styles['color'] = '#FFFFFF';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #FAFAFA;" (click)="currentWidget.widget.config.styles['color'] = '#FAFAFA';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #EAEAEA;" (click)="currentWidget.widget.config.styles['color'] = '#EAEAEA';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #959393;" (click)="currentWidget.widget.config.styles['color'] = '#959393';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #212121;" (click)="currentWidget.widget.config.styles['color'] = '#212121';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #9FFFB1;" (click)="currentWidget.widget.config.styles['color'] = '#9FFFB1';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #97C9DE;" (click)="currentWidget.widget.config.styles['color'] = '#97C9DE';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #919DEB;" (click)="currentWidget.widget.config.styles['color'] = '#919DEB';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #C58ECC;" (click)="currentWidget.widget.config.styles['color'] = '#C58ECC';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #E8829A;" (click)="currentWidget.widget.config.styles['color'] = '#E8829A';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #EA857A;" (click)="currentWidget.widget.config.styles['color'] = '#EA857A';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #9DCB7A;" (click)="currentWidget.widget.config.styles['color'] = '#9DCB7A';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #73B18D;" (click)="currentWidget.widget.config.styles['color'] = '#73B18D';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #70AFAA;" (click)="currentWidget.widget.config.styles['color'] = '#70AFAA';  onChangeWidget(currentWidget)"></div>
+            </div>
+        </div>
+        <!-- Border -->
+        <div class="row px-2 align-items-center">
+            <div class="col-2">
+                <input type="checkbox" class="form-control">
+            </div>
+            <div class="col-10 text-secondary p-0">Border</div>
+        </div>
+        <div class="row px-2 mt-2 mb-2">
+            <div class="col-2"></div>
+            <div class="col-10 row p-0 m-0 align-items-center justify-content-between">
+                <div class="col-2 pl-0">12%</div>
+                <div class="col-10 pr-0">
+                    <input type="range" [value]="12" class="w-100 d-flex align-items-center" (input)="onOpacity($event.target.value)"> 
+                </div>
+            </div>
+        </div>
+        <div class="row px-2 mt-2 mb-2">
+            <div class="col-2"></div>
+            <div class="col-10 row p-0 m-0">
+                <div class="color" style="background: #FFFFFF;" (click)="currentWidget.widget.config.styles['color'] = '#FFFFFF';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #FAFAFA;" (click)="currentWidget.widget.config.styles['color'] = '#FAFAFA';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #EAEAEA;" (click)="currentWidget.widget.config.styles['color'] = '#EAEAEA';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #959393;" (click)="currentWidget.widget.config.styles['color'] = '#959393';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #212121;" (click)="currentWidget.widget.config.styles['color'] = '#212121';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #9FFFB1;" (click)="currentWidget.widget.config.styles['color'] = '#9FFFB1';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #97C9DE;" (click)="currentWidget.widget.config.styles['color'] = '#97C9DE';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #919DEB;" (click)="currentWidget.widget.config.styles['color'] = '#919DEB';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #C58ECC;" (click)="currentWidget.widget.config.styles['color'] = '#C58ECC';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #E8829A;" (click)="currentWidget.widget.config.styles['color'] = '#E8829A';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #EA857A;" (click)="currentWidget.widget.config.styles['color'] = '#EA857A';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #9DCB7A;" (click)="currentWidget.widget.config.styles['color'] = '#9DCB7A';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #73B18D;" (click)="currentWidget.widget.config.styles['color'] = '#73B18D';  onChangeWidget(currentWidget)"></div>
+                <div class="color" style="background: #70AFAA;" (click)="currentWidget.widget.config.styles['color'] = '#70AFAA';  onChangeWidget(currentWidget)"></div>
+            </div>
+        </div>
+        <hr>
+        <div class="row px-2 mt-2 mb-2">
+            <div class="col-4">Width</div>
+            <div class="col-4">Height</div>
+            <div class="col-4">Rotation</div>
+        </div>
+        <div class="row px-2 mt-2 mb-2">
+            <div class="col-4"><input type="number" class="form-control"></div>
+            <div class="col-4"><input type="number" class="form-control"></div>
+            <div class="col-4"><input type="number" class="form-control"></div>
+        </div>
+        <hr>
+        <div class="text-secondary px-2">Align</div>
+        <div class="px-2 my-3 h6">Bring to Front</div>
+        <div class="px-2 my-3 h6">Bring Forward</div>
+        <div class="px-2 my-3 h6">Send Backward</div>
+        <div class="px-2 mt-3 mb-4 h6">Send to Back</div>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<div
+  class="w-100 h-100 position-relative animate__animated animate__fast"
+  [ngClass]="{
+    'animate__fadeIn': this.screenType === 'dashboard'
+  }"
+  [ngStyle]="{'background': notTransparentBgType()?globalConfig.themeWidgetBackground:'transparent'}">
+  <ng-container #widgetHost></ng-container>
+</div>

@@ -1,0 +1,206 @@
+$primary: #0000e8;
+$danger: #f90317;
+$dangerBorder: #f46363;
+@mixin resizers {
+  .resizers {
+    display: block !important;
+    box-sizing: border-box;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+    &.enable {
+      border: 1px solid $primary;
+
+      .label {
+        border: 1px solid $primary;
+        color: $primary;
+      }
+
+      .resizer {
+        border: 1px solid $primary;
+      }
+    }
+
+    &.disable {
+      border: 1px solid $dangerBorder;
+
+      .label {
+        border: 1px solid $dangerBorder;
+        color: $dangerBorder;
+      }
+
+      .resizer {
+        border: 1px solid $dangerBorder;
+      }
+    }
+
+    .label {
+      width: auto;
+      height: 22px;
+      padding: 0 5px;
+      position: absolute;
+      top: -27px;
+      background-color: #d8d8d885;
+      text-transform: capitalize;
+    }
+
+    .resizer {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: white;
+      position: absolute;
+
+      &.left {
+        left: -3px;
+        top: 48%;
+        // cursor: e-resize;
+      }
+
+      &.right {
+        right: -3px;
+        top: 48%;
+        // cursor: e-resize;
+      }
+
+      &.top-left {
+        left: -3px;
+        top: -3px;
+        /*resizer cursor*/
+        // cursor: nwse-resize;
+      }
+
+      &.top-center {
+        right: 48%;
+        top: -3px;
+        // cursor: n-resize;
+      }
+
+      &.top-right {
+        right: -3px;
+        top: -3px;
+        // cursor: nesw-resize;
+      }
+
+      &.bottom-left {
+        left: -3px;
+        bottom: -3px;
+        // cursor: nesw-resize;
+      }
+
+      &.bottom-center {
+        right: 48%;
+        bottom: -3px;
+        // cursor: n-resize;
+      }
+
+      &.bottom-right {
+        right: -3px;
+        bottom: -3px;
+        // cursor: nwse-resize;
+      }
+    }
+  }
+}
+
+::ng-deep {
+  // Widget: Style hover and cursor.
+  .container_grid {
+    gridster-item {
+      // when mouse over on widget, tools icon should appear (now need to click on widget to see tools icon)
+      &.active-only-dashboard {
+        &:hover {
+          z-index: 99 !important;
+
+          .icon_tools_hover_active {
+            display: block !important;
+          }
+
+          @include resizers();
+        }
+      }
+    }
+  }
+}
+
+:host {
+  width: 100%;
+  height: 100%;
+
+  .container_widget_host {
+    .drag_box {
+      button {
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        span {
+          font-size: 1.2rem;
+          margin: 0 !important;
+        }
+
+        &.icon_copy {
+          border: 1px solid $primary;
+
+          span {
+            color: $primary !important;
+          }
+        }
+
+        &.icon_custom {
+          border: 1px solid $primary;
+        }
+
+        &.icon_delete {
+          border: 1px solid $danger;
+
+          .feather-trash-2 {
+            color: $danger !important;
+            font-size: 20px;
+          }
+        }
+
+        &.btn_change_image {
+          color: #0000e8;
+          background-color: #ffffff;
+          height: 32px;
+          min-width: 134px;
+          font-size: 16px;
+          font-family: "SF Pro Text-Bold";
+          border: 1px solid;
+        }
+
+        &.btn_eye {
+          border: 1px solid $primary;
+          background-color: #ffffff;
+          margin-left: 10px;
+
+          i {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .active-resize-mark {
+    @include resizers();
+  }
+
+  .container_btn {
+    margin-top: 5px;
+    height: 35px;
+  }
+
+}

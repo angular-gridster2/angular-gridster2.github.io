@@ -1,0 +1,39 @@
+<div class="make_background"></div>
+<app-layout-login-base>
+  <!-- content -->
+  <form [formGroup]="formOTP">
+    <div class="content">
+      <div class="back-step cursor_pointer" (click)="backStep()">
+        <i class="feather-chevron-left"></i>Back
+      </div>
+      <div class="title">
+        <h2>Check your email</h2>
+        <div>
+          <p>A 6-digit code was sent to</p>
+          <p>Georgia.young@example.com</p>
+          <p>Enter within 15 minutes.</p>
+        </div>
+      </div>
+      <div class="form-group inp-otp">
+        <input type="text" maxlength="1" class="form-control" autofocus
+          id="1" (keyup)="focusItem($event, 'a')" formControlName="code1" autocomplete="off" numbersOnly/>
+        <input type="text" maxlength="1" class="form-control"
+          id="a" (keyup)="focusItem($event, 'b')" formControlName="code2" autocomplete="off" numbersOnly/>
+        <input type="text" maxlength="1" class="form-control"
+          id="b" (keyup)="focusItem($event, 'c')" formControlName="code3" autocomplete="off" numbersOnly/>
+        <span style="font-size: 25px; color: #212121">-</span>
+        <input type="text" maxlength="1" class="form-control"
+          id="c" (keyup)="focusItem($event, 'd')" formControlName="code4" autocomplete="off" numbersOnly/>
+        <input type="text" maxlength="1" class="form-control"
+          id="d" (keyup)="focusItem($event, 'e')" formControlName="code5" autocomplete="off" numbersOnly/>
+        <input type="text" maxlength="1" class="form-control"
+          id="e" formControlName="code6" autocomplete="off" numbersOnly/>
+      </div>
+      <p class="otp-message">You will get OTP in 20 seconds</p>
+      <button class="btn btn-primary btn_pill w-100" (click)="checkOTP()" [disabled]="!formOTP.valid">Next</button>
+      <p class="time-send-OTP" (click)="timeOTP == 0 ? countdown() : false" [class.cursor_pointer]="timeOTP == 0">Resend
+        OTP ( {{ timeOTP }} )</p>
+    </div>
+  </form>
+  <!-- content end -->
+</app-layout-login-base>

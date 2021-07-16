@@ -1,0 +1,50 @@
+<div (click)="$event.stopImmediatePropagation()" class="topleft_icon row p-1 m-1">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center text-primary my-2">
+            <div class="d-flex justify-content-start align-items-center">
+                <img src="assets/images/Icon-Edit tool-Customise.png" alt="Icon-Edit tool-Customise">
+                <span class="h6 m-0 pl-1 font-weight-bold">{{title}}</span>
+            </div>
+            <img src="assets/images/Icon-Edit tool-Close.png" alt="Icon-Edit tool-Close" (click)="onClose(); $event.stopImmediatePropagation()" class="cursor_pointer">
+        </div>
+        <h2>Icon</h2>
+        <!-- Base Icon -->
+        <div class="d-flex align-items-center my-2">
+            <div (click)="onShowSelectIconBox(-1);" class="col-2 p-2 d-flex align-items-center justify-content-center rounded_blue cursor_pointer" [class.active]="cacheId == -1" style="width: 30px; height: 35px;">
+                <!-- Apply /Center/icon -->
+                <i *ngIf="this.canActivate('faCenter')" [class]="currentWidget?.widget.config.faCenter" [style]="{'color': currentWidget?.widget.config.colorIcon}"></i>
+                <!-- Apply /Top Left/icon -->
+                <i *ngIf="this.canActivate('faTopLeft')" [class]="currentWidget?.widget.config.faTopLeft" [style]="{'color': currentWidget?.widget.config.colorIcon}"></i>
+            </div>
+            <div class="col-10">Base Color</div>
+        </div>
+        <hr class="mt-0 mb-1">
+        <!-- Threshold ~ Icon -->
+        <div style="max-height: 200px" class="scroll-gray">
+            <div *ngFor="let row of formArr; let i=index;" class="row mx-0 my-2 align-items-center">
+                <div class="col-2 d-flex justify-content-center align-items-center rounded_blue cursor_pointer"
+                    [class.relationship]="i != this.formArr.length - 1 && canActivate('iconMax') && canActivate('iconMin')" 
+                    [class.active]="cacheId == i" (click)="onShowSelectIconBox(i)" style="width: 30px; height: 35px;">
+                    <i [class]="row.icon" [style]="{'color': row.color}"></i>
+                </div>
+                <div class="col-7">
+                    <input [type]="canActivate('iconMax') && canActivate('iconMin') ? 'number' : 'text'" [value]="row.threshold" (input)="onChangeThreshold($event.target.value, i)" class="form-control">
+                </div>
+                <div class="col-2">
+                    <img src="assets/images/Icon-increase-Blue.png" (click)="removeControl(i)" alt="Icon-increase-Blue" class="cursor_pointer">
+                </div>
+            </div>
+        </div>
+        <img src="assets/images/Icon-add fill-Blue.png" (click)="addControl()" class="ml-2 mb-3 cursor_pointer" alt="Icon-add fill-Blue">
+        <!-- Min max -->
+        <hr *ngIf="canActivate('iconMax') && canActivate('iconMin')">
+        <div *ngIf="canActivate('iconMax')" class="d-flex justify-content-between align-items-center my-2">
+            <span class="col-8 p-0">Max Value</span>
+            <input type="number" class="col-4 form-control" [(ngModel)]="currentWidget?.widget.config.iconMax" (change)="onChangeWidget(currentWidget)">
+        </div>
+        <div *ngIf="canActivate('iconMin')" class="d-flex justify-content-between align-items-center my-2">
+            <span class="col-8 p-0">Min Value</span>
+            <input type="number" class="col-4 form-control" [(ngModel)]="currentWidget?.widget.config.iconMin" (change)="onChangeWidget(currentWidget)">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="w-100 h-100 grid-type-1" [ngClass]="type=='dashboard'?'pt-3 pb-3':''">
+  <gridster *ngIf="refreshed" [options]="options" style="background:transparent;overflow: visible;">
+    <gridster-item 
+      [item]="item" *ngFor="let item of dataLayout;trackBy: trackBy"
+      [class.active-only-dashboard]="!viewOnly && item.widget.name!='AreaContainerWidget'">
+      <app-widget-container [item]="item" [globalConfig]="globalConfig" [viewOnly]="viewOnly" [gridOptions]="options"></app-widget-container>
+    </gridster-item>
+  </gridster>
+</div>

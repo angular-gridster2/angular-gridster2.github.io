@@ -1,0 +1,196 @@
+<div class="thing-detail" >
+  <div class="thing-container">
+    <div class="thing-content">
+      <h4>Overview</h4>
+      <div class="thing-grid dropdown">
+        <div class="grid-item group">
+          <h5>{{'{999}'}} Group</h5>
+          <div class="group-box" [ngStyle]="{'background': globalConfig.themeWidgetBackground}">
+            <i class="fas fa-circle"></i>
+            <div class="group-box-info" >
+              <p [ngStyle]="{color: globalConfig.themeWidgetBackground=='#000000'?'white':'black'}">{{"{Thing Name}"}}</p>
+              <ul class="number-info">
+                <li>
+                  <i class="fas fa-laptop"></i>
+                  {{"{9}"}}
+                </li>
+                <li>
+                  <i class="fas fa-arrow-up"></i>
+                  {{"{9}"}}
+                </li>
+                <li>
+                  <i class="fas fa-share-alt"></i>
+                  {{"{9}"}}
+                </li>
+                <li>
+                  <i class="fas fa-cloud-upload-alt"></i>
+                  {{"{9}"}}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="group-device-info">
+            <div class="info-item">
+              <div class="name-item">
+                Developer State
+              </div>
+              <div class="content-item activeColor">
+                Active
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="name-item">
+                ICCID
+              </div>
+              <div class="content-item">
+                23423534645647567
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="name-item">
+                IMEI
+              </div>
+              <div class="content-item">
+                23423412123
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="name-item">
+                IMSI
+              </div>
+              <div class="content-item">
+                23423412123
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="name-item">
+                Token
+              </div>
+              <div class="content-item">
+                asd3-2123-asda1-231a-sda1-2312
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="name-item">
+                S/N
+              </div>
+              <div class="content-item">
+                0900-1232-4444-2222
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item sensor">
+          <h5>Sensors</h5>
+          <div class="sensors__grid">
+            <div class="sensors__grid--item" *ngFor="let item of sensorItems" [ngStyle]="{'background': globalConfig.themeWidgetBackground}">
+              <i class="activeColor {{item.icon}}"></i>
+              <p class="sensor--item--content" [ngStyle]="{color: globalConfig.themeWidgetBackground=='#000000'?'white':'black'}">
+                {{item.content}}
+              </p>
+              <p class="sensor--item--name" [ngStyle]="{color: globalConfig.themeWidgetBackground=='#000000'?'white':'black'}">
+                {{item.name}}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item activity">
+          <h5>Activity</h5>
+          <div class=" activity__items activity__time">
+            <h6>1/23/20</h6>
+            <!-- Select Date -->
+            <lib-date-option [globalConfig]="globalConfig"></lib-date-option>
+          </div>
+          <div class="activity__items">
+            <div class="activity__items--header">
+              <h6>
+                <i class="feather-code" style="font-size: 1rem;"></i>
+                Report data
+              </h6>
+              <div class="timeline">
+                15:48:59
+              </div>
+
+            </div>
+            <div class="activity__items--body">
+              {{'{“temperature”:27.47”, “humidity”:34.51, “illuminate”:148, “GPS”:13.7813466, 100.5442207”, “gauge”:52, “battery”:80, “RSSI_NB”:-59, “RSSI_Wifi”:0}'}}
+
+            </div>
+          </div>
+          <div class="activity__items">
+            <div class="activity__items--header">
+              <h6>
+                <i class="fas fa-circle activeColor"></i>
+                Connected
+              </h6>
+              <div class="timeline">
+                15:48:59
+              </div>
+
+            </div>
+
+          </div>
+          <div class="activity__items">
+            <div class="activity__items--header">
+              <h6>
+                <i class="fas fa-circle "></i>
+                Disconnected
+              </h6>
+              <div class="timeline">
+                15:48:59
+              </div>
+
+            </div>
+
+          </div>
+          <div class="activity__items">
+            <div class="activity__items--header">
+              <h6>
+                <i class="feather-code" style="font-size: 1rem;"></i>
+                Report data
+              </h6>
+              <div class="timeline">
+                15:48:59
+              </div>
+
+            </div>
+            <div class="activity__items--body">
+              {{'{“temperature”:27.47”, “humidity”:34.51, “illuminate”:148, “GPS”:13.7813466, 100.5442207”, “gauge”:52, “battery”:80, “RSSI_NB”:-59, “RSSI_Wifi”:0}'}}
+            </div>
+          </div>
+          <div class="activity__items">
+            <div class="activity__items--header">
+              <h6>
+                <i class="feather-code" style="font-size: 1rem;"></i>
+                Report data
+              </h6>
+              <div class="timeline">
+                15:48:59
+              </div>
+
+            </div>
+            <div class="activity__items--body">
+              {{'{“temperature”:27.47”, “humidity”:34.51, “illuminate”:148, “GPS”:13.7813466, 100.5442207”, “gauge”:52, “battery”:80, “RSSI_NB”:-59, “RSSI_Wifi”:0}'}}
+            </div>
+          </div>
+          <div class="activity__items">
+            <div class="activity__items--header">
+              <h6>
+                <i class="fas fa-wrench" style="font-size: 1rem;"></i>
+                Configuration
+              </h6>
+              <div class="timeline">
+                15:48:59
+              </div>
+
+            </div>
+            <div class="activity__items--body">
+              {{'{“Lamp”:1}'}}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+<div (click)="$event.stopImmediatePropagation()" class="widget row p-1 m-1 pb-2">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center text-primary my-2">
+            <div class="d-flex justify-content-start align-items-center">
+                <img src="assets/images/Icon-Edit tool-Customise.png" alt="Icon-Edit tool-Customise">
+                <span class="h6 m-0 pl-1 font-weight-bold">Customise/Widget</span>
+            </div>
+            <img src="assets/images/Icon-Edit tool-Close.png" alt="Icon-Edit tool-Close" (click)="onClose(); $event.stopImmediatePropagation()" class="cursor_pointer">
+        </div>
+        <h2>Appearance</h2>
+        <div class="format">
+            <p class="text-secondary">Format</p>
+            <div class="d-flex align-items-center justify-content-between my-2">
+                <input type="radio" class="col-2" value="square" name="format" [checked]="(currentWidget?.cols / currentWidget?.rows) == 1" (click)="onSquare()">
+                <label class="col-10 m-0 h6" [class.text-primary]="">Square</label>
+            </div>
+            <div class="d-flex align-items-center justify-content-between my-2">
+                <input type="radio" class="col-2" value="landscape" name="format" [checked]="(currentWidget?.cols / 2) >= currentWidget?.rows" (click)="onLandscape()">
+                <label class="col-10 m-0 h6" [class.text-primary]="">Landscape</label>
+            </div>
+            <div class="d-flex align-items-center justify-content-between my-2">
+                <input type="radio" class="col-2" value="vertical" name="format" [checked]="currentWidget?.cols <= (currentWidget?.rows / 2)" (click)="onVertical()">
+                <label class="col-10 m-0 h6" [class.text-primary]="">Vertical</label>
+            </div>
+        </div>
+        <hr>
+        <h2>Properties</h2>
+        <!-- [Properties] -->
+        <!-- 1. Gauge select -->
+        <div class="properties" *ngIf="canActivate('thick')">
+            <div class="d-flex justify-content-between align-items-center text-primary my-3 px-2">
+                <div class="d-flex justify-content-start">
+                    <img src="assets/images/Icon-Edit tool-Gauge.png" alt="Icon-Edit tool-Gauge">
+                    <span class="ml-1 text-dark">Guage</span>
+                </div>
+                <a href="javascript:void(0)" (click)="onGaugeBox($event)">{{ isGaugeBox ? 'Edit' : 'Select' }}</a>
+            </div>
+        </div>
+        <!-- 2. Map select -->
+        <div class="properties" *ngIf="canActivate('lat')">
+            <div class="d-flex justify-content-between align-items-center text-primary my-3 px-2">
+                <div class="d-flex justify-content-start">
+                    <img src="assets/images/Icon-Edit tool-Gauge.png" alt="Icon-Edit tool-Gauge">
+                    <span class="ml-1 text-dark">Map</span>
+                </div>
+                <a href="javascript:void(0)" (click)="onMapBox($event)">{{ isMapBox ? 'Edit' : 'Select' }}</a>
+            </div>
+        </div>
+        <!-- 3. Graph select -->
+        <div class="properties" *ngIf="canActivate('graphOption')">
+            <div class="d-flex justify-content-between align-items-center text-primary my-3 px-2">
+                <div class="d-flex justify-content-start">
+                    <img src="assets/images/Icon-Edit tool-Gauge.png" alt="Icon-Edit tool-Gauge">
+                    <span class="ml-1 text-dark">Graph</span>
+                </div>
+                <a href="javascript:void(0)" (click)="onGraphBox($event)">{{ isGraphBox ? 'Edit' : 'Select' }}</a>
+            </div>
+        </div>
+        <!-- [Top left] -->
+        <!-- 1. Icon select -->
+        <div class="center" *ngIf="canActivate('srcTopLeft') || canActivate('faTopLeft')">
+            <p class="text-secondary">Top left</p>
+            <div class="d-flex justify-content-between align-items-center text-primary my-3 px-2">
+                <div class="d-flex justify-content-start">
+                    <img src="assets/images/Icon-Edit tool-Icon.png" alt="Icon-Edit tool-Icon">
+                    <span class="ml-1 text-dark">Icon</span>
+                </div>
+                <a href="javascript:void(0)" (click)="onShowTopLeftBox($event)">{{ isShowTopLeftIcon ? 'Edit' : 'Select' }}</a>
+            </div>
+        </div>
+        <!-- [Center] -->
+        <!-- 1. Icon select -->
+        <!-- 2. Variable select -->
+        <div class="center" *ngIf="canActivate('faCenter') || canActivate('centerVariable')">
+            <p class="text-secondary">Center</p>
+            <div *ngIf="canActivate('faCenter')"
+                class="d-flex justify-content-between align-items-center text-primary my-3 px-2">
+                <div class="d-flex justify-content-start">
+                    <img src="assets/images/Icon-Edit tool-Icon.png" alt="Icon-Edit tool-Icon">
+                    <span class="ml-1 text-dark">Icon</span>
+                </div>
+                <a href="javascript:void(0)" (click)="onShowCenterBox($event)">{{ isShowCenterIcon ? 'Edit' : 'Select' }}</a>
+            </div>
+            <div *ngIf="canActivate('centerVariable')"
+                class="d-flex justify-content-between align-items-center text-primary my-3 px-2">
+                <div class="d-flex justify-content-start">
+                    <img src="assets/images/Icon-Edit tool-Variable.png" alt="Icon-Edit tool-Variable">
+                    <span class="ml-1 text-dark">Variable</span>
+                </div>
+                <a href="javascript:void(0)" (click)="onShowCenterVariableBox($event)">{{ isCenterVariable ? 'Edit' : 'Select' }}</a>
+            </div>
+        </div>
+        <!-- [Button] -->
+        <!-- 1. Variable select -->
+        <div class="button" *ngIf="canActivate('bottomVariable')">
+            <p class="text-secondary">Button</p>
+            <div class="d-flex justify-content-between align-items-center text-primary my-3 px-2">
+                <div class="d-flex justify-content-start">
+                    <img src="assets/images/Icon-Edit tool-Variable.png" alt="Icon-Edit tool-Variable">
+                    <span class="ml-1 text-dark">Variable</span>
+                </div>
+                <a href="javascript:void(0)" (click)="onShowBottomVariableBox($event)">{{ isBottomVariable ? 'Edit' : 'Select' }}</a>
+            </div>
+        </div>
+    </div>
+</div>

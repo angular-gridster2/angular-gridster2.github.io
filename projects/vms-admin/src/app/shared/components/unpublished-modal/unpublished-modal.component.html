@@ -1,0 +1,13 @@
+<!-- Modal confirm  -->
+<div id="ngprime-modal-unpublished">
+    <p-dialog modal="true" header="Unpublished" [(visible)]="confirmDislay" [style]="{width: '400px'}" [baseZIndex]="10000" [closable]="false">
+      <div class="p-body">
+        <p> Do you want to unpublished </p>
+        <p> this project ? </p>
+      </div>
+      <div class="p-footer">
+        <button type="button" class="btn btn-danger btn_pill" (click)="onSubmit()">Unpublished</button>
+        <button type="button" class="btn btn-outline-primary btn_pill" (click)="hide()">Cancel</button>
+      </div>
+    </p-dialog>
+  </div>

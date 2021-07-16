@@ -1,0 +1,11 @@
+<div class="label-widget-content d-block" [ngClass]="widget.config?.class" [style]="widget.config?.styles" [ngStyle]="{'color': getColor()}">
+  <span [style.color]="widget.config?.colorImportant">{{widget.config?.value}}</span>
+</div>
+
+<!-- <div class="label-widget-content d-block">
+  <textarea class="border-0 w-100 h-100"
+    [ngClass]="widget.config?.class"
+    [style]="widget.config?.styles"
+    [style.color]="getColor()"
+    disabled>{{widget.config?.value}}</textarea>
+</div> -->

@@ -1,0 +1,237 @@
+@mixin flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flexRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+$colorActive: #9fffb1;
+
+.activeColor {
+  color: $colorActive;
+}
+
+:host {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  // Hidden Hamburger 
+  overflow: hidden;
+  position: relative;
+}
+
+.thing-detail {
+  display: flex;
+  flex-direction: column;
+
+  .thing-container {
+    width: 100%;
+    margin: auto;
+    height: calc(1080px - 160px);
+
+    .thing-content {
+      width: 1100px;
+      margin: auto;
+      margin-top: 2rem;
+
+      h4 {
+        color: #fff;
+        font-size: 1.6rem;
+        font-weight: 500;
+      }
+
+      .thing-grid {
+        @include flexRow();
+        align-items: stretch;
+
+        .grid-item {
+          width: 31%;
+
+          h5 {
+            color: #fff;
+            font-size: 1.3rem;
+          }
+        }
+
+        .group {
+          .group-box {
+            position: relative;
+            height: 300px;
+            background-color: #000;
+
+            .fa-circle {
+              position: absolute;
+              top: 15px;
+              left: 15px;
+              font-size: 7px;
+              color: $colorActive;
+            }
+
+            .group-box-info {
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 100%;
+
+              p {
+                font-size: 2rem;
+                font-weight: 500;
+                color: #fff;
+                padding-left: 15px;
+              }
+
+              ul {
+                @include flexRow();
+                justify-content: flex-start;
+                padding: 0 !important;
+                list-style: none;
+                padding-left: 15px !important;
+
+                li {
+                  color: #fff;
+                  margin-right: 1rem;
+
+                  i {
+                    color: #b1b1b1;
+                  }
+                }
+              }
+            }
+          }
+
+          .group-device-info {
+            @include flexColumn();
+
+            .info-item {
+              @include flexRow();
+              justify-content: space-between;
+              align-items: center;
+              color: #fff;
+              margin-top: 1.5rem;
+            }
+          }
+        }
+
+        .sensors {
+          &__grid::-webkit-scrollbar {
+            width: 5px;
+            background-color: none;
+            color: #333333;
+          }
+
+          &__grid::-webkit-scrollbar-thumb {
+
+            border-radius: 20px;
+            background-color: #333333;
+          }
+
+          &__grid {
+            overflow-y: scroll;
+            max-height: 642px;
+            padding-right: 6px;
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            &--item {
+              width: 48%;
+              height: 150px;
+              background-color: #000;
+              margin-bottom: 0.9rem;
+              border-radius: 5px;
+
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-start;
+
+              padding: 1rem;
+
+              i {}
+
+              .sensor--item--content {
+                margin-top: 1rem;
+                font-size: 1.3rem;
+                color: #fff;
+                word-wrap: break-word !important;
+                height: 40%;
+              }
+
+              .sensor--item--name {
+                color: #b1b1b1;
+                margin-top: auto;
+              }
+            }
+          }
+        }
+
+        .activity {
+          display: flex;
+          flex-direction: column;
+
+          &__items {
+            padding-top: 0.7rem;
+            padding-bottom: 0.7rem;
+            border-bottom: 1px solid #fff;
+
+            &:last-child {
+              border-bottom: none;
+            }
+
+            &--header {
+              display: flex;
+              justify-content: space-between;
+              color: #fff;
+
+              h6 {
+                font-size: 1rem;
+                display: flex;
+                align-items: center;
+                width: 40%;
+
+                i {
+                  font-size: 7px;
+                  width: 13%;
+                  margin-right: 0.7rem;
+                }
+
+                img {
+                  width: 13%;
+                  margin-right: 0.7rem;
+                }
+              }
+
+              .timeline {
+                color: #fff;
+              }
+            }
+
+            &--body {
+              color: #fff;
+            }
+          }
+
+          &__time {
+            display: flex;
+            justify-content: space-between;
+            color: #fff;
+
+            h6 {
+              font-size: 1rem;
+            }
+
+            i {
+              font-size: 1rem;
+            }
+          }
+
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+:host {
+    width: 100%;
+}
+::ng-deep {
+  gridster-item {
+    background: none !important;
+    overflow: initial !important;
+  }
+}

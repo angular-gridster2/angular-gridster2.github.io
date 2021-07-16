@@ -1,0 +1,17 @@
+<div class="grid-container" [ngStyle]="{ background: globalConfig.themeBackground }">
+  <app-topbar-preview [globalConfig]="globalConfig" [pageType]="pageType" [breadcumb]="breadcumb"></app-topbar-preview>
+  <div *ngIf="pageType=='dashboard'" class="dashboard-grid-container scroll-gray">
+    <gridster [options]="options" style="background:transparent;overflow: visible;">
+      <gridster-item [item]="item" *ngFor="let item of widgets;trackBy: trackBy">
+        <app-widget-container [item]="item" [globalConfig]="globalConfig"></app-widget-container>
+      </gridster-item>
+    </gridster>
+  </div>
+  <div *ngIf="pageType!='dashboard'" class="page-grid-container scroll-gray">
+    <gridster [options]="options" style="background:transparent;overflow: visible;">
+      <gridster-item [item]="item" *ngFor="let item of widgets;trackBy: trackBy">
+        <app-widget-container [item]="item" [globalConfig]="globalConfig"></app-widget-container>
+      </gridster-item>
+    </gridster>
+  </div>
+</div>

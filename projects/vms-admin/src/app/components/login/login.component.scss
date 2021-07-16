@@ -1,0 +1,215 @@
+:host {
+  width: 100%;
+  min-width: 1349px;
+  max-width: 1440px;
+  margin: 0 auto;
+  height: 1024px;
+
+  .make_background {
+    width: 100%;
+    min-width: 1349px;
+    margin: 0 auto;
+    height: 1024px;
+
+    &::after,
+    &::before {
+      content: " ";
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 1024px;
+      z-index: -1;
+    }
+
+    &::before {
+      left: 0;
+      background-color: #0000e8;
+    }
+
+    &::after {
+      right: 0;
+      background-color: #ffffff;
+    }
+  }
+
+  form {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+
+    @mixin form {
+      width: 350px;
+      position: absolute;
+      margin-left: 125px;
+      // margin-left: 286.5px;
+      // margin-left: 20.05%;
+
+      .back-step {
+        text-align: left;
+        display: flex;
+        align-items: center;
+        margin-top: 216px;
+        margin-bottom: 28.57px;
+        font-size: 14px;
+        color: #605f5f;
+        font-family: "SF Pro Text-Regular";
+
+        i {
+          font-size: 22px;
+          position: relative;
+          left: -5px;
+        }
+      }
+
+      .btn {
+        height: 48px;
+        font-family: "SF Pro Text-Bold";
+
+        &:disabled {
+          color: #979797;
+          background-color: #c8c8c8;
+          border: 1px solid #b9b9b9;
+        }
+      }
+    }
+
+    .form-1 {
+      @include form();
+      top: 256.57px;
+
+      .title {
+        h2 {
+          margin: 0;
+          color: #212121;
+          line-height: unset;
+          font-size: 32px;
+          font-family: "SF Pro Text-Heavy";
+        }
+
+        p {
+          color: #605f5f;
+          font-size: 16px;
+          font-family: "SF Pro Text-Regular";
+          margin: 21.6px 0 0 0;
+
+          span {
+            color: #0000e8;
+            font-size: 16px;
+            font-family: "SF Pro Text-Regular";
+          }
+        }
+      }
+
+      .isHaveAccount {
+        color: #605f5f;
+        font-size: 15px;
+        font-family: "SF Pro Text-Regular";
+        margin-bottom: 32.77px;
+
+        span {
+          color: #0000e8e6;
+          font-size: 15px;
+          font-family: "SF Pro Text-Regular";
+        }
+      }
+
+      input {
+        height: 47px;
+        color: #212121;
+        font-size: 14px;
+        font-family: "SF Pro Text-Medium";
+        border-radius: 6px;
+        margin: 60.42px 0 60.74px 0;
+
+        &::placeholder {
+          color: #959393;
+        }
+      }
+
+      .btn-primary {
+        font-size: 18px;
+      }
+
+      .login-with-ais {
+        color: #212121;
+        font-size: 16px;
+        font-family: "SF Pro Text-Bold";
+        border: 1px solid #c4c4c4;
+        background-color: #ffffff;
+
+        img {
+          vertical-align: baseline;
+          margin-right: 5px;
+        }
+      }
+    }
+
+    .form-2 {
+      @include form();
+
+      .title {
+        h2 {
+          margin: 0;
+          color: #212121;
+          line-height: unset;
+          font-size: 32px;
+          font-family: "SF Pro Text-Heavy";
+        }
+
+        div {
+          margin-top: 15.81px;
+
+          p {
+            font-size: 14px;
+            margin-bottom: 4px;
+          }
+
+          p:nth-child(1) {
+            color: #605f5f;
+            font-family: "SF Pro Text-Semibold";
+          }
+
+          p:nth-child(2) {
+            color: #212121;
+            font-family: "SF Pro Text-Semibold";
+          }
+        }
+      }
+
+      .input-password {
+        position: relative;
+
+        & > i {
+          color: #605f5f;
+          position: absolute;
+          top: 12px;
+          right: 15px;
+          font-size: 22px;
+          cursor: pointer;
+        }
+
+        & > input {
+          padding-right: 40px;
+          height: 47px;
+          color: #212121;
+          font-size: 14px;
+          font-family: "SF Pro Text-Medium";
+          border-radius: 6px;
+          margin: 60.34px 0 30.74px 0;
+
+          &::placeholder {
+            color: #959393;
+          }
+        }
+      }
+
+      .forget {
+        color: #0000e8e6;
+        font-size: 14px;
+        font-family: "SF Pro Text-Medium";
+        margin-bottom: 39.85px;
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+<div class="grid-container" [ngStyle]="{ background: globalConfig.themeAuthBackground}">
+  <gridster [options]="options" style="background:transparent;">
+    <gridster-item [item]="item" *ngFor="let item of widgets;trackBy: trackBy">
+      <app-widget-container [item]="item" [globalConfig]="globalConfig"></app-widget-container>
+    </gridster-item>
+  </gridster>
+</div>

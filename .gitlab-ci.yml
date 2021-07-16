@@ -1,0 +1,32 @@
+cache:
+  paths:
+    - node_modules
+stages:
+  - build
+  - deploy
+build:
+  stage: build
+  script:
+    - echo "Building deploy package"
+    - npm install
+    - npm run build
+    - echo "Build successful"
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - dist
+  only:
+    - release/1.0.0
+    - master
+deploy_development:
+  stage: deploy
+  script:
+    - echo "Deploying to server"
+    - sudo rm -rf /home/deployment/ais-frontend/public_html/*
+    - sudo cp -rv dist/vms-admin/* /home/deployment/ais-frontend/public_html/
+    - echo "Deployed"
+  environment:
+    name: development
+    url: http://192.168.50.102
+  only:
+    - release/1.0.0

@@ -1,0 +1,87 @@
+// Override p-dropdown
+::ng-deep {
+  .dropdown-date {
+    padding: 0;
+    border: 1px solid #F9FAFD33;
+    width: 380px;
+    height: 435px;
+    margin-top: 20px;
+    justify-content: center;
+    box-shadow: 1px 1px 10px #f4f4f426;
+
+    form {
+      .container_option {
+        margin: 30px;
+
+        h3 {
+          font-size: 14px;
+          font-family: "SF Pro Text-Medium";
+          color: #FFFFFF;
+        }
+
+        button {
+          font-size: 20px;
+          font-family: "SF Pro Text-Bold";
+          background-color: unset;
+        }
+      }
+    }
+
+    p-dropdown {
+      .ui-inputtext {
+        color: #FFFFFF;
+        background: unset;
+        padding-left: 15px;
+        font-size: 16px;
+        font-family: "SF Pro Text-Regular";
+      }
+
+      .ui-dropdown-trigger {
+        background: unset;
+        color: #FFFFFF;
+      }
+
+      .ui-dropdown-panel {
+        .ui-dropdown-item {
+          font-size: 16px;
+          font-family: "SF Pro Text-Regular";
+        }
+      }
+
+      .ui-dropdown-items-wrapper {
+        &::-webkit-scrollbar-thumb {
+          border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-track {
+          border: 2px solid transparent;
+          background-clip: content-box;
+        }
+
+        &::-webkit-scrollbar {
+          width: 5px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: #333333;
+          border: 1px solid #333333;
+        }
+      }
+
+      .ui-dropdown {
+        display: flex;
+        align-items: center;
+        height: 48px;
+        color: #ffffff;
+        background: #FFFFFF1A;
+        justify-content: center;
+
+        &:not(.ui-state-disabled) {
+          &:hover {
+            border-color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+}

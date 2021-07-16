@@ -1,0 +1,179 @@
+<div id="site-detail">
+   <app-header background="white" color="black" [mode]="2"></app-header>
+   <div class="main">
+      <div class="breadcumb">
+         <a [routerLink]="['/mysite']">
+            My website
+         </a>
+         <span class="material-icons">
+            navigate_next
+         </span>
+         <a href="javascript:void(0)">Site Detail</a>
+      </div>
+      <div class="container__detail">
+         <!-- Your Domain -->
+         <div class="card__box">
+            <div class="card__img">
+               <img src="assets/images/snapshot.png" alt="" />
+            </div>
+            <div class="card__content">
+               <h4 *ngIf="name">{{name}}</h4>
+               <p>Last Updated on 31 May 2020</p>
+               <div class="control-status">
+                  <div>
+                     <button id="hihi" data-toggle="dropdown" aria-haspopup="true" class="d-flex align-items-center"
+                        style="color: #9DCB7A; width:180px; height:44px;
+                     margin-right: 20px;">
+                        <span class="material-icons">
+                           fiber_manual_record
+                        </span>
+                        Active
+                        <i class="feather-chevron-down active"></i>
+                     </button>
+                     <ul class="dropdown-menu" role="menu" aria-labelledby="hihi">
+                        <li role="menuitem" class="active-card">
+                           <span class="material-icons">
+                              fiber_manual_record
+                           </span>
+                           Active
+                        </li>
+                        <li role="menuitem" class="inactive-card">
+                           <span class="material-icons">
+                              fiber_manual_record
+                           </span>
+                           Inactive
+                        </li>
+                     </ul>
+                  </div>
+
+                  <div>
+                     <button id="dropdownMenuStatus" data-toggle="dropdown" aria-haspopup="true"
+                        class="d-flex align-items-center"
+                        style="color: #0000E8; width:180px; height:44px; margin-left:20px; padding-left: 20px;">
+                        Site Action
+                        <i class="feather-chevron-down action"></i>
+                     </button>
+
+                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuStatus">
+                        <li role="menuitem">
+                           <a class="dropdown-item" routerLink="/site-detail"><i class="feather-eye">
+                              </i>View Site</a>
+                        </li>
+                        <li role="menuitem">
+                           <a class="dropdown-item" href="javascript:void(0)"><i class="feather-plus-circle">
+                              </i>Duplicate</a>
+                        </li>
+                        <li role="menuitem">
+                           <a class="dropdown-item" href="javascript:void(0)" (click)="deleteModal.show()"><i
+                                 class="feather-trash-2">
+                              </i>Delete</a>
+                        </li>
+                     </ul>
+                  </div>
+
+               </div>
+               <h6>Your domain</h6>
+               <div class="domain__group">
+                  <div class="domainItem">
+                     <div class="domain__link">
+                        <span>https//:roweeya.abc.com/</span>
+                        <input value="home" type="text" class="form-control input-domain">
+                     </div>
+                     <button (click)="saveModal.show()" class="btn btn-save">
+                        Save
+                     </button>
+                  </div>
+               </div>
+            </div>
+         </div>
+         
+         <!-- Table Version -->
+         <div class="card__info">
+            <div class="card__info--version">
+               <div class="card__title">
+                  <div class="d-flex align-items-center"><i class="feather-info"></i>
+                     Version
+                  </div>
+               </div>
+               <div class="list__version">
+                  <table class="table">
+                     <thead>
+                        <tr>
+                           <th>Version</th>
+                           <th>Launch Date</th>
+                           <th>Start Date</th>
+                           <th>Expired Date</th>
+                           <th style="width: 120px">Modified</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td><span class="rounded-circle status status_green"></span>2.0.0</td>
+                           <td>01 Jun 2020 ,12:00</td>
+                           <td>01 Jun 2020 ,12:00</td>
+                           <td>31 May 2021 ,12:00</td>
+                           <td>
+                              <p style="margin: 0!important" class="btn-edit" *ngIf="!edit_version" (click)="editMode()">Edit</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td><span class="rounded-circle status"></span>1.0.0</td>
+                           <td>01 Jun 2020 ,12:00</td>
+                           <td>-</td>
+                           <td>-</td>
+                           <td>
+                              <p class="btn-edit m-0" *ngIf="!edit_version" (click)="editMode()">Edit</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+
+         <!-- Table Edit Version -->
+         <div class="card__info" *ngIf="edit_version">
+            <div class="card__info--version">
+               <div class="card__title">
+                  <div class="d-flex align-items-center"><i class="feather-info"></i>
+                     Edit Version
+                  </div>
+               </div>
+               <div class="list__version">
+                  <table class="table">
+                     <thead>
+                        <tr>
+                           <th>Version</th>
+                           <th>Last Update</th>
+                           <th style="width: 120px">Modified</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td><span class="rounded-circle status"></span>2.0.0</td>
+                           <td>01 Jun 2020 ,12:00</td>
+                           <td>
+                              <p style="margin: 0!important" class="btn-edit" *ngIf="edit_version" (click)="editMode()">Edit</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<app-footer></app-footer>
+<!-- Save modal -->
+<app-save-modal #saveModal></app-save-modal>
+<!-- Delete modal -->
+<app-delete-modal #deleteModal>
+   <div class="confirm">
+      <p> Do you want to delete </p>
+      <p> This website ? </p>
+   </div>
+   <div class="delete">
+      <p> Your website was deleted </p>
+   </div>
+</app-delete-modal>

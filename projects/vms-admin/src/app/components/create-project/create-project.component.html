@@ -1,0 +1,25 @@
+<main>
+    <!-- header -->
+    <app-header [mode]="2" [background]="'white'"></app-header>
+    <!-- /header -->
+
+    <!-- content -->
+    <section>
+        <!-- Create a project -->
+        <form (submit)="onNext()">
+            <div class="form-project">
+                <p>Create a project</p>
+                <p>What do you name your project?</p>
+                <div class="project-name">
+                    <input type="text" placeholder="Project name" class="form-control">
+                </div>
+                <button class="btn btn-primary">Next</button>
+            </div>
+        </form>
+
+    </section><!-- /content  -->
+
+    <!-- footer  -->
+    <app-footer></app-footer>
+    <!-- /footer -->
+</main>

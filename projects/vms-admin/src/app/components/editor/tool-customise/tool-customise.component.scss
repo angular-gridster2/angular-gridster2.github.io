@@ -1,0 +1,35 @@
+@mixin box {
+  width: 250px;
+  background: white;
+  border-radius: 15px;
+
+  -moz-box-shadow: 1px 1px 5px #00000080;
+  -webkit-box-shadow: 1px 1px 5px #00000080;
+  box-shadow: 1px 1px 5px #00000080;
+}
+
+@mixin border_color($class, $color) {
+  #{$class} {
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: 2px solid #E0E0E0;
+
+    &.active {
+      border: 2px solid $color;
+    }
+
+    &:hover {
+      border: 2px solid $color;
+    }
+  }
+}
+
+:host {
+  .tool_customise {
+    position: absolute;
+    z-index: 2;
+
+    height: 1080px;
+    width: 100vw;
+  }
+}

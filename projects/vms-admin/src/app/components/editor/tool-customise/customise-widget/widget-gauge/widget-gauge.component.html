@@ -1,0 +1,59 @@
+<div (click)="$event.stopImmediatePropagation()" class="customise_widget_gauge row p-1 m-1">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center text-primary my-2">
+            <div class="d-flex justify-content-start align-items-center">
+                <img src="assets/images/Icon-Edit tool-Customise.png" alt="Icon-Edit tool-Customise">
+                <span class="h6 m-0 pl-1 font-weight-bold">/Widget/Guage</span>
+            </div>
+            <img src="assets/images/Icon-Edit tool-Close.png" alt="Icon-Edit tool-Close" (click)="onClose(); $event.stopImmediatePropagation()" class="cursor_pointer">
+        </div>
+        <h2>Guage</h2>
+        <div class="d-flex my-2">
+            <div class="col-6" [style]="{'background': currentWidget?.widget.config.foregroundColor}" style="height: 30px;"></div>
+            <div class="col-6" [style]="{'background': convertHexOpacity(currentWidget?.widget.config.foregroundColor)}" style="height: 30px;"></div>
+        </div>
+        <!-- Color -->
+        <div class="d-flex align-items-center my-2">
+            <div class="col-2 rounded_blue cursor_pointer" [class.active]="cacheId == -1" (click)="onShowSelectColorBox(-1);" [style]="{'background': currentWidget?.widget.config.foregroundColor}" style="width: 30px; height: 35px;"></div>
+            <div class="col-10 h6 my-0">Base Color</div>
+        </div>
+        <!-- Threshold ~ Color -->
+        <div style="max-height: 150px" class="scroll-gray">
+            <div *ngFor="let row of this.formArr; let i=index" class="row mx-0 my-2 align-items-center">
+                <div class="col-2 rounded_blue cursor_pointer" [class.active]="cacheId == i" (click)="onShowSelectColorBox(i)" [style]="{'background': row.color}" style="width: 30px; height: 35px;"></div>
+                <div class="col-7">
+                    <input type="number" [value]="row.threshold" (input)="onChangeThreshold($event.target.value, i)" class="form-control" [min]="currentWidget?.widget.config.min" [max]="currentWidget?.widget.config.max">
+                </div>
+                <div class="col-2">
+                    <img src="assets/images/Icon-increase-Blue.png" class="btn-demo cursor_pointer" (click)="removeControl(i)" alt="Icon-increase-Blue">
+                </div>
+            </div>
+        </div>
+        <img src="assets/images/Icon-add fill-Blue.png" (click)="addControl()" class="ml-1 cursor_pointer" alt="Icon-add fill-Blue">
+        <hr>
+        <!-- Type -->
+        <div class="d-flex justify-content-between">
+            <img src="assets/images/Icon-Edit tool-Guage1.png" class="p-2 rounded_blue cursor_pointer" [class.active]="currentWidget?.widget.config.type == 'full'" (click)="currentWidget?.widget.config.type = 'full'; onChangeWidget(currentWidget)" alt="Icon-Edit tool-Guage1">
+            <img src="assets/images/Icon-Edit tool-Guage2.png" class="p-2 rounded_blue cursor_pointer" [class.active]="currentWidget?.widget.config.type == 'arch'" (click)="currentWidget?.widget.config.type = 'arch'; onChangeWidget(currentWidget)" alt="Icon-Edit tool-Guage2">
+            <img src="assets/images/Icon-Edit tool-Guage3.png" class="p-2 rounded_blue cursor_pointer" [class.active]="currentWidget?.widget.config.type == 'semi'" (click)="currentWidget?.widget.config.type = 'semi'; onChangeWidget(currentWidget)" alt="Icon-Edit tool-Guage3">
+        </div>
+        <!-- Min max -->
+        <div class="d-flex justify-content-between align-items-center my-2">
+            <span class="col-8 p-0">Max Value</span>
+            <input type="number" class="col-4 form-control" [(ngModel)]="currentWidget?.widget.config.gaugeMax" (change)="onChangeWidget(currentWidget)">
+        </div>
+        <div class="d-flex justify-content-between align-items-center my-2">
+            <span class="col-8 p-0">Min Value</span>
+            <input type="number" class="col-4 form-control" [(ngModel)]="currentWidget?.widget.config.gaugeMin" (change)="onChangeWidget(currentWidget)">
+        </div>
+        <!-- Thick -->
+        <div class="thick my-3">
+            <span>Thickness</span>
+            <ol class="progress_bar mt-3">
+                <li class="is_complete cursor_pointer" *ngFor="let row of [{},{},{},{},{}]; let i = index" [class.is-active]="currentWidget?.widget.config?.thick == (i+1)*2 + 5" (click)="currentWidget?.widget.config.thick = (i+1)*2 + 5; onChangeWidget(currentWidget)">
+                    <span>{{(i+1)*2}}</span>
+                </li>  
+            </ol>
+        </div>
+    </div>
+</div>

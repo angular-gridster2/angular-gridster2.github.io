@@ -1,0 +1,138 @@
+:host {
+  width: 100%;
+  min-width: 1349px;
+  margin: 0 auto;
+
+  main {
+    section {
+      width: 1110px;
+      margin: auto;
+
+      .header {
+        display: flex;
+        padding: 0;
+        left: -15px;
+
+        h1 {
+          padding: 0;
+          font-size: 18px;
+          font-family: "SF Pro Text-Bold";
+          font-style: normal;
+        }
+
+        h2 {
+          cursor: pointer;
+          padding-left: 74px;
+          font-size: 14px;
+          font-family: "SF Pro Text-Medium";
+          font-style: normal;
+          color: #0000e8;
+        }
+
+        h4 {
+          font-size: 14px;
+          font-family: "SF Pro Text-Medium";
+        }
+      }
+
+      .parent-noti {
+        display: contents !important;
+
+        .logo-rounded {
+          margin-left: 10px;
+
+          img {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+
+      .content {
+        margin-left: 0;
+        padding-top: 7px;
+        border-top: 1px solid #eaeaea;
+        width: 1110px;
+        height: 60px;
+
+        &:hover {
+          background-color: #f7f7fe;
+        }
+
+        .date {
+          color: #959393;
+        }
+
+        .dropdown {
+          cursor: pointer;
+          text-align: right;
+
+          .fa-ellipsis-v {
+            margin-top: 12px;
+            font-size: 16px;
+          }
+        }
+
+        ul {
+          padding: 0;
+          margin-left: -160px;
+          margin-top: 21px;
+
+          li {
+            width: 180px;
+            display: flex;
+            align-items: center;
+
+            & > a {
+              font-size: 14px;
+              font-family: "SF Pro Text-Medium";
+            }
+
+            .dropdown-item {
+              width: 200px;
+              height: 48px;
+              color: #212121;
+              transition: all 0.4s linear;
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              padding: 0;
+              height: 48px;
+              font-size: 14px;
+              font-family: "SF Pro Text-Medium";
+
+              i {
+                color: #000000;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                font-size: 20px;
+              }
+
+              &:hover {
+                background-color: #0000e8e6 !important;
+                color: #fff !important;
+              }
+
+              &:hover > i {
+                color: #fff !important;
+              }
+            }
+          }
+
+          border-radius: 8px !important;
+        }
+      }
+
+      .active {
+        color: #0000e8 !important;
+      }
+    }
+
+    .paginate {
+      width: 1110px;
+      margin: 100px auto 100px auto;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

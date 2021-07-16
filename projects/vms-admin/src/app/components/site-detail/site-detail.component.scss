@@ -1,0 +1,445 @@
+:host {
+  width: 100%;
+  min-width: 1349px;
+  margin: auto;
+
+  #site-detail {
+    cursor: default;
+
+    .main {
+      max-width: 1110px;
+      margin: 3rem auto;
+
+      .breadcumb {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 1rem 0;
+
+        a {
+          font-size: 18px;
+          font-family: "SF Pro Text-Medium";
+          color: #000;
+
+          &:first-child {
+            color: #9292ad;
+          }
+        }
+
+        span {
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+      }
+
+      .container__detail {
+        width: 100%;
+
+        // <!-- Your Domain -->
+        .card__box {
+          width: 1105px;
+          height: 250px;
+          padding: 1rem;
+          min-height: 250px;
+          background-color: #fafafb;
+
+          border-radius: 1rem;
+          display: flex;
+          flex-direction: row;
+          align-items: stretch;
+
+          .card__img {
+            width: 30%;
+            border-radius: 0.7rem;
+            overflow: hidden;
+
+            img {
+
+              width: 310px;
+              height: 220px;
+              border-radius: 10px;
+            }
+          }
+
+          .card__content {
+            margin-left: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-left: 1rem;
+            width: 70%;
+
+            h4 {
+              font-family: "SF Pro Text-Bold";
+              margin: 0;
+              font-size: 1.5rem;
+            }
+
+            h6 {
+              font-family: "SF Pro Text-Semibold";
+              margin-top: 15px;
+              margin-bottom: 0;
+              font-size: 1.5rem;
+            }
+
+            p {
+              font-family: "SF Pro Text-Regular";
+              font-style: normal;
+              color: #959393;
+              margin-bottom: 0;
+              line-height: 0;
+            }
+
+            .card__status {
+              display: flex;
+              align-items: center;
+              color: #9dcb7a;
+
+              span {
+                transform: scale(0.5);
+              }
+            }
+
+            .domain__group {
+              .domainItem {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #fafafa;
+
+                .domain__link {
+                  width: 550px;
+                  display: flex;
+                  align-items: center;
+                  font-size: 29px;
+                  color: #000;
+                  background-color: #f7f7fe;
+                  border-radius: 8px;
+
+                  span {
+                    color: #c4c4c4;
+                    font-size: 14px;
+                    padding-left: 16px;
+                    z-index: 1000;
+                    font-family: 'SF Pro Text-Medium';
+                  }
+
+                  .input-domain {
+                    width: 363px;
+                    height: 44px;
+                    background-color: #ffffff;
+                    border-radius: 8px;
+                    margin-left: -7px;
+                    padding: 5px;
+                    color: #3F3B3B;
+                    font-family: 'SF Pro Text-Medium';
+                  }
+                }
+
+                .btn-save {
+                  background-color: #0000e8;
+                  color: #fff;
+                  width: 150px;
+                  height: 44px;
+                  border-radius: 100px;
+                  font-size: 16px;
+                  outline: none;
+                }
+              }
+            }
+
+            .control-status {
+              height: 2rem;
+              background-color: #fafafa;
+              border-radius: 999px;
+              display: flex;
+              align-items: center;
+              color: #9dcb7a;
+              font-weight: bold;
+              cursor: pointer;
+
+              .feather-chevron-down {
+                font-size: 24px;
+              }
+
+              button {
+                background-color: #fafafa;
+                border: 1px solid;
+                padding: 8px;
+                border-radius: 999px;
+                outline: none;
+                font-size: 16px;
+              }
+
+              span {
+                transform: scale(0.5);
+              }
+
+              .active {
+                margin-left: 52px;
+              }
+
+              .action {
+                margin-left: 36px;
+              }
+
+              ul {
+                padding: 0;
+
+                li {
+                  width: 180px;
+                  display: flex;
+                  align-items: center;
+
+                  &>a {
+                    font-size: 14px;
+                    font-family: "SF Pro Text-Medium";
+                  }
+
+                  .dropdown-item {
+                    color: #212121;
+                    transition: all 0.4s linear;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding: 0;
+                    height: 48px;
+
+                    i {
+                      color: #000000;
+                      padding-left: 1rem;
+                      padding-right: 1rem;
+                      font-size: 20px;
+                    }
+
+                    &:hover {
+                      background-color: #0000e8e6 !important;
+                      color: #fff !important;
+                    }
+
+                    &:hover>i {
+                      color: #fff !important;
+                    }
+                  }
+                }
+
+                border-radius: 10px !important;
+
+                .active-card {
+                  color: #9dcb7a;
+                }
+
+                .inactive-card {
+                  color: orange;
+                }
+
+                .ban-card {
+                  color: red;
+                }
+
+                .terminated {
+                  color: red;
+                }
+              }
+            }
+          }
+        }
+
+        // <!-- Table Version -->
+        .card__info {
+          display: flex;
+          justify-content: space-between;
+          align-items: stretch;
+          margin-top: 2rem;
+
+          .card__title {
+            font-family: "SF Pro Text-Medium";
+            font-size: normal;
+            display: flex;
+            justify-content: space-between;
+
+            .feather-info {
+              margin-bottom: 2px;
+              font-size: 1.25rem;
+            }
+
+            p {
+              display: flex;
+            }
+
+            .btn-save {
+              background-color: #0000e8;
+              border-radius: 7px;
+              color: #fff;
+              padding: 0.5rem 1rem;
+              border-radius: 999px;
+            }
+
+            .modal-content {
+              position: relative;
+
+              display: flex;
+              margin-top: -70px;
+              margin-left: 30px;
+              width: 400px;
+              height: 200px;
+              border-bottom: none;
+              background-color: #fff;
+
+              border: 1px solid rgba(0, 0, 0, 0.2);
+              border-radius: 35px;
+            }
+
+            .modal-header {
+              border-bottom: none;
+
+              h1 {
+                letter-spacing: normal;
+                font-size: 40px;
+                color: #212121;
+                text-align: center;
+                margin: auto;
+                margin-top: 5px;
+              }
+            }
+
+            .modal-body {
+              text-align: center;
+              font-size: 24px;
+              color: #3f3b3b;
+              border: none;
+              margin-top: -6px;
+            }
+
+            .modal-footer {
+              margin-left: 20px;
+              margin-right: 20px;
+              border: none;
+
+              button {
+                background-color: #0000e8;
+                width: 350px;
+                height: 46px;
+                border-radius: 999px;
+                font-size: 20px;
+                font-weight: bold;
+              }
+            }
+          }
+
+          .btn-delete {
+            background-color: #f46363;
+            border-radius: 24px;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            width: 9rem;
+            border-radius: 999px;
+            border: none;
+            margin-left: 60px;
+
+            i {
+              padding-right: 0.5rem;
+              font-size: 1.1rem;
+            }
+          }
+
+          &--detail {
+            width: 38%;
+
+            .site__detail {
+              background-color: #fafafb;
+              border-radius: 1rem;
+              padding: 1.5rem;
+
+              .form-group {
+                input {
+                  height: 3rem;
+                  border: 2px solid #dcdcdc;
+                }
+              }
+            }
+
+            .delete__site {
+              background-color: #fafafb;
+              border-radius: 1rem;
+              padding: 1.5rem;
+              margin-top: 2rem;
+            }
+          }
+
+          &--version {
+            width: 1105px;
+            background-color: #fafafb;
+            border-radius: 1rem;
+            padding: 1.5rem;
+
+            .card__title {
+              div {
+                font-size: 12px;
+                font-family: "SF Pro Text-Medium";
+                i {
+                  font-size: 20px;
+                  margin-right: 10px;
+                }
+              }
+            }
+
+            .list__version {
+
+              table {
+
+                thead {
+                  th {
+                    vertical-align: bottom;
+                    border: none;
+                    color: #000000;
+                    font-size: 12px;
+                    font-family: "SF Pro Text-Regular";
+                    font-style: normal;
+                    padding: 20px 5px;
+                    &:nth-child(1) {
+                      padding-left: 23px;
+                    }
+                  }
+                }
+
+                tbody {
+                  tr {
+                    .status {
+                      width: 10px;
+                      height: 10px;
+                      display: inline-block;
+                      margin-right: 10px;
+                      &_green {
+                        background: #9DCB7A;
+                      }
+                    }
+
+                    td {
+                      color: #000000;
+                      font-size: 14px;
+                      border-top: unset;
+                      font-family: "SF Pro Text-Medium";
+                      border-bottom: 1px solid #EAEAEA;
+                      padding: 20px 5px;
+
+                      .btn-edit {
+                        color: #0000E8;
+                        font-size: 14px;
+                        font-family: "SF Pro Text-Medium";
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        // <!-- Table Edit Version -->
+
+        
+      }
+    
+    }
+  }
+}

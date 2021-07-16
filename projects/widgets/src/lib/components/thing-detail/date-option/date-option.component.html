@@ -1,0 +1,125 @@
+<i class="feather-calendar cursor_pointer" id="dropdownDate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 18px;"></i>
+<div class="dropdown-menu dropdown-menu-right dropdown-date" aria-labelledby="dropdownDateOption" [ngStyle]="{'background':globalConfig?.AreaContainerWidget.backgroundColor}" [class.invisible]="!viewOnly">
+    <form>
+        <div class="container_option">
+            <h3 class="mb-0">Date</h3>
+            <div class="form-row">
+            <div class="col-md-4">
+                <p-dropdown [options]="days" [(ngModel)]="selectedDay" optionLabel="label" placeholder="Day" [style]="{'minWidth':'100px', 'width': '100px'}" name="day">
+                <ng-template pTemplate="selectedItem">
+                    <div>{{selectedDay?.label}}</div>
+                </ng-template>
+                <ng-template let-group pTemplate="item">
+                    <div class="d-flex justify-content-between" (click)="onSelectDay(group.label)">
+                    <span>{{group.label}}</span>
+                    <i class="feather-check" *ngIf="group?.label == selectedDay?.label"></i>
+                    </div>
+                </ng-template>
+                </p-dropdown>
+            </div>
+            <div class="col-md-4">
+                <p-dropdown [options]="months" [(ngModel)]="selectedMonth" optionLabel="label" placeholder="Month" [style]="{'minWidth':'100px', 'width': '100px'}" name="month">
+                <ng-template pTemplate="selectedItem">
+                    <div>{{selectedMonth?.label}}</div>
+                </ng-template>
+                <ng-template let-group pTemplate="item">
+                    <div class="d-flex justify-content-between" (click)="onSelectMonth(group.label)">
+                    <span>{{group.label}}</span>
+                    <i class="feather-check" *ngIf="group?.label == selectedMonth?.label"></i>
+                    </div>
+                </ng-template>
+                </p-dropdown>
+            </div>
+            <div class="col-md-4">
+                <p-dropdown [options]="years" [(ngModel)]="selectedYear" optionLabel="label" placeholder="Year" [style]="{'minWidth':'100px', 'width': '100px'}" name="year">
+                <ng-template pTemplate="selectedItem">
+                    <div>{{selectedYear?.label}}</div>
+                </ng-template>
+                <ng-template let-group pTemplate="item">
+                    <div class="d-flex justify-content-between" (click)="onSelectYear(group.label)">
+                    <span>{{group.label}}</span>
+                    <i class="feather-check" *ngIf="group?.label == selectedYear?.label"></i>
+                    </div>
+                </ng-template>
+                </p-dropdown>
+            </div>
+            </div>
+            <h3 class="mb-0 mt-4">Time</h3>
+            <h3 class="mb-0">Form</h3>
+            <div class="form-row">
+            <div class="col-md-6">
+                <p-dropdown [options]="fromHours" [(ngModel)]="selectedFromHour" optionLabel="label" placeholder="Hour" [style]="{'minWidth':'150px', 'width': '150px'}" name="fromHour">
+                <ng-template pTemplate="selectedItem">
+                    <div>{{selectedFromHour?.label}}</div>
+                </ng-template>
+                <ng-template let-group pTemplate="item">
+                    <div class="d-flex justify-content-between" (click)="onSelectFromHour(group.label)">
+                    <span>{{group.label}}</span>
+                    <i class="feather-check" *ngIf="group?.label == selectedFromHour?.label"></i>
+                    </div>
+                </ng-template>
+                </p-dropdown>
+            </div>
+            <div class="col-md-6">
+                <p-dropdown [options]="fromMinutes" [(ngModel)]="selectedFromMinute" optionLabel="label" placeholder="Minute" [style]="{'minWidth':'150px', 'width': '150px'}" name="fromMinute">
+                <ng-template pTemplate="selectedItem">
+                    <div>{{selectedFromMinute?.label}}</div>
+                </ng-template>
+                <ng-template let-group pTemplate="item">
+                    <div class="d-flex justify-content-between" (click)="onSelectFromMinute(group.label)">
+                    <span>{{group.label}}</span>
+                    <i class="feather-check" *ngIf="group?.label == selectedFromMinute?.label"></i>
+                    </div>
+                </ng-template>
+                </p-dropdown>
+            </div> 
+            </div>
+            <h3 class="mb-0">To</h3>
+            <div class="form-row">
+            <div class="col-md-6">
+                <p-dropdown [options]="toHours" [(ngModel)]="selectedToHour" optionLabel="label" placeholder="Hour" [style]="{'minWidth':'150px', 'width': '150px'}" name="toHour">
+                <ng-template pTemplate="selectedItem">
+                    <div>{{selectedToHour?.label}}</div>
+                </ng-template>
+                <ng-template let-group pTemplate="item">
+                    <div class="d-flex justify-content-between" (click)="onSelectToHour(group.label)">
+                    <span>{{group.label}}</span>
+                    <i class="feather-check" *ngIf="group?.label == selectedToHour?.label"></i>
+                    </div>
+                </ng-template>
+                </p-dropdown>
+            </div>
+            <div class="col-md-6">
+                <p-dropdown [options]="toMinutes" [(ngModel)]="selectedToMinute" optionLabel="label" placeholder="Minute" [style]="{'minWidth':'150px', 'width': '150px'}" name="toMinute">
+                <ng-template pTemplate="selectedItem">
+                    <div>{{selectedToMinute?.label}}</div>
+                </ng-template>
+                <ng-template let-group pTemplate="item">
+                    <div class="d-flex justify-content-between" (click)="onSelectToMinute(group.label)">
+                    <span>{{group.label}}</span>
+                    <i class="feather-check" *ngIf="group?.label == selectedToMinute?.label"></i>
+                    </div>
+                </ng-template>
+                </p-dropdown>
+            </div>
+            </div>
+        </div>
+        <hr style="border: solid 1px #FFFFFF">
+        <div class="container_option">
+            <div class="form-row">
+            <div class="col-md-6">
+                <button class="btn w-100"
+                    [ngStyle]="{'color':globalConfig?.ButtonWidget.background, 'borderColor': globalConfig?.ButtonWidget.background}"
+                    [style]="{'minWidth':'150px', 'width': '150px', background: '#FFFFFF0A'}" 
+                    data-toggle="dropdown">Default</button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn w-100"
+                    [ngStyle]="{'background':globalConfig?.ButtonWidget.background}"
+                    [style]="{'minWidth':'150px', 'width': '150px'}"
+                    data-toggle="dropdown">Apply</button>
+            </div>
+            </div>
+        </div>
+    </form>              
+</div>

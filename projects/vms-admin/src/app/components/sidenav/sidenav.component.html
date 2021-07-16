@@ -1,0 +1,48 @@
+  <!-- Sidebar -->
+  <div class="form-group">
+    <label>Page</label><br>
+    <select class="form-control" [(ngModel)]="currentPage" (change)="changePage($event)" >
+        <option *ngFor="let page of pages">{{page.name}}</option>
+    </select>
+  </div>
+
+  <!--
+    <div id="trash" class="text-center">
+        <mat-icon name="trash" style="font-size: 300%">delete_forever</mat-icon>
+    </div>
+  -->
+  
+    <div class="form-group icon-text">
+        <mat-icon name="add-circle-outline" style="font-size: 200%; display: block;">add_circle_outline</mat-icon>
+    </div>
+  
+  <div class="form-group">
+    <div class="draggable-menu-label" id="newLabel" draggable="true" (dragstart)="dragStartHandler($event, 'label-widget')">
+        Label
+    </div>
+    <div class="draggable-menu-label" id="newTextbox" draggable="true" (dragstart)="dragStartHandler($event, 'textbox-widget')">
+      Textbox
+    </div>
+    <div class="draggable-menu-label" draggable="true" (dragstart)="dragStartHandler($event, 'button-widget')">
+      Button
+    </div>
+</div>
+
+<div class="form-group">
+  <div class="draggable-menu-icon" id='newAlarm' draggable="true" (dragstart)="dragStartHandler($event, 'alarm-widget')">
+      <mat-icon name="alarm">alarm</mat-icon>
+  </div>
+    
+  <div class="draggable-menu-icon" id='newAlert' draggable="true" (dragstart)="dragStartHandler($event, 'alert-widget')">
+      <mat-icon name="alert">warning</mat-icon>
+  </div>
+</div>
+    <br/>
+    <div class="form-group" style="margin: 5px;">
+      <button type="button" class="btn btn-secondary" style="width: 100%;" (click)="doPublish()" >Publish</button>
+    </div>
+
+    <div class="form-group" style="margin: 5px;">
+      <a routerLink="/logout" class="btn btn-secondary" style="width: 100%;">LogOut</a>
+    </div>
+<!-- /#sidebar-wrapper -->

@@ -1,0 +1,77 @@
+.banner {
+  width: 100%;
+  min-height: 800px;
+  background: url("../../../../assets/images/Graphic-Header1.png") no-repeat center;
+  background-size: cover;
+  background-position: bottom;
+  position: relative;
+  &__content {
+    position: absolute;
+    color: #fff;
+    background-color: transparent;
+    text-align: center;
+    top: 80px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    h2 {
+      font-size: 40px;
+      font-family: 'SF Pro Text-Heavy';
+    }
+    div {
+      height: 116px;
+      p {
+        margin: 0;
+        font-size: 24px;
+        line-height: 39px;
+        font-family: 'SF Pro Text-Regular';
+      }
+    }
+    button {
+      background-color: #fff;
+      border-radius: 32px;
+      color: #0000E8;
+      width: 260px;
+      height: 64px;
+      font-family: 'SF Pro Text-Bold';
+      font-size: 24px;
+      margin-top: 24px;
+    }
+  }
+}
+.banner_2 {
+  width: 100%;
+  min-height: 531.74px;
+  background: url("../../../../assets/images/cut-banner-top-select-template.png")
+  no-repeat center;
+  background-size: cover;
+  background-position: bottom;
+  position: relative;
+  &__content {
+    position: absolute;
+    color: #fff;
+    background-color: transparent;
+    width: 50%;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    text-align: center;
+    h2 {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+    p {
+      font-size: 1.3rem;
+      line-height: 2.5rem;
+    }
+    button {
+      background-color: #fff;
+      border-radius: 999px;
+      color: #001de8;
+      width: 260px;
+      font-weight: bold;
+      font-size: 1.5rem;
+      padding: 1rem 3rem;
+      margin-top: 2rem;
+    }
+  }
+}

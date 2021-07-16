@@ -1,0 +1,59 @@
+<div class="make_background"></div>
+<app-layout-login-base>
+  <!-- form-1 -->
+  <form [formGroup]="sign1Form">
+    <div class="form form-1" [class.invisible]="form1">
+      <div class="title">
+        <h2>Sign in to Deliver</h2>
+        <p>
+          By logging in, you agree to <span><a [routerLink]="['/term']" [queryParams]="{source : 'login'}">Terms of Service</a></span> and
+          <span><a [routerLink]="['/term']" [queryParams]="{source : 'login'}">Privacy Policy</a></span>
+        </p>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Enter your Email Address"
+          formControlName="email" autofocus />
+      </div>
+      <p class="isHaveAccount">
+        Don't have an account? <a href="javascript:void(0)" (click)="signup()">Sign up now</a>
+      </p>
+      <button class="btn btn-primary btn_pill w-100" [disabled]="sign1Form.invalid" (click)="checkEmail()">
+        Next
+      </button>
+      <hr style="margin: 30px 0 30px 0;">
+      <button class="btn btn_pill login-with-ais w-100" (click)="loginWithAIS()">
+        <img src="assets/images/Icon-Logo-AIS.png" alt="AIS"/>
+        Continue with AIS Playground
+      </button>
+    </div>
+  </form>
+ <!-- form-2  -->
+  <form [formGroup]="sign2Form">
+    <div class="form form-2" [class.invisible]="form2">
+      <div class="back-step cursor_pointer" (click)="backStep()">
+        <i class="feather-chevron-left"></i>Back
+      </div>
+      <div class="title">
+        <h2>Enter password</h2>
+        <div>
+          <p>Enter your password for your account</p>
+          <p>georgia.young@example.com</p>
+        </div>
+      </div>
+      <div class="form-group input-password">
+        <input [type]="passActive ? 'text' : 'password'" formControlName="password" placeholder="Enter your password" class="form-control"
+          autofocus />
+        <i class="{{passActive ? 'feather-eye' : 'feather-eye-off'}}" (click)="togglePwd()"></i>
+      </div>
+      <p>
+      <span class="forget cursor_pointer" (click)="forget()">
+        Forgot password?
+      </span>
+      </p>
+      <button class="btn btn-primary btn_pill w-100" [disabled]="sign2Form.invalid" (click)="checkLogin()">
+        Next
+      </button>
+    </div>
+  </form>
+  
+</app-layout-login-base>

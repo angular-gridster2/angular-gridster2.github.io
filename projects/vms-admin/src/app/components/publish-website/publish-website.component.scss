@@ -1,0 +1,314 @@
+@mixin p-title-mixin {
+  text-align: center;
+
+  & > p:nth-child(1) {
+    font-size: 40px;
+    font-family: "SF Pro Text-Heavy";
+    padding-bottom: 10px;
+    font-weight: 600;
+  }
+
+  & > p:nth-child(2) {
+    font-size: 24px;
+    font-family: "SF Pro Text-Regular";
+  }
+}
+
+:host {
+  width: 100%;
+  min-width: 1349px;
+  margin: 0 auto;
+  main {
+    color: #212121;
+    font-style: normal;
+
+    // CONTENT
+    section {
+      display: table;
+      margin: 0 auto;
+      position: relative;
+      top: 180px;
+      height: 873px;
+
+      // Select domain
+      .select_domain_form {
+        @include p-title-mixin();
+
+        .choose_domain {
+          margin-top: 50px;
+          margin-bottom: 55px;
+
+          .domain_box {
+            margin: 0 auto;
+            width: 500px;
+            height: 150px;
+
+            box-shadow: 0px 2px 4px #60617029;
+            border-radius: 24px;
+            opacity: 1;
+
+            .form_check {
+              width: 84px;
+              height: 100%;
+              padding: 0;
+              float: left;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              input[type="radio"] {
+                width: 20px;
+                height: 20px;
+              }
+            }
+
+            .domain {
+              width: 416px;
+              height: 100%;
+              margin-bottom: 0;
+              float: right;
+
+              input[type="text"] {
+                font-family:"SF Pro Text-Regular";
+                font-size:20px;
+                width: 110px;
+                padding: 0;
+                border: 0;
+                height: 48px;
+                border-radius: 8px;
+              }
+            }
+
+            .free_domain {
+              label {
+                float: left;
+                color: #fff;
+                font-size: 24px;
+                margin-top: 34px;
+                margin-bottom: 10px;
+              }
+
+              ::ng-deep {
+                .input_icon_container {
+                  position: relative;
+
+                  .input_icon_addon {
+                    position: absolute;
+                    top: 77px;
+                    left: 5px;
+                  }
+
+                  .input-group-text{
+                    font-family: "SF Pro Text-Regular";
+                    font-size: 20px;
+                    width: 396px;
+                    border-radius: 7px;
+                    height: 48px;
+                    background: #ffffff 0% 0% no-repeat padding-box;
+                    border: 1px solid #eaeaea;
+                    padding-left: 45px;
+                  }
+
+                  &:focus {
+                    border: 1px solid #eaeaea;
+                  }
+                }
+              }
+            }
+
+            .comin_soon {
+              font-size: 24px;
+              text-align: left;
+              margin-top: 45px;
+              font-weight: 500;
+              font-family: "SF Pro Text-Semibold";
+              label:nth-child(1) {
+                width: 100%;
+                color: #212121;
+              }
+
+              label:nth-child(2) {
+                margin-top: 10px;
+                width: 100%;
+                color: #0000e8;
+              }
+            }
+          }
+
+          .domain_box:nth-child(1) {
+            background: #0000e8 0% 0% no-repeat padding-box;
+          }
+
+          .domain_box:nth-child(2) {
+            margin-top: 20px;
+            background: #ffffff 0% 0% no-repeat padding-box;
+          }
+        }
+      }
+
+      // Save
+      .publish_domain_form {
+        @include p-title-mixin();
+
+        .publish_domain {
+          margin: 70px 40px 0 40px;
+          width: 500px;
+
+          h1 {
+            font-family: "SF Pro Text-Semibold";
+            font-weight: 600;
+            height: 29px;
+          }
+
+          p {
+            margin-left: 10px;
+            font-size: 20px;
+          }
+
+          .free_domain {
+            width: 100%;
+            text-align: left;
+          }
+
+          .date_time {
+            margin-top: 40px;
+            margin-bottom: 50px;
+            text-align: left;
+
+            input {
+              height: 47px;
+              min-width: 245px;
+            }
+
+            img {
+              width: 20px;
+              height: 20px;
+              position: absolute;
+              margin-top: 12px;
+              margin-left: 210px;
+            }
+
+            .publish_date {
+              width: 245px;
+            }
+
+            .publish_time {
+              width: 245px;
+            }
+          }
+        }
+
+        p-calendar {
+          width: 245px;
+        }
+
+      }
+
+      // Create admin account
+      .create_admin_account_form {
+        @include p-title-mixin();
+
+        .form_create {
+          width: 350px;
+          margin: auto;
+          margin-top: 70px;
+
+          input[type="text"],
+          input[type="password"] {
+            font-size: 1em;
+            width: 100%;
+            height: 48px;
+            background: #ffffff 0% 0% no-repeat padding-box;
+            border: 1px solid #eaeaea;
+            padding: 0 15px;
+          }
+
+          .input_icon_container {
+            position: relative;
+
+            .input_icon_addon {
+              position: absolute;
+              top: 10px;
+              right: 15px;
+            }
+
+            input[type="text"],
+            input[type="password"] {
+              padding-right: 45px;
+            }
+
+            &:focus {
+              border: 1px solid #eaeaea;
+            }
+          }
+        }
+      }
+
+      // Publish website
+      .publish_website_form {
+        @include p-title-mixin();
+
+        .publish_domain {
+          margin: 70px 40px 40px 40px;
+
+          h1 {
+            font-weight: 600;
+          }
+
+          p {
+            margin-left: 10px;
+            font-size: 20px;
+          }
+
+          .your_domain {
+            width: 100%;
+            text-align: left;
+          }
+        }
+      }
+
+      // btn common
+      .btn {
+        width: 100%;
+        max-width: 350px;
+        height: 48px;
+        font-size: 20px;
+        border-radius: 100px;
+        margin: 10px 0;
+        font-weight: 500;
+      }
+
+      .btn-secondary {
+        color: #0000e8;
+        background-color: #fff;
+        border: 1px solid #0000e8;
+      }
+    }
+
+    .form-inline {
+      span {
+        z-index: 1000;
+        width: 500px;
+        margin-top: 15px;
+        height: 48px;
+        border-radius: 7px;
+        color: #959393;
+        font-size: 20px;
+        font-style: normal;
+        font-family: "SF PRO TEXT-Regular";
+      }
+
+      input {
+        margin-left: -10px;
+        margin-right: -10px;
+        padding: 7px;
+        height:44px;
+        width: 215px;
+        border-bottom-left-radius: 15px;
+        border-top-left-radius: 15px;
+        font-size: 20px;
+      }
+    }
+
+  }
+}

@@ -1,0 +1,61 @@
+<!-- Square -->
+<div class="gauge2 h-100 w-100" [ngClass]="widget.config?.class" [ngStyle]="widget.config?.styles"
+    (resized)="onResized($event)" [class]="'mode_square'" [hidden]="!(mode == 1)">
+    <div class="display_center d-flex justify-content-center align-items-center">
+        <span [style.color]="widget.config?.colorText">{{widget.config?.value}}{{widget.config?.centerVariable}}</span>
+        <i *ngIf="canActivate('faCenter')" [class]="getThresholdIconByRange()?.icon" [style]="{'color': getThresholdIconByRange()?.color}"></i>
+    </div>
+    <div [style.color]="widget.config?.colorText">
+        <ng-container [ngTemplateOutlet]="gaugeTemplate" [ngTemplateOutletContext]="{ cloneConfig: widget.config }"></ng-container>
+    </div>
+</div>
+
+<!-- Rectangle -->
+<div class="gauge2 h-100 w-100" [ngClass]="widget.config?.class" [ngStyle]="widget.config?.styles"
+    (resized)="onResized($event)" [class]="'mode_rectangle'" [hidden]="!(mode == 2)">
+    <div class="h-100 w-100 d-flex justify-content-center align-items-center">
+        <div class="col-6 p-0 text-center">
+            <div>
+                <p class="center_variable" [style.color]="widget.config?.colorText">{{widget.config?.value}}{{widget.config?.centerVariable}}</p>
+                <i *ngIf="canActivate('faCenter')" [class]="getThresholdIconByRange()?.icon" [style]="{'color': getThresholdIconByRange()?.color}"></i>
+            </div>
+            <ng-container [ngTemplateOutlet]="gaugeTemplate" [ngTemplateOutletContext]="{ cloneConfig: widget.config }"></ng-container>
+        </div>
+        <div class="col-6">
+          <p class="bottom_variable mb-0" [style.color]="widget.config?.colorText">{{widget.config?.bottomVariable}}</p>
+        </div>
+    </div>
+</div>
+
+<!-- Vertical -->
+<div class="gauge2 h-100 w-100" [ngClass]="widget.config?.class" [ngStyle]="widget.config?.styles"
+    (resized)="onResized($event)" [class]="'mode_vertical'" [hidden]="!(mode == 3)">
+    <div class="row w-100 m-0 h-50 gauge_container">
+        <div class="value_container">
+            <p class="center_variable" [style.color]="widget.config?.colorText">{{widget.config?.value}}{{widget.config?.centerVariable}}</p>
+            <i *ngIf="canActivate('faCenter')" [class]="getThresholdIconByRange()?.icon" [style]="{'color': getThresholdIconByRange()?.color}"></i>
+        </div>
+        <ng-container [ngTemplateOutlet]="gaugeTemplate" [ngTemplateOutletContext]="{ cloneConfig: widget.config }"></ng-container>
+    </div>
+    <div class="row w-100 m-0 h-50 d-flex justify-content-center align-items-center">
+        <p class="bottom_variable mb-0" [style.color]="widget.config?.colorText">{{widget.config?.bottomVariable}}</p>
+    </div>
+</div>
+
+<!-- Util -->
+<ng-template #gaugeTemplate let-cloneConfig="cloneConfig">
+    <div [class]="'gauge_' + widget?.config?.type">
+        <ngx-gauge getThresholdColorByRange
+            [thick]="cloneConfig?.thick"
+            [foregroundColor]="cloneConfig?.foregroundColor"
+            [backgroundColor]="cloneConfig?.thresholdColor ? convertHexOpacity(getThresholdColorByRange()?.color) : convertHexOpacity(widget.config?.foregroundColor)"
+            [min]="cloneConfig?.gaugeMin" 
+            [max]="cloneConfig?.gaugeMax" 
+            [type]="cloneConfig?.type" 
+            [value]="cloneConfig?.value" 
+            [thresholds]="cloneConfig?.thresholdColor ? cloneConfig.thresholdColor : {}"
+            [label]="cloneConfig?.bottomVariable"
+            [append]="cloneConfig?.centerVariable">
+        </ngx-gauge>
+    </div>
+</ng-template>

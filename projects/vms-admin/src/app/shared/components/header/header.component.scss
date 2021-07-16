@@ -1,0 +1,148 @@
+:host {
+  width: 100%;
+  min-width: 1349px;
+  display: block;
+
+  .theme_light {
+    background-color: #FFFFFF;
+    color: #212121;
+
+    .header_left {
+      a {
+        color: #212121;
+      }
+    }
+  }
+
+  .theme_dark {
+    background-color: #0000e8;
+    color: #FFFFFE;
+
+    .header_left {
+      a {
+        color: #FFFFFE;
+      }
+    }
+  }
+
+  header {
+    width: 1152px;
+    margin: auto;
+    height: 100px;
+    position: relative;
+    // between
+    display: flex;
+    justify-content: space-between;
+
+    .header_left {
+      img {
+        min-width: 170.02px;
+        max-height: 24.57px;
+      }
+
+      // between
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      a {
+        font-size: 16px;
+        font-family: SF Pro Text-medium;
+
+        &:not(:nth-child(1)) {
+          margin-top: 9px;
+          margin-left: 50px;
+        }
+      }
+    }
+
+    .header_right {
+      // between
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      ul {
+        list-style: none;
+        display: flex;
+        margin: 0;
+
+        li {
+          font-size: 16px;
+
+          &:first-child {
+            color: #fff;
+            margin-top: 9px;
+            margin-right: 50px;
+            display: flex;
+            align-items: center;
+            font-family: SF Pro Text-Regular;
+          }
+
+          button {
+            margin-top: 10px;
+            width: 150px;
+            height: 40px;
+            color: #0000E8;
+            line-height: normal;
+            font-family: SF Pro Text-Bold;
+          }
+        }
+      }
+
+      .avatar {
+        position: relative;
+        margin: 0 30px 0 33px;
+
+        span {
+          width: 13px;
+          height: 13px;
+          position: absolute;
+          bottom: 2px;
+          right: -3px;
+          border: 2px solid #fff;
+        }
+      }
+
+      .dropdown {
+
+        .dropdown-menu {
+          top: 30px !important;
+          left: -105px !important;
+          width: 250px;
+          height: 100px;
+          padding: 0;
+          padding-bottom: 0;
+        }
+
+        margin-top: 9px;
+
+        h4 {
+          font-size: 16px;
+          font-family: "SF Pro Text-Bold";
+        }
+
+        a {
+          padding: 14px;
+          text-align: center;
+          font-size: 16px;
+          font-family: "SF Pro Text-regular";
+        }
+      }
+
+    }
+
+    app-notifications {
+      position: absolute;
+      z-index: 1;
+      right: -10%;
+      top: 100px;
+    }
+
+    @media only screen and (max-width: 1349px) {
+      app-notifications {
+        right: -7%;
+      }
+    }
+  }
+}

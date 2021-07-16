@@ -1,0 +1,228 @@
+:host {
+  width: 100%;
+  min-width: 1349px;
+  margin: 0 auto;
+
+  section {
+    width: 1110px;
+    margin: 45px auto 118px auto;
+
+    .phone_group {
+      display: flex;
+      align-items: stretch;
+
+      height: 47px;
+      width: 100%;
+      background: #fff;
+      padding: 5px;
+
+      select {
+        border: none;
+        width: 15%;
+        margin-right: 1rem;
+        border-right: 1px solid #b1b1b1;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      input {
+        font-family: "SF Pro Text-Medium";
+        font-size: 0.875rem;
+        color: #000;
+        opacity: 1;
+        border: none;
+        outline: none;
+        width: 80%;
+        padding-left: 1rem;
+        height: auto !important;
+      }
+    }
+
+    label {
+      font-family: "SF Pro Text-Regular";
+      font-style: normal;
+      font-size: 1rem;
+    }
+
+    h4 {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #000;
+    }
+
+    h5 {
+      font-family: "SF Pro Text-Heavy";
+      font-style: normal;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 0px;
+    }
+
+    b {
+      font-family: "SF Pro Text-Bold";
+      font-style: normal;
+    }
+
+    p {
+      font-family: "SF Pro Text-Regular";
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    .content-card_1 {
+      width: 1110px;
+      height: 564px;
+      border-radius: 15px;
+      background: #f7f7f7;
+      padding: 20px;
+      margin: 20px 0px;
+
+      input {
+        font-size: 0.875rem;
+        color: #000;
+        opacity: 1;
+        width: 200px;
+        height: 47px;
+      }
+    }
+
+    .content-card {
+      width: 527px;
+      border-radius: 15px;
+      background: #f7f7f7;
+      padding: 20px;
+      margin: 20px 0px;
+
+      input {
+        font-size: 0.875rem;
+        color: #000;
+        opacity: 1;
+        width: 402px;
+        height: 47px;
+      }
+    }
+
+    .invited-text {
+      font-size: 1rem;
+      font-weight: 500;
+      min-height: 200px;
+      width: 300px;
+      margin: auto;
+      display: flex;
+      position: relative;
+
+      p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .avatar-container {
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      border-radius: 50%;
+    }
+
+    .avatar {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      background: #fafafa;
+    }
+
+    .avatar-button {
+      position: absolute;
+      bottom: 0px;
+      height: 80px;
+      width: 200px;
+      background: #1919ea;
+      display: flex;
+      justify-content: center;
+      color: white;
+
+      span {
+        font-size: 30px;
+      }
+    }
+
+    .text-center {
+      font-family: "SF Pro Text-Regular";
+      font-size: 16px;
+      font-style: normal;
+    }
+
+    button {
+      border-radius: 23px;
+      padding: 5px 25px;
+      border: none;
+    }
+
+    .btn-primary {
+      background: #1919ea !important;
+      width: 105px;
+      height: 40px;
+
+      a {
+        color: #ffff;
+      }
+    }
+
+    .btn-warning {
+      width: 149px;
+      height: 40px;
+      color: white;
+      background: #ffc029 !important;
+
+      a {
+        color: #ffff;
+      }
+    }
+
+    .progress {
+      border-radius: 23px;
+      background: #e0e0e0 !important;
+    }
+
+    .progress-bar {
+      border-radius: 23px;
+      background: #1919ea !important;
+    }
+
+    .banner {
+      position: relative;
+
+      .banner_text {
+        text-align: center;
+        color: #fff;
+        position: absolute;
+        top: 29%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      h2 {
+        font-family: "SF Pro Text-Heavy";
+        font-size: 40px;
+      }
+
+      p {
+        font-size: 24px;
+        line-height: 39px;
+        font-family: "SF Pro Text-Regular";
+      }
+    }
+
+    p {
+      margin-bottom: 0.2rem !important;
+    }
+
+    .container {
+      margin-left: 70px !important;
+    }
+  }
+}

@@ -1,0 +1,82 @@
+// Variable
+@import "./bootstrap/variables";
+// Icon
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css");
+
+// Font SF Pro Text
+@font-face {
+  font-family: "SF Pro Text-Regular";
+  src: url("assets/css/fonts/FontsFree-Net-SFProText-Regular.ttf");
+}
+
+@font-face {
+  font-family: "SF Pro Text-Medium";
+  src: url("assets/css/fonts/FontsFree-Net-SFProText-Medium.ttf");
+}
+
+@font-face {
+  font-family: "SF Pro Text-Bold";
+  src: url("assets/css/fonts/FontsFree-Net-SFProText-Bold.ttf");
+}
+
+@font-face {
+  font-family: "SF Pro Text-Heavy";
+  src: url("assets/css/fonts/FontsFree-Net-SFProText-Heavy.ttf");
+}
+
+@font-face {
+  font-family: "SF Pro Text-Semibold";
+  src: url("assets/css/fonts/FontsFree-Net-SFProText-Semibold.ttf");
+}
+
+@font-face {
+  font-family: "SF Pro Text-Thin";
+  src: url("assets/css/fonts/FontsFree-Net-SFProText-Thin.ttf");
+}
+
+// Font SF Pro Rounded
+@font-face {
+  font-family: "SF Pro Rounded-Bold";
+  src: url("assets/css/fonts/FontsFree-Net-SF-Pro-Rounded-Bold.ttf");
+}
+
+// Font SF Pro Display
+@font-face {
+  font-family: "SF Pro Display-Medium";
+  src: url("assets/css/fonts/FontsFree-Net-SFProDisplay-Medium.ttf");
+}
+
+@font-face {
+  font-family: "SF Pro Display-Regular";
+  src: url("assets/css/fonts/FontsFree-Net-SFProDisplay-Regular.ttf");
+}
+
+@font-face {
+  font-family: "SF Pro Display-Thin";
+  src: url("assets/css/fonts/FontsFree-Net-SFProDisplay-Thin.ttf");
+}
+
+// Font Helvetica Neue
+@font-face {
+  font-family: "Helvetica Neue-Regular";
+  src: url("assets/css/fonts/FontsFree-Net-HelveticaNeue-Regular.ttf");
+}
+
+/* =========== CLASS BASE =========== */
+.cursor {
+  cursor: default !important;
+}
+
+.cursor_pointer {
+  cursor: pointer !important;
+}
+
+.cursor_move {
+  cursor: move !important;
+}
+
+.input_pill,
+.btn_pill {
+  border-radius: 100px !important;
+}

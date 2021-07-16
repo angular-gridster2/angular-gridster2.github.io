@@ -1,0 +1,390 @@
+// Variable
+@import "./bootstrap/variables";
+// Icon
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+// Font SF Pro Text
+@font-face {
+  font-family: "SF Pro Text-Regular";
+  src: url("assets/css/fonts/FontsFree-Net-SFProText-Regular.ttf");
+}
+
+@font-face {
+  font-family: "SF Pro Text-Medium";
+  src: url("assets/css/fonts/FontsFree-Net-SFProText-Medium.ttf");
+}
+
+@font-face {
+  font-family: "SF Pro Text-Bold";
+  src: url("assets/css/fonts/FontsFree-Net-SFProText-Bold.ttf");
+}
+
+@font-face {
+  font-family: "SF Pro Text-Heavy";
+  src: url("assets/css/fonts/FontsFree-Net-SFProText-Heavy.ttf");
+}
+
+@font-face {
+  font-family: "SF Pro Text-Semibold";
+  src: url("assets/css/fonts/FontsFree-Net-SFProText-Semibold.ttf");
+}
+
+@font-face {
+  font-family: "SF Pro Text-Thin";
+  src: url("assets/css/fonts/FontsFree-Net-SFProText-Thin.ttf");
+}
+
+// Font SF Pro Rounded
+@font-face {
+  font-family: "SF Pro Rounded-Bold";
+  src: url("assets/css/fonts/FontsFree-Net-SF-Pro-Rounded-Bold.ttf");
+}
+
+// Font SF Pro Display
+@font-face {
+  font-family: "SF Pro Display-Medium";
+  src: url("assets/css/fonts/FontsFree-Net-SFProDisplay-Medium.ttf");
+}
+
+@font-face {
+  font-family: "SF Pro Display-Regular";
+  src: url("assets/css/fonts/FontsFree-Net-SFProDisplay-Regular.ttf");
+}
+
+@font-face {
+  font-family: "SF Pro Display-Thin";
+  src: url("assets/css/fonts/FontsFree-Net-SFProDisplay-Thin.ttf");
+}
+
+// Font Helvetica Neue
+@font-face {
+  font-family: "Helvetica Neue-Regular";
+  src: url("assets/css/fonts/FontsFree-Net-HelveticaNeue-Regular.ttf");
+}
+
+/* =========== CLASS BASE =========== */
+.cursor {
+  cursor: default !important;
+}
+
+.cursor_pointer {
+  cursor: pointer !important;
+}
+
+.cursor_move {
+  cursor: move !important;
+}
+
+.input_pill,
+.btn_pill {
+  border-radius: 100px !important;
+}
+
+/* --Font family-- */
+
+.font-regular {
+  font-family: SF Pro Text-Regular;
+}
+
+.font-medium {
+  font-family: SF Pro Text-Medium;
+}
+
+.font-bold {
+  font-family: SF Pro Text-Bold;
+}
+
+.font-heavy {
+  font-family: SF Pro Text-Heavy;
+}
+
+.font-semibold {
+  font-family: SF Pro Text-Semibold;
+}
+
+/* --Font size-- */
+
+.font-14 {
+  font-size: 14px;
+}
+
+.font-16 {
+  font-size: 16px;
+}
+
+.font-18 {
+  font-size: 18px;
+}
+
+.font-20 {
+  font-size: 20px;
+}
+
+.font-32 {
+  font-size: 32px;
+}
+
+/* ====================== */
+
+html,
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+blockquote {
+  padding: 0 1em;
+  color: rgba(0, 0, 0, 0.535);
+  border-left: 0.25em solid rgba(0, 0, 0, 0.11);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+// text
+body {
+  a {
+    color: $primary;
+
+    &:hover {
+      color: $primary;
+      text-decoration: none;
+    }
+  }
+}
+
+gridster-item div.button-holder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.options {
+  padding: 10px;
+  display: grid;
+}
+
+.options-header {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.source-code-button {
+  justify-self: end;
+}
+
+[draggable] {
+  user-select: none;
+  cursor: default;
+}
+
+app-parent-dynamic {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  color: gray;
+  font-weight: bold;
+  font-size: 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+code {
+  background: darkgrey;
+}
+
+.custom-gridster {
+  background-color: white;
+}
+
+#trash {
+  background: rgba(255, 0, 0, 0.4);
+}
+
+@mixin scroll-base {
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+}
+
+.scroll-gray {
+  @include scroll-base;
+
+  &::-webkit-scrollbar-thumb {
+    background: #e0e0e0;
+    border: 1px solid #e0e0e0;
+  }
+}
+
+// dropdown vs icon down + up
+.dropdown {
+  // Mode 1
+  .dropdown-toggle {
+    &::after {
+      font: normal normal normal 15px/1 FontAwesome;
+      content: "\f078";
+      margin: 0 5px;
+      // Clear
+      display: unset;
+      width: unset;
+      height: unset;
+      vertical-align: unset;
+      border: unset;
+      border-left: unset
+    }
+  }
+  // Mode 2
+  .dropdown-toggle-custom {
+    &::after {
+      font: normal normal normal 15px/1 FontAwesome;
+      content: "\f078";
+      margin: 0 5px;
+    }
+  }
+
+  &.show {
+    .dropdown-toggle-custom {
+      &::after {
+        font: normal normal normal 15px/1 FontAwesome;
+        content: "\f077";
+        margin: 0 5px;
+      }
+    }
+  }
+}
+
+// https://valor-software.com/ngx-bootstrap/#/pagination
+.paginate {
+
+  // Custom paging
+  .pagination {
+    margin-bottom: 0px;
+    display: flex;
+    align-items: center;
+    vertical-align: baseline;
+
+    // pagination first & last
+    .pagination-first,
+    .pagination-last {
+      display: none !important;
+    }
+
+    // pagination next & prev
+    .pagination {
+      &-next {
+        margin-left: 25px;
+      }
+
+      &-prev {
+        margin-right: 25px;
+      }
+
+      &-next,
+      &-prev {
+        width: 31px;
+        height: 31px;
+        border-radius: 50%;
+        border: 1px solid #C4C4C4;
+
+        i {
+          color: #C4C4C4;
+          font-size: 18px;
+
+          &:hover {
+            color: #0000E8;
+          }
+        }
+
+        .page-link {
+          border: unset;
+          padding: 0;
+
+          background: unset;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+
+          .material-icons {
+            font-size: 19px;
+          }
+
+          &:focus {
+            box-shadow: unset !important;
+          }
+        }
+      }
+    }
+
+    // pagination-page
+    .pagination-page {
+      margin: 0 25px;
+
+      .page-link {
+        border: unset;
+        padding: 0;
+
+        &:focus {
+          box-shadow: unset !important;
+        }
+      }
+
+      &.active {
+        .page-link {
+          color: #0000E8 !important;
+          background-color: unset !important;
+
+          span {
+            font-size: 16px;
+            font-family: "SF Pro Text-Semibold";
+          }
+        }
+      }
+
+      &:not(.active) {
+        .page-link {
+          color: #212121;
+
+          span {
+            font-size: 16px;
+            font-family: "SF Pro Text-Regular";
+          }
+        }
+      }
+    }
+  }
+}

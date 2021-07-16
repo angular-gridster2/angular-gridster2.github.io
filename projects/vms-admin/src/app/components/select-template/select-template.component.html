@@ -1,0 +1,126 @@
+<main id="anchor">
+  <!-- header  -->
+  <app-header [mode]="2" [background]="'blue'"></app-header>
+  <!-- banner -->
+  <app-banner [isTemplate]="true" [bgType]="false"></app-banner>
+  <!-- content -->
+  <section>
+    <div class="search">
+      <div class="title">{{ selectTemplate === "all-template" ? "All Template" : "My Template" }}</div>
+      <div class="input_icon_container">
+        <img src="assets/images/Icon-Search-Black.png" class="ml-2 input_icon_addon" alt="Icon-Search-Black" />
+        <input type="text" placeholder="Search…" class="form-control"/>
+      </div>
+    </div>
+    <div class="select_template">
+      <button class="btn" type="button" (click)="onSelectTemplate('all-template')"
+        [class.btn-primary]="selectTemplate === 'all-template'"
+        [class.btn-secondary]="selectTemplate !== 'all-template'">
+        All Template
+      </button>
+      <button class="btn btn-secondary" type="button" (click)="onSelectTemplate('my-template')"
+        [class.btn-primary]="selectTemplate === 'my-template'" [class.btn-secondary]="selectTemplate !== 'my-template'">
+        My Template
+      </button>
+    </div>
+    <ng-container *ngIf="selectTemplate === 'all-template'">
+      <div class="template">
+        <div class="title">Free</div>
+        <div class="template_box row">
+          <div class="col-sx-12 col-md-6" style="height: 386px;">
+            <div class="card">
+              <img class="card-img-top" src="assets/images/cut-dark-theme.png" alt="dark-theme" />
+              <div class="card-body">
+                <h5 class="card-title">Dark Theme</h5>
+                <p class="card-text" >Description</p>
+                <div class="card_link">
+                  <button class="btn" type="button" (click)="addToMyTemplate()" style="font-weight: 500; color: #0000E8; background-color: #FAFAFA;">Add to My Template</button>
+                  <div class="explore">
+                    <a [routerLink]="['/template-preview']" (click)="setTheme('dark.default')">Explore 
+                      <span class="material-icons"> arrow_right_alt </span>
+                    </a>
+                  </div>
+                  <!-- <span class="material-icons three-dots"> more_vert </span> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sx-12 col-md-6" style="height: 386px;">
+            <div class="card">
+              <img class="card-img-top" src="assets/images/cut-light-theme.png" alt="light-theme" />
+              <div class="card-body">
+                <h5 class="card-title">Light Theme</h5>
+                <p class="card-text">Description</p>
+                <div class="card_link">
+                  <button class="btn" type="button" (click)="addToMyTemplate()" style=" font-weight: 500;color: #0000E8; background-color: #FAFAFA;">Add to My Template</button>
+                  <div class="explore">
+                    <a [routerLink]="['/template-preview']" (click)="setTheme('light.default')">Explore 
+                      <span class="material-icons"> arrow_right_alt </span>
+                    </a>
+                  </div>
+                  <!-- <span class="material-icons three-dots"> more_vert </span> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="popular">
+        <div class="title">Popular</div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="selectTemplate === 'my-template'" >
+      <div class="template" [style.marginBottom.px]="471">
+        <div class="title">Template (2)</div>
+        <div class="template_box row">
+          <div class="col-sx-12 col-md-6" style="height: 386px;">
+            <div class="card">
+              <img class="card-img-top" src="assets/images/cut-dark-theme.png" alt="dark-theme" />
+              <div class="card-body">
+                <h5 class="card-title" style="font-weight: bold;">Dark Theme</h5>
+                <p class="card-text">Description</p>
+                <div class="card_link">
+                  <button class="btn btn-primary" type="button" (click)="onUseThisTemplate()">
+                    Use This Template
+                  </button>
+                  <div class="explore">
+                    <a [routerLink]="['/template-preview']">Explore 
+                      <span class="material-icons"> arrow_right_alt </span>
+                    </a>
+                  </div>
+                  <!-- <span class="material-icons three-dots"> more_vert </span> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sx-12 col-md-6" style="height: 386px;">
+            <div class="card">
+              <img class="card-img-top" src="assets/images/cut-light-theme.png" alt="light-theme" />
+              <div class="card-body">
+                <h5 class="card-title" style="font-weight: bold;">Light Theme</h5>
+                <p class="card-text">Description</p>
+                <div class="card_link">
+                  <button class="btn btn-primary" type="button" (click)="onUseThisTemplate()">
+                    Use This Template
+                  </button>
+                  <div class="explore">
+                    <a [routerLink]="['/template-preview']">Explore 
+                      <span class="material-icons"> arrow_right_alt </span>
+                    </a>
+                  </div>
+                  <!-- <span class="material-icons three-dots"> more_vert </span> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </section>
+  <div class="coming_soon" *ngIf="selectTemplate === 'all-template'">
+    <p>Coming Soon</p>
+    <img src="assets/images/Graphic-Banner.png" alt="coming-soon" width="100%" />
+  </div>
+  <!-- footer  -->
+  <app-footer></app-footer>
+</main>

@@ -1,0 +1,20 @@
+:host {
+    width: 100% !important;
+    height:100% !important;
+}
+  
+::ng-deep {
+    gridster-item {
+        background: none !important;
+        overflow: initial !important;
+    }
+}
+
+.dashboard-grid-container{
+    position: relative;
+    width:75%;
+    height:80%;
+    margin:20px auto;
+    padding:10px;
+    border-radius: 5px;
+}

@@ -1,0 +1,25 @@
+@import '../tool-customise.component.scss';
+
+.customise_rectangle {
+  @include box;
+  width: 300px;
+  font-size: 14px;
+  font-family: SF Pro Text-Medium !important;
+
+  .color {
+    width: 24px;
+    height: 24px;
+    margin: 4px;
+    border-radius: 5px;
+
+    &:hover {
+      border: 1px solid #0000e8;
+    }
+  }
+
+  .form-control {
+    &:focus {
+      box-shadow: none !important;
+    }
+  }
+}

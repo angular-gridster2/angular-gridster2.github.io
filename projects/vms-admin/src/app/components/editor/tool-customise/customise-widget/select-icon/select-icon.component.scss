@@ -1,0 +1,17 @@
+@import '../../tool-customise.component.scss';
+
+.select_icon {
+  @include box;
+  @include border_color(".rounded_blue", #0000e8);
+}
+
+.base_icon {
+  margin: 2px;
+  padding: 5px;
+  min-width: 30px;
+  min-height: 39px;
+  border: 2px solid #E0E0E0;
+  i {
+    font-size: 18px;
+  }
+}

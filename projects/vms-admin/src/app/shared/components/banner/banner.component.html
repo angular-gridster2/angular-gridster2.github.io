@@ -1,0 +1,44 @@
+<div
+  class="banner"
+  [class.banner]="bgType === true"
+  [class.banner_2]="bgType !== true"
+>
+  <ng-template [ngIf]="isHome">
+    <div class="banner__content">
+      <h2>Create a Website You're proud of</h2>
+      <div>
+        <p>Discover the platform that gives you the freedom to create,</p>
+        <p>Design, Manage and Develop your web presence exactly</p>
+        <p>The way you want</p>
+      </div>
+      <button class="btn btn-lg" (click)="getStarted()">Get started</button>
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="isMySite">
+    <div class="banner__content">
+      <h2>My Sites</h2>
+      <div>
+        <p>Lorem ipsum</p>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="isTemplate">
+    <div class="banner__content">
+      <h2>Template</h2>
+      <div>
+        <p>Lorem ipsum</p>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="isProfile">
+    <div class="banner__content">
+      <h2>My Profile</h2>
+      <div>
+        <p>Lorem ipsum</p>
+      </div>
+    </div>
+  </ng-template>
+</div>

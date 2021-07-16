@@ -1,0 +1,342 @@
+:host {
+  nav {
+    color: #000;
+    height: 50px;
+    padding: 0 20px;
+    font-size: 16px;
+    font-family: SF Pro Text-Regular;
+    background-color: #ffffff;
+    box-shadow: 0px 3px 6px #95939329;
+
+    // Top white bar must be fixed position at top and will not go along with scroll in both Edit and Preview mode.
+    position: fixed;
+    width: 100%;
+    min-width: 1349px;
+    z-index: 999;
+    top: 0;
+
+    .logo {
+      margin-right: 30px;
+    }
+
+    .active {
+      color: #0000e8;
+      background: none;
+    }
+
+    .btn_mobile {
+      margin-left: 26px;
+    }
+
+    .btn_arrow_left {
+      margin-left: 49px;
+    }
+
+    .btn_arrow_right {
+      margin-left: 30px;
+    }
+
+    .btn_save {
+      margin-left: 45px;
+      margin-top:-5px;
+    }
+
+    .btn_edit {
+      margin-left: 55px;
+      margin-top:-5px;
+    }
+
+    .btn_publish {
+      margin-bottom: 6px;
+      width: 100px;
+      height: 32px;
+      padding: 0px;
+      margin-left: 54px;
+      border-radius: 0;
+      font-family: SF Pro Text-Bold;
+      border-radius: 100px;
+    }
+
+    .dropdown {
+      button {
+        padding: 0 10px;
+      }
+
+      .dropdown-menu {
+        width: 266px;
+        margin-top: 0px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        font-family: SF Pro Text-Medium;
+        font-size: 16px;
+
+        i {
+          font-size: 25px;
+        }
+
+        .dropdown-item {
+          &:focus {
+            span,
+            i,
+            a {
+              color: #ffffff;
+            }
+          }
+
+          &:active {
+            .a_page_loop {
+              color: #ffffff;
+            }
+          }
+        }
+      }
+
+      .dropdown-toggle-custom {
+        padding-top: 10px;
+        width: 266px;
+        height: 50px;
+        text-align: left;
+        border-radius: 0;
+        background-color: #ffffff;
+        color: #212121;
+
+        span {
+          color: #0000e8;
+          font-family: SF Pro Text-Medium;
+        }
+      }
+    }
+
+    .show {
+      button {
+        color: #ffffff !important;
+        background-color: #0000e8 !important;
+        border-color: #0000e8;
+        span {
+          color: #ffffff !important;
+        }
+      }
+    }
+  }
+}
+
+.add-new-dashboard {
+  color: #0000e8;
+  font-size: 0.875em;
+  font-weight: bold;
+}
+
+.dropdown-item .feather-plus {
+  color: #0000e8;
+}
+
+.dropdown-item a {
+  color: rgb(54, 54, 54);
+}
+
+div.dropdown-menu.show.first-link .dropdown-item i {
+  font-size: 1em !important;
+}
+
+div.dropdown-menu.show.first-link .dropdown-item {
+  margin: 10px 0;
+  line-height: 25px;
+}
+
+.dropdown .first-item span {
+  margin-left: 0.75em;
+  position: absolute;
+  top: 0.9375em;
+}
+
+.dropdown-menu {
+  padding: 0;
+}
+
+.dropdown-item {
+  padding-left: 0.7em;
+}
+
+.more-func {
+  border-bottom: 1px solid #f7f7fe;
+  padding-left: 0.7em;
+}
+
+.dropdown-item:last-child {
+  border: none;
+}
+
+.dropdown span {
+  margin-left: 0.75em;
+  top: 0.9375em;
+}
+
+div.dropdown-menu.show.first-link {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 10px !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 10px !important;
+  width: 200px !important;
+  margin-left: 263px;
+  top: -11px;
+  background-color: #fafafa;
+  font-size: 14px !important;
+  a {
+    color: #000000;
+  }
+}
+
+.feather-trash-2 {
+  color: #f46363;
+}
+
+.feather-trash-2 span {
+  color: #f46363;
+}
+
+._delete {
+  color: #f46363 !important;
+}
+
+.modal-content {
+  position: relative;
+
+  display: flex;
+  margin-top: -70px;
+  margin-left: 30px;
+  width: 400px;
+  height: 200px;
+  border-bottom: none;
+  background-color: #fff;
+
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 35px;
+}
+
+.modal-header {
+  border-bottom: none;
+
+  h1 {
+    letter-spacing: normal;
+    font-size: 40px;
+    color: #212121;
+    text-align: center;
+    margin: auto;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+}
+
+.modal-body {
+  text-align: center;
+  font-size: 24px;
+  color: #3f3b3b;
+  border: none;
+  margin-top: -6px;
+}
+
+.modal-footer {
+  margin-left: 20px;
+  margin-right: 20px;
+  border: none;
+
+  button {
+    background-color: #0000e8;
+    width: 350px;
+    height: 46px;
+    border-radius: 999px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+::ng-deep {
+  #ngprime-modal-change-dashboard-name {
+    .ui-shadow {
+      box-shadow: none;
+    }
+    .ui-dialog {
+      text-align: center;
+      box-shadow: none;
+
+      .ui-widget-header {
+        height: 68px;
+        padding: 20px 0 0 0;
+        border-top-left-radius: 24px;
+        border-top-right-radius: 24px;
+        border: none;
+        background-color: #ffffff;
+
+        .ui-dialog-title {
+          font-size: 40px;
+          font-family: SF Pro Text-Heavy;
+        }
+      }
+
+      .ui-dialog-content {
+        //padding: 0 !important;
+        border: none !important;
+        overflow: hidden;
+        border-bottom-left-radius: 24px;
+        border-bottom-right-radius: 24px;
+
+        .p-body {
+          p {
+            font-size: 24px;
+            font-family: SF Pro Text-Regular;
+          }
+        }
+
+        .p-footer {
+          margin: 25px 0 20px 0;
+
+          .btn {
+            margin: auto;
+            width: 350px;
+            height: 48px;
+            font-size: 20px;
+            font-family: SF Pro Text-Bold;
+          }
+
+          .btn-outline-primary {
+            margin-top: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .title__template {
+    padding-top: 12px;
+
+    img {
+      padding-bottom: 6px;
+    }
+  }
+}
+
+.btn-light {
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  padding: 0px;
+}
+
+.btn-light:hover {
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  padding: 0px;
+}
+
+.btn-light:focus {
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  padding: 0px;
+}
+.btn:disabled{
+  opacity: 0.3;
+}

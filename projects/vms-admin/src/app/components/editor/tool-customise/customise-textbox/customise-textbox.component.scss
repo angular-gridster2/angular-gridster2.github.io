@@ -1,0 +1,42 @@
+@import '../tool-customise.component.scss';
+
+// widget
+.customise_textbox {
+  @include box;
+  width: 300px;
+  font-size: 16px;
+  font-family: SF Pro Text-Medium !important;
+
+  input {
+    color: #0000e8;
+    font-size: 16px;
+    border: 1px solid #0000e8;
+
+    &::placeholder {
+      color: #0000e8;
+    }
+  }
+
+  .focus_within {
+    padding: 4px;
+
+    &:focus-within {
+      border: 1px solid #0000e8;
+    }
+  }
+
+  .active {
+    border: 1px solid #0000e8;
+  }
+
+  .border_button {
+    border: none;
+    border-bottom: 1px solid #0000e8;
+    background: transparent;
+  }
+
+  .radius_0 {
+    border-radius: 0;
+  }
+
+}

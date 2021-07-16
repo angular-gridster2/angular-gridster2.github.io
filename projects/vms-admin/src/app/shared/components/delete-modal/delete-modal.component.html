@@ -1,0 +1,22 @@
+<!-- Modal confirm  -->
+<div id="ngprime-modal-delete">
+  <p-dialog modal="true" header="Delete" [(visible)]="confirmDislay" [style]="{width: '400px'}" [baseZIndex]="10000" [closable]="false">
+    <div class="p-body">
+      <ng-content select=".confirm"></ng-content>
+    </div>
+    <div class="p-footer">
+      <button type="button" class="btn btn-danger btn_pill" (click)="confirm()">Delete</button>
+      <button type="button" class="btn btn-outline-primary btn_pill" (click)="hide()">Cancel</button>
+    </div>
+  </p-dialog>
+
+  <!-- Modal delete -->
+  <p-dialog modal="true" header="Success" [(visible)]="deleteDislay" [style]="{width: '400px', height: '200px'}" [baseZIndex]="10000" [closable]="false">
+    <div class="p-body">
+      <ng-content select=".delete"></ng-content>
+    </div>
+    <div class="p-footer">
+      <button type="button" class="btn btn-primary btn_pill" (click)="onSubmit()">Done</button>
+    </div>
+  </p-dialog>
+</div>

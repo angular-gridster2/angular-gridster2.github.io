@@ -1,0 +1,12 @@
+<!-- Modal confirm  -->
+<div id="ngprime-modal-save">
+    <!-- Modal delete -->
+    <p-dialog modal="true" header="Saved" [(visible)]="deleteDislay" [style]="{width: '400px', height: '200px'}" [baseZIndex]="10000" [closable]="false">
+      <div class="p-body">
+        <p> Your changes are saved </p>
+      </div>
+      <div class="p-footer">
+        <button type="button" class="btn btn-primary btn_pill" (click)="onSubmit()">Done</button>
+      </div>
+    </p-dialog>
+  </div>

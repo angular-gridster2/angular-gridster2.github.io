@@ -1,0 +1,776 @@
+<div id="mysite">
+  <app-header [mode]="2"></app-header>
+  <app-banner [isMySite]="true" [bgType]="false"></app-banner>
+
+  <div class="main">
+    <div class="header__site">
+      <p class="header__site--title">My Sites</p>
+      <div class="header__site--group">
+        <div class="search">
+          <i class="feather-search"></i>
+          <input type="text" #keyword (input)="searchData(keyword.value)" name="keyword" id="searchInpu"
+            placeholder="Search..." autocomplete="off" />
+          <i *ngIf="searchResult.length > 0" (click)="closeSearchList()" class="feather-x"></i>
+        </div>
+        <div class="listDataSearch" *ngIf="searchResult.length > 0">
+          <ul>
+            <ng-template [ngIf]="type === 2">
+              <li class="search__list d-flex justify-content-between align-items-center"
+                *ngFor="let employee of searchResult | slice: 0:5">
+                <div class="search__list--name" (click)="showDetail(employee)">
+                  <p class="font-weight-bold">{{employee.name}}</p>
+                  <!-- <p style="color: #959393;">https://project.com/home</p> -->
+                </div>
+                <div class="search__list--status">
+                  <ng-template [ngIf]="employee.status === 0">
+                    <div class="font-weight-bold" style="color: #F2A852 ;">Pending</div>
+                  </ng-template>
+                  <ng-template [ngIf]="employee.status === 2">
+                    <div class="font-weight-bold" style="color: #F2A852;">Inactive</div>
+                  </ng-template>
+                  <ng-template [ngIf]="employee.status === 1">
+                    <div class="font-weight-bold" style="color: #9dcb7a ;">Active</div>
+                  </ng-template>
+                  <ng-template [ngIf]="employee.status === 4">
+                    <div class="font-weight-bold" style="color: #F46363;">Terminated</div>
+                  </ng-template>
+                  <ng-template [ngIf]="employee.status === 3">
+                    <div class="font-weight-bold" style="color: #F46363;">Ban</div>
+                  </ng-template>
+                  <ng-template [ngIf]="employee.status === 5">
+                    <div class="font-weight-bold" style="color: #9DCB7A;">Draft</div>
+                  </ng-template>
+                </div>
+              </li>
+            </ng-template>
+            <!-- my website -->
+            <ng-template [ngIf]="type === 1">
+              <li class="search__list d-flex justify-content-between align-items-center"
+                *ngFor="let employee of searchResult | slice: 0:5">
+                <div class="search__list--name" (click)="showDetail(employee)">
+                  <p class="font-weight-bold">{{employee.name}}</p>
+                  <p style="color: #959393;">https://project.com/home</p>
+                </div>
+                <div class="search__list--status">
+                  <ng-template [ngIf]="employee.status === 0">
+                    <div class="font-weight-bold" style="color: #F2A852 ;">Pending</div>
+                  </ng-template>
+                  <ng-template [ngIf]="employee.status === 2">
+                    <div class="font-weight-bold" style="color: #F2A852;">Inactive</div>
+                  </ng-template>
+                  <ng-template [ngIf]="employee.status === 1">
+                    <div class="font-weight-bold" style="color: #9dcb7a ;">Active</div>
+                  </ng-template>
+                  <ng-template [ngIf]="employee.status === 4">
+                    <div class="font-weight-bold" style="color: #F46363;">Terminated</div>
+                  </ng-template>
+                  <ng-template [ngIf]="employee.status === 3">
+                    <div class="font-weight-bold" style="color: #F46363;">Ban</div>
+                  </ng-template>
+                  <ng-template [ngIf]="employee.status === 5">
+                    <div class="font-weight-bold" style="color: #9DCB7A;">Draft</div>
+                  </ng-template>
+                </div>
+              </li>
+            </ng-template>
+
+            <li *ngIf="searchResult.length > 5" class="see-all-results"><a
+                [routerLink]="((type === 1) ? '/mysite-all-result' : (type === 2) ? '/myproject-all' : '#')">See all
+                result for <strong>{{keyword.value}}</strong></a></li>
+          </ul>
+        </div>
+        <button class="btn btn-primary" (click)="createProject()">
+          <i class="feather-plus" style="font-size: 1.5rem; margin-right: 1rem;"></i>Create a Project</button>
+      </div>
+    </div>
+    <div class="type__site">
+      <button class="btn" [class.btn-primary]="type === 1" (click)="activeWebsite()">
+        My Website
+      </button>
+      <button class="btn" [class.btn-primary]="type === 2" (click)="activeProject()">My Project</button>
+    </div>
+
+    <!-- my website -->
+    <ng-template [ngIf]="type === 1">
+      <div class="grid-sites">
+        <div class="view-type">
+          <h3 class="m-0">My {{ title }}</h3>
+          <p>
+            View by
+            <i [style.color]="isList === true ? '#0000e8e6':'#c4c4c4'"
+              [style.pointerEvents]="isList === true ? 'none' : 'visible'" class="feather-grid cursor_pointer"
+              style="margin: 0px 30px;" (click)="toggle()"></i>
+            <i [style.color]="isList === false ? '#0000e8e6':'#c4c4c4'"
+              [style.pointerEvents]="isList === false ? 'none' : 'visible'" style="margin-right:10px"
+              class="feather-list cursor_pointer" (click)="toggle()"></i>
+          </p>
+        </div>
+        <ng-template [ngIf]="isList === true">
+          <div class="grid__container">
+            <div class="row">
+              <!--  -->
+              <div *ngFor="let site of returnedSliceItemSites" class="col-12 col-sm-4 col-md-4 col-lg-4 grid__card"
+                style="background-image: url(assets/images/mystie/{{site?.image}});">
+                <button class="btn grid__card--edit" (click)="onEditSite()">
+                  <i class="far fa-edit"></i> Edit site
+                </button>
+                <div class="grid__card--content">
+                  <h5 class="site--name">{{site.name}}</h5>
+                  <p class="site--time">
+                    Last Updated on {{site.time}}
+                  </p>
+                  <div class="site--control">
+                    <div class="control-status" dropdown>
+                      <div id="status-basic" dropdownToggle class="">
+                        <ng-template [ngIf]="site.status === 4">
+                          <div class="d-flex align-items-center" style="color: #F46363; padding-right: 1rem;">
+                            <span class="material-icons">
+                              fiber_manual_record
+                            </span>
+                            Ban</div>
+                        </ng-template>
+                        <ng-template [ngIf]="site.status === 1">
+                          <div class="control-status">
+                            <div class="d-flex align-items-center" style="color: #9DCB7A">
+                              <span class="material-icons">
+                                fiber_manual_record
+                              </span>
+                              Active
+                              <i class="feather-chevron-down"></i>
+                            </div>
+                            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                              aria-labelledby="status-basic">
+                              <li role="menuitem" class="active-card">
+                                <span class="material-icons">
+                                  fiber_manual_record
+                                </span>
+                                Active
+                              </li>
+                              <li role="menuitem" class="inactive-card">
+                                <span class="material-icons">
+                                  fiber_manual_record
+                                </span>
+                                Inactive
+                              </li>
+                            </ul>
+                          </div>
+                        </ng-template>
+                        <ng-template [ngIf]="site.status === 2">
+                          <div class="control-status">
+                            <div class="d-flex align-items-center" style="color: #F2A852">
+                              <span class="material-icons">
+                                fiber_manual_record
+                              </span>
+                              Inactive
+                              <i class="feather-chevron-down"></i>
+                            </div>
+                            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                              aria-labelledby="status-basic">
+                              <li role="menuitem" class="active-card">
+                                <span class="material-icons">
+                                  fiber_manual_record
+                                </span>
+                                Active
+                              </li>
+                              <li role="menuitem" class="inactive-card">
+                                <span class="material-icons">
+                                  fiber_manual_record
+                                </span>
+                                Inactive
+                              </li>
+                            </ul>
+                          </div>
+                        </ng-template>
+                        <ng-template [ngIf]="site.status === 3">
+                          <div class="d-flex align-items-center" style="color: #F46363; padding-right: 1rem;">
+                            <span class="material-icons">
+                              fiber_manual_record
+                            </span>
+                            Terminated</div>
+                        </ng-template>
+                      </div>
+                    </div>
+                    <a (click)="onViewSite()" class="control-view">
+                      <i class="feather-eye" style="font-size: 1.2rem; padding-right: 5px;">
+                      </i>
+                      View Site
+                    </a>
+                    <ng-template [ngIf]="site.status === 1">
+                      <div class="control-extend">
+                        <div class="btn-group" dropdown>
+                          <span id="button-basic" dropdownToggle class="material-icons three-dots">
+                            more_vert
+                          </span>
+                          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                            aria-labelledby="button-basic">
+                            <li role="menuitem">
+                              <a class="dropdown-item" routerLink="/site-detail"><i class="feather-info">
+                                </i>Site Detail</a>
+                            </li>
+                            <li role="menuitem">
+                              <a class="dropdown-item" href="javascript:void(0)"><i class="feather-plus-circle">
+                                </i>Duplicate</a>
+                            </li>
+                            <li role="menuitem">
+                              <a class="dropdown-item" href="javascript:void(0)" (click)="deleteModal.show()"><i
+                                  class="feather-trash-2">
+                                </i>Delete</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </ng-template>
+                    <ng-template [ngIf]="site.status !== 1">
+                      <div class="control-extend">
+                        <div class="btn-group" dropdown>
+                          <span id="button-basic" dropdownToggle class="material-icons three-dots">
+                            more_vert
+                          </span>
+                          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                            aria-labelledby="button-basic">
+                            <li role="menuitem">
+                              <a class="dropdown-item" routerLink="/site-detail"><i class="feather-info">
+                                </i>Site Detail</a>
+                            </li>
+                            <li role="menuitem">
+                              <a class="dropdown-item" href="javascript:void(0)"><i class="feather-plus-circle">
+                                </i>Duplicate</a>
+                            </li>
+                            <li role="menuitem">
+                              <a class="dropdown-item" href="javascript:void(0)" (click)="deleteModal.show()"><i
+                                  class="feather-trash-2">
+                                </i>Delete</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+              <!--  -->
+            </div>
+            <div class="paginate">
+              <pagination (pageChanged)="pageChangedSites($event)" [totalItems]="itemSites.length" [maxSize]="5"
+                [(ngModel)]="currentPageSites" [itemsPerPage]="12" [boundaryLinks]="true"
+                [customPreviousTemplate]="prevTemplate" [customNextTemplate]="nextTemplate"
+                [customPageTemplate]="pageTemplate">
+              </pagination>
+              <ng-template #pageTemplate let-page let-disabled="disabled" let-currentPage="currentPage">
+                <span [class.font-weight-bold]="page.number === currentPage">{{ page.number }}</span>
+              </ng-template>
+
+              <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+                <ng-container *ngIf="!disabled">
+                  <i class="feather-arrow-right"></i>
+                </ng-container>
+                <ng-container *ngIf="disabled">
+                  <i class="feather-arrow-right"></i>
+                </ng-container>
+              </ng-template>
+
+              <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+                <ng-container *ngIf="!disabled">
+                  <i class="feather-arrow-left"></i>
+                </ng-container>
+                <ng-container *ngIf="disabled">
+                  <i class="feather-arrow-left"></i>
+                </ng-container>
+              </ng-template>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template [ngIf]="!isList">
+          <table class="table" [class.dropdown_inbox]="!isList">
+            <thead>
+              <th style="width: 500px;">Project Name</th>
+              <th style="width: 190px;">Last Updated</th>
+              <th>Status</th>
+              <th colspan="3">Modified</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let siteList of returnedSliceItemSites">
+                <td>{{siteList.name}}</td>
+                <td>{{siteList.time}}</td>
+                <td>
+                  <div class="status-list">
+                    <div class="btn-group" dropdown>
+                      <ng-template [ngIf]="siteList.status === 1">
+                        <div class="d-flex align-items-center">
+
+                          <div id="status-basic" data-toggle="dropdown" aria-haspopup="true"
+                            class="d-flex align-items-center" style="color: #9DCB7A">
+                            Active
+                            <i class="feather-chevron-down"></i>
+                          </div>
+                          <ul class="dropdown-menu" role="menu" aria-labelledby="d-flex align-items-center">
+                            <li role="menuitem" class="active-card">
+                              <span class="material-icons">
+                                fiber_manual_record
+                              </span>
+                              Active
+                            </li>
+                            <li role="menuitem" class="inactive-card">
+                              <span class="material-icons">
+                                fiber_manual_record
+                              </span>
+                              Inactive
+                            </li>
+                          </ul>
+                        </div>
+                      </ng-template>
+                      <ng-template [ngIf]="siteList.status === 2">
+                        <div class="d-flex align-items-center">
+                          <div id="status-basic" data-toggle="dropdown" aria-haspopup="true"
+                            class="d-flex align-items-center" style="color: #F2A852">
+                            Inactive
+                            <i class="feather-chevron-down"></i>
+                          </div>
+                          <ul class="dropdown-menu" role="menu" aria-labelledby="d-flex align-items-center">
+                            <li role="menuitem" class="active-card">
+                              <span class="material-icons">
+                                fiber_manual_record
+                              </span>
+                              Active
+                            </li>
+                            <li role="menuitem" class="inactive-card">
+                              <span class="material-icons">
+                                fiber_manual_record
+                              </span>
+                              Inactive
+                            </li>
+                          </ul>
+                        </div>
+                      </ng-template>
+                      <ng-template [ngIf]="siteList.status === 3">
+                        <div class="d-flex align-items-center" style="color: #F46363">
+
+                          Ban</div>
+                      </ng-template>
+                      <ng-template [ngIf]="siteList.status === 4">
+                        <div class="d-flex align-items-center" style="color: #F46363">
+
+                          Terminated</div>
+                      </ng-template>
+
+                      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                        aria-labelledby="status-basic">
+                        <li role="menuitem" class="active-card">
+                          <span class="material-icons">
+                            fiber_manual_record
+                          </span>
+                          Active
+                        </li>
+                        <li role="menuitem" class="inactive-card">
+                          <span class="material-icons">
+                            fiber_manual_record
+                          </span>
+                          Inactive
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </td>
+                <td (click)="onEditSite()" class="list__edit">Edit Site</td>
+                <td (click)="onViewSite()" class="list__view">View Site</td>
+                <td style="width: 30px; color:#C4C4C4">
+                  <div class="control-extend">
+                    <div class="btn-group" dropdown>
+                      <span id="button-basic" dropdownToggle class="material-icons three-dots">
+                        more_vert
+                      </span>
+                      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                        aria-labelledby="button-basic">
+                        <li role="menuitem">
+                          <a class="dropdown-item" routerLink="/site-detail"><i class="feather-info">
+                            </i> Site Detail</a>
+                        </li>
+                        <li role="menuitem">
+                          <a class="dropdown-item" href="javascript:void(0)"><i class="feather-plus-circle">
+                            </i>Duplicate</a>
+                        </li>
+                        <li role="menuitem">
+                          <a class="dropdown-item" href="javascript:void(0)" (click)="deleteModal.show()"><i
+                              class="feather-trash-2">
+                            </i>Delete</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+          <div class="paginate" style="margin-top: 70px;">
+            <pagination (pageChanged)="pageChangedSites($event)" [totalItems]="itemSites.length" [maxSize]="5"
+              [(ngModel)]="currentPageSites" [itemsPerPage]="12" [boundaryLinks]="true"
+              [customPreviousTemplate]="prevTemplate" [customNextTemplate]="nextTemplate"
+              [customPageTemplate]="pageTemplate">
+            </pagination>
+            <ng-template #pageTemplate let-page let-disabled="disabled" let-currentPage="currentPage">
+              <span [class.font-weight-bold]="page.number === currentPage">{{ page.number }}</span>
+            </ng-template>
+
+            <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+              <ng-container *ngIf="!disabled">
+                <i class="feather-arrow-right"></i>
+              </ng-container>
+              <ng-container *ngIf="disabled">
+                <i class="feather-arrow-right"></i>
+              </ng-container>
+            </ng-template>
+
+            <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+              <ng-container *ngIf="!disabled">
+                <i class="feather-arrow-left"></i>
+              </ng-container>
+              <ng-container *ngIf="disabled">
+                <i class="feather-arrow-left"></i>
+              </ng-container>
+            </ng-template>
+          </div>
+        </ng-template>
+      </div>
+    </ng-template>
+
+    <!-- my project -->
+
+    <ng-template [ngIf]="type === 2">
+      <div class="grid-project">
+        <div class="view-type">
+          <h3 class="m-0">My {{ title }}</h3>
+          <p class="d-flex align-items-center">
+            View by
+            <i [style.color]="isList === true ? '#0000e8e6':'#c4c4c4'"
+              [style.pointerEvents]="isList === true ? 'none' : 'visible'" class="feather-grid cursor_pointer"
+              style="margin: 0px 30px;" (click)="toggle()"></i>
+            <i [style.color]="isList === false ? '#0000e8e6':'#c4c4c4'"
+              [style.pointerEvents]="isList === false ? 'none' : 'visible'" class="feather-list cursor_pointer"
+              style="margin-right:10px" (click)="toggle()"></i>
+          </p>
+
+        </div>
+        <ng-template [ngIf]="isList">
+          <div class="grid__container">
+            <div class="row">
+              <div *ngFor="let item of returnedSliceItemProjects" class="col-12 col-sm-4 col-md-4 col-lg-4 grid__card">
+                <button [style.color]="item.status == 1 ? '#0000e8e6':'#c4c4c4'"
+                  [style.pointerEvents]="item.status != 1 ? 'none' : 'visible'" (click)="onEditSite()"
+                  class="grid__card--edit">
+                  <i class="far fa-edit"></i> Edit Site
+                </button>
+                <div class="grid__card--content">
+                  <h5 class="site--name">{{item.name}}</h5>
+                  <p class="site--time">
+                    Last Updated on {{item.time}}
+                  </p>
+                  <div class="site--control">
+                    <div class="control-status" dropdown>
+                      <div id="status-basic" dropdownToggle class="">
+
+                        <ng-template [ngIf]="item.status === 1">
+                          <div class="d-flex align-items-center" style="color: #9dcb7a">
+                            <span class="material-icons">
+                              fiber_manual_record
+                            </span>
+                            Draft</div>
+                        </ng-template>
+                        <ng-template [ngIf]="item.status === 0">
+                          <div class="d-flex align-items-center" style="color: #F2A852">
+                            <span class="material-icons">
+                              fiber_manual_record
+                            </span>
+                            Pending</div>
+                        </ng-template>
+                        <!-- <i class="feather-chevron-down" style="padding-left: 5px;"></i> -->
+                      </div>
+                      <!-- list status -->
+                      <!-- <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                        aria-labelledby="status-basic">
+                        <li role="menuitem" class="draft-card">
+                          <span class="material-icons">
+                            fiber_manual_record
+                          </span>
+                          Draft
+                        </li>
+                        <li role="menuitem" class="pending-card">
+                          <span class="material-icons">
+                            fiber_manual_record
+                          </span>
+                          Pending
+                        </li>
+                        <li role="menuitem" class="deject-card">
+                          <span class="material-icons">
+                            fiber_manual_record
+                          </span>
+                          Deject
+                        </li>
+
+                      </ul> -->
+                    </div>
+                    <a (click)="previewSite()" class="control-view">
+                      <i class="feather-eye" style="font-size: 1.2rem; padding-right: 5px;">
+                      </i>
+                      Preview Site
+                    </a>
+                    <ng-template [ngIf]="item.status === 1">
+                      <div class="control-extend">
+                        <div class="btn-group" dropdown>
+                          <span id="button-basic" dropdownToggle class="material-icons three-dots">
+                            more_vert
+                          </span>
+                          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                            aria-labelledby="button-basic">
+
+                            <!-- fix tiennx -->
+                            <li role="menuitem">
+                              <a [routerLink]="['/publish-website']" class="dropdown-item" href="javascript:void(0)"><i
+                                  class="feather-send">
+                                </i>Publish Site</a>
+                            </li>
+
+                            <!-- end -->
+                            <li role="menuitem">
+                              <a class="dropdown-item" href="javascript:void(0)"><i class="feather-plus-circle">
+                                </i>Duplicate</a>
+                            </li>
+                            <li role="menuitem">
+                              <a class="dropdown-item" (click)="rename=true"><i class="feather-edit">
+                                </i>
+                                Rename</a>
+                            </li>
+
+                            <li role="menuitem">
+                              <a class="dropdown-item" (click)="deleteProjectModel.show()"><i class="feather-trash-2">
+                                </i>Delete</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </ng-template>
+                    <ng-template [ngIf]="item.status !== 1">
+                      <div class="control-extend">
+                        <!-- <span class="material-icons three-dots">
+                      more_vert
+                    </span> -->
+                        <div class="btn-group" dropdown>
+                          <span id="button-basic" dropdownToggle class="material-icons three-dots">
+                            more_vert
+                          </span>
+                          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                            aria-labelledby="button-basic">
+
+                            <li role="menuitem">
+                              <a class="dropdown-item" (click)="unpublishedModal.show()"><i
+                                  class="feather-rotate-ccw"></i>
+                                Unpublished</a>
+                            </li>
+
+                            <li role="menuitem">
+                              <a class="dropdown-item" (click)="deleteProjectModel.show()"><i class="feather-trash-2">
+                                </i>Delete</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="paginate">
+              <pagination (pageChanged)="pageChangedProjects($event)" [totalItems]="itemProjects.length" [maxSize]="5"
+                [(ngModel)]="currentPageProjects" [itemsPerPage]="12" [boundaryLinks]="true"
+                [customPreviousTemplate]="prevTemplate" [customNextTemplate]="nextTemplate"
+                [customPageTemplate]="pageTemplate">
+              </pagination>
+              <ng-template #pageTemplate let-page let-disabled="disabled" let-currentPage="currentPage">
+                <span [class.font-weight-bold]="page.number === currentPage">{{ page.number }}</span>
+              </ng-template>
+
+              <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+                <ng-container *ngIf="!disabled">
+                  <i class="feather-arrow-right"></i>
+                </ng-container>
+                <ng-container *ngIf="disabled">
+                  <i class="feather-arrow-right"></i>
+                </ng-container>
+              </ng-template>
+
+              <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+                <ng-container *ngIf="!disabled">
+                  <i class="feather-arrow-left"></i>
+                </ng-container>
+                <ng-container *ngIf="disabled">
+                  <i class="feather-arrow-left"></i>
+                </ng-container>
+              </ng-template>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="!isList">
+          <table class="table" [class.dropdown_inbox]="!isList">
+            <thead>
+              <th style="width: 450px;">Project Name</th>
+              <th style="width: 190px;">Last Updated</th>
+              <th>Status</th>
+              <th colspan="4">Modified</th>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let itemList of returnedSliceItemProjects">
+                <td>{{itemList.name}}</td>
+                <td>{{itemList.time}}</td>
+                <td>
+
+                  <ng-template [ngIf]="itemList.status === 1">
+                    <span style="color: #9dcb7a; cursor: pointer">Draft</span>
+                  </ng-template>
+                  <ng-template [ngIf]="itemList.status === 0">
+                    <span style="color: #F2A852; cursor: pointer">Pending</span>
+                  </ng-template>
+
+                </td>
+                <td (click)="onEditSite()" class="list__edit"
+                  [style.color]="itemList.status == 0 ? 'rgba(0, 0, 232, 0.5)' : ' rgba(0, 0, 232, 1)' "
+                  [style.pointerEvents]="itemList.status == 0 ? 'none' : 'visible' ">Edit Site</td>
+                <td (click)="previewSite()" class="list__preview">
+                  Preview Site</td>
+                <td [routerLink]="['/publish-website']"
+                  [style.color]="itemList.status == 0 ? 'rgba(0, 0, 232, 0.5)' : ' rgba(0, 0, 232, 1)' "
+                  [style.pointerEvents]="itemList.status == 0 ? 'none' : 'visible' " style="cursor: pointer;">
+                  Publish
+                </td>
+                <td style="width: 30px;" class="list__publish" style="color:#C4C4C4">
+                  <ng-template [ngIf]="itemList.status === 1">
+                    <div class="control-extend">
+                      <!-- <span class="material-icons three-dots">
+                    more_vert
+                  </span> -->
+                      <div class="btn-group" dropdown>
+                        <span id="button-basic" dropdownToggle class="material-icons three-dots">
+                          more_vert
+                        </span>
+                        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                          aria-labelledby="button-basic">
+                          <li role="menuitem">
+                            <a class="dropdown-item" href="javascript:void(0)"><i class="feather-plus-circle"></i>
+                              Duplicate</a>
+                          </li>
+                          <li role="menuitem">
+                            <a class="dropdown-item" (click)="rename=true"><i class="feather-edit"></i>
+                              Rename</a>
+                          </li>
+
+                          <li role="menuitem">
+                            <a class="dropdown-item" (click)="deleteProjectModel.show()"><i class="feather-trash-2">
+                              </i>Delete</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </ng-template>
+                  <ng-template [ngIf]="itemList.status !== 1">
+                    <div class="control-extend">
+                      <!-- <span class="material-icons three-dots">
+                    more_vert
+                  </span> -->
+                      <div class="btn-group" dropdown>
+                        <span id="button-basic" dropdownToggle class="material-icons three-dots">
+                          more_vert
+                        </span>
+                        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                          aria-labelledby="button-basic">
+
+                          <li role="menuitem">
+                            <a class="dropdown-item" (click)="unpublishedModal.show()">
+                              <i class="feather-rotate-ccw"></i>Unpublished</a>
+                          </li>
+
+                          <li role="menuitem">
+                            <a class="dropdown-item" (click)="deleteProjectModel.show()"><i class="feather-trash-2">
+                              </i>Delete</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </ng-template>
+                </td>
+
+              </tr>
+
+            </tbody>
+          </table>
+          <div style="margin-top: 70px;" class="paginate">
+            <pagination (pageChanged)="pageChangedProjects($event)" [totalItems]="itemProjects.length" [maxSize]="5"
+              [(ngModel)]="currentPageProjects" [itemsPerPage]="12" [boundaryLinks]="true"
+              [customPreviousTemplate]="prevTemplate" [customNextTemplate]="nextTemplate"
+              [customPageTemplate]="pageTemplate">
+            </pagination>
+            <ng-template #pageTemplate let-page let-disabled="disabled" let-currentPage="currentPage">
+              <span [class.font-weight-bold]="page.number === currentPage">{{ page.number }}</span>
+            </ng-template>
+
+            <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+              <ng-container *ngIf="!disabled">
+                <i class="feather-arrow-right"></i>
+              </ng-container>
+              <ng-container *ngIf="disabled">
+                <i class="feather-arrow-right"></i>
+              </ng-container>
+            </ng-template>
+
+            <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+              <ng-container *ngIf="!disabled">
+                <i class="feather-arrow-left"></i>
+              </ng-container>
+              <ng-container *ngIf="disabled">
+                <i class="feather-arrow-left"></i>
+              </ng-container>
+            </ng-template>
+          </div>
+        </ng-template>
+      </div>
+    </ng-template>
+  </div>
+  <app-footer></app-footer>
+</div>
+
+<!-- Delete Modal Website -->
+<app-delete-modal #deleteModal>
+  <div class="confirm">
+    <p> Do you want to delete </p>
+    <p> This website ? </p>
+  </div>
+  <div class="delete">
+    <p> Your website was deleted </p>
+  </div>
+</app-delete-modal>
+<!-- Delete Modal Project -->
+<app-delete-modal #deleteProjectModel>
+  <div class="confirm">
+    <p> Do you want to delete</p>
+    <p> This project ?</p>
+  </div>
+  <div class="delete">
+    <p> Your project was deleted </p>
+  </div>
+</app-delete-modal>
+<!-- Unpublished modal -->
+<app-unpublished-modal #unpublishedModal></app-unpublished-modal>
+<!-- Rename modal -->
+<div id="ngprime-modal-change-project-name">
+  <p-dialog modal="true" header="Project Name" [(visible)]="rename" [style]="{width: '400px', height: '200px'}"
+    [baseZIndex]="10000" [closable]="false">
+    <div class="p-body">
+      <input class="form-control" />
+    </div>
+    <div class="p-footer d-flex">
+      <button type="button" class="btn btn-primary btn_pill mr-2" (click)="rename=null">Save</button>
+      <button type="button" class="btn btn-danger btn_pill" (click)="rename=null">Cancel</button>
+    </div>
+  </p-dialog>
+</div>

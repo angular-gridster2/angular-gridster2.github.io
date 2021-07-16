@@ -1,0 +1,26 @@
+<div [ngStyle]="{ background: type=='auth'?globalConfig.themeAuthBackground:globalConfig.themeBackground}">
+  <app-editor-navbar [currentId]="currentId"></app-editor-navbar>
+  <!-- fix bug scroll safari -->
+  <div style="margin-top: 50px;"></div>
+  <!-- fix bug scroll safari end -->
+  <app-topbar *ngIf="breadCrumb!='login'" [breadcumb]="breadCrumb" [globalConfig]="globalConfig" [viewOnly]="viewOnly"></app-topbar>
+  <div class="container_grid" [style.height]="type=='dashboard'?'calc(100vh - 50px)':'100vh'" (drop)="drop($event)" (dragover)="allowDrop($event)">
+    <!-- all widget -->
+    <div class="w-100 h-100">
+      <div *ngIf="type && type=='dashboard'" class="dashboard-grid-container scroll-gray">
+        <div *ngIf="!widgets.length" class="drop-area d-flex position-absolute justify-content-center text-white" style="align-items: center;font-size: 32px; font-family: 'SF Pro Text-Thin';border: 'dashed 1px #ffffff'">
+          <div>
+            <div class="mb-3">Drag Widget</div> 
+            <div>To this area</div>
+          </div>
+        </div>
+        <app-grid #grid [viewOnly]="viewOnly" [rows]=5 [cols]=6></app-grid>
+      </div>
+      <div *ngIf="type && type!=='dashboard'" class="w-100 h-100 scroll-gray">
+        <app-grid #grid [viewOnly]="viewOnly" [rows]=18 [cols]=28></app-grid>
+      </div>
+    </div>
+  </div>
+  <app-edit-tool *ngIf="!viewOnly"></app-edit-tool> 
+  <app-tool-customise *ngIf="!viewOnly"></app-tool-customise>
+</div>

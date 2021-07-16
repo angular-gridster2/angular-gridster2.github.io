@@ -1,0 +1,51 @@
+<div id="user-manage">
+  <div class="list">
+    <div class="list-user">
+      <p class="userQuantity">Member ({{userList.length}})</p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Email Address</th>
+            <th>Status</th>
+            <th>Last attended</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of userList">
+            <td (click)="previewUserInfo()">
+              <img src="https://i0.wp.com/danongonline.com.vn/wp-content/uploads/2018/02/anh-girl-xinh-9x-kute-24.jpg"
+                width="30px" height="30px" alt="avatar" class="rounded-circle" />
+              {{user.name}}
+            </td>
+            <td>
+              <ng-template [ngIf]="user.role === 1">Admin</ng-template>
+              <ng-template [ngIf]="user.role === 2">User</ng-template>
+              <ng-template [ngIf]="user.role === 3">{{"{Role}"}} </ng-template>
+            </td>
+            <td>{{user.email}}</td>
+            <td>
+              <ng-template [ngIf]="user.status === 0">
+                <div>Inactive</div>
+              </ng-template>
+              <ng-template [ngIf]="user.status === 1">
+                <div style="color: #9FFFB1">Active</div>
+              </ng-template>
+            </td>
+            <td>19 May 2020</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pagination">
+      <span class="material-icons">
+        keyboard_arrow_left
+      </span>
+      <a href="" class="number-pagination">1</a>
+      <span class="material-icons">
+        keyboard_arrow_right
+      </span>
+    </div>
+  </div>
+</div>

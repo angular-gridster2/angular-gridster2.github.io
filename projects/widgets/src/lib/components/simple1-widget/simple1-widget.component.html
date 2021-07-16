@@ -1,0 +1,35 @@
+<!-- Square -->
+<div class="h-100 w-100 simple" [ngClass]="widget.config?.class" [ngStyle]="widget.config?.styles"
+    (resized)="onResized($event)" [class]="'mode_square'" [hidden]="!(mode == 1)">
+    <div>
+        <i *ngIf="canActivate('faTopLeft')" [class]="getObjByRange()?.icon" [style]="{'color': getObjByRange()?.color}"></i>
+    </div>
+    <div [style.color]="widget.config?.colorText">{{widget.config?.value}}{{widget.config?.centerVariable}}</div>
+    <div [style.color]="widget.config?.colorText">{{widget.config?.bottomVariable}}</div>
+</div>
+
+<!-- Rectangle -->
+<div class="h-100 w-100 simple" [ngClass]="widget.config?.class" [ngStyle]="widget.config?.styles"
+    (resized)="onResized($event)" [class]="'mode_rectangle'" [hidden]="!(mode == 2)">
+    <div>
+        <i *ngIf="canActivate('faTopLeft')" [class]="getObjByRange()?.icon" [style]="{'color': getObjByRange()?.color}"></i>
+    </div>
+    <div class="content_simple">
+        <div [style.color]="widget.config?.colorText">{{widget.config?.value}}<span style="font-size: 24px">{{widget.config?.centerVariable}}</span></div>
+        <div [style.color]="widget.config?.colorText">{{widget.config?.bottomVariable}}</div>
+    </div>
+</div>
+
+<!-- Vertical -->
+<div class="h-100 w-100 simple_vertical" [ngClass]="widget.config?.class" [ngStyle]="widget.config?.styles"
+    (resized)="onResized($event)" [class]="'mode_vertical'" [hidden]="!(mode == 3)">
+    <div class="row w-100 m-0 h-50 d-flex justify-content-center align-items-center">
+        <i *ngIf="canActivate('faTopLeft')" [class]="getObjByRange()?.icon" [style]="{'color': getObjByRange()?.color}"></i>
+    </div>
+    <div class="row w-100 m-0 h-50 d-flex justify-content-center align-items-center">
+        <div class="content_simple">
+            <div [style.color]="widget.config?.colorText">{{widget.config?.value}}<span style="font-size: 24px">{{widget.config?.centerVariable}}</span></div>
+            <div [style.color]="widget.config?.colorText">{{widget.config?.bottomVariable}}</div>
+        </div>
+    </div>
+</div>

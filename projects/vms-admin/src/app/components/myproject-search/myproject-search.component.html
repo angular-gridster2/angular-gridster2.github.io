@@ -1,0 +1,292 @@
+<main>
+  <!-- header  -->
+  <app-header [mode]="2" [background]="'white'"></app-header>
+  <!-- content -->
+  <section>
+     <div class="row">
+        <div class="col-lg-12 col-xs-12">
+           <a class="linked" [routerLink]="[ '/mysite' ]" [queryParams]="{ page: 'my-project' }">My Project</a>
+           <i class="feather-chevron-right"></i>
+           <strong class="linkto">Search Result</strong>
+        </div>
+        <div class="col-lg-12 col-xs-12 project-name">
+           <span>"Project A"</span>
+        </div>
+     </div>
+     <div class="row grid-sites">
+        <div class="col-lg-12 col-xs-12 _navbar">
+           <div class="col-lg-3">
+              <span class="result-sum">{{itemProjects.length}} Result</span>
+           </div>
+           <div class="col-lg-3 col-xs-3 _view-type">
+              <p>View by</p>
+              <i [style.color]="isList === false ? '#0000e8e6':'#c4c4c4'"
+              [style.pointerEvents]="isList === false ? 'none' : 'visible'" class="feather-grid"
+              style="font-size: 1.7rem;" (click)="formatGrid()" class="feather-grid" style="font-size: 1.7rem;"></i>
+              <i [style.color]="isList === true ? '#0000e8e6':'#c4c4c4'"
+              [style.pointerEvents]="isList === true ? 'none' : 'visible'" class="feather-list" style="font-size: 1.7rem;"
+              (click)="formatList()" style="font-size: 1.7rem;" class="feather-list"></i>
+           </div>
+        </div>
+     </div>
+     <ng-template [ngIf]="!isList">
+        <div class="grid__container">
+           <div class="row">
+              <div class="col-12 col-sm-4 col-md-4 col-lg-4 grid__card" *ngFor="let item of itemProjects">
+                 <button class="grid__card--edit" (click)="onEditSite()">
+                  <i class="far fa-edit" style="margin-right: 2px;"></i> Edit Site
+                 </button>
+                 <div class="grid__card--content">
+                    <h5 class="site--name">{{item.name}}</h5>
+                    <p class="site--time">
+                       Last on {{item.time}}
+                    </p>
+                    <div class="site--control">
+                       <div class="control-status" dropdown>
+                          <div id="status-basic" dropdownToggle class="">
+                             <ng-template [ngIf]="item.status === 1">
+                                <div class="d-flex align-items-center" style="color: #9dcb7a">
+                                   <span class="material-icons">
+                                   fiber_manual_record
+                                   </span>
+                                   Draft
+                                </div>
+                             </ng-template>
+                             <ng-template [ngIf]="item.status === 0">
+                                <div class="d-flex align-items-center" style="color: orange">
+                                   <span class="material-icons">
+                                   fiber_manual_record
+                                   </span>
+                                   Pending
+                                </div>
+                             </ng-template>
+                             <!-- <i class="feather-chevron-down" style="padding-left: 5px;"></i> -->
+                          </div>
+                          <!-- list status -->
+                          <!-- <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                             aria-labelledby="status-basic">
+                             <li role="menuitem" class="draft-card">
+                               <span class="material-icons">
+                                 fiber_manual_record
+                               </span>
+                               Draft
+                             </li>
+                             <li role="menuitem" class="pending-card">
+                               <span class="material-icons">
+                                 fiber_manual_record
+                               </span>
+                               Pending
+                             </li>
+                             <li role="menuitem" class="deject-card">
+                               <span class="material-icons">
+                                 fiber_manual_record
+                               </span>
+                               Deject
+                             </li>
+                             
+                             </ul> -->
+                       </div>
+                       <a href="/" class="control-view">
+                       <i class="feather-eye" style="font-size: 1.2rem; padding-right: 5px;    margin-right: 2px;">
+                       </i>
+                       Preview Site
+                       </a>
+                       <ng-template [ngIf]="item.status === 1">
+                          <div class="control-extend">
+                             <div class="btn-group" dropdown>
+                                <span id="button-basic" dropdownToggle class="material-icons three-dots">
+                                more_vert
+                                </span>
+                                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                                   aria-labelledby="button-basic">
+                                   <li role="menuitem">
+                                      <a class="dropdown-item" href="javascript:void(0)"><i class="feather-send">
+                                      </i>Publish Site</a>
+                                   </li>
+                                   <li role="menuitem">
+                                      <a class="dropdown-item" href="javascript:void(0)"><i class="feather-plus-circle">
+                                      </i>Duplicate</a>
+                                   </li>
+                                   <li role="menuitem">
+                                      <a class="dropdown-item" href="/">
+                                      <i class="feather-edit"></i>
+                                      Rename
+                                      </a>
+                                   </li>
+                                   <li role="menuitem">
+                                      <a class="dropdown-item" href="javascript:void(0)"><i class="feather-trash-2">
+                                      </i>Delete</a>
+                                   </li>
+                                </ul>
+                             </div>
+                          </div>
+                       </ng-template>
+                       <ng-template [ngIf]="item.status !== 1">
+                          <div class="control-extend">
+                             <!-- <span class="material-icons three-dots">
+                                more_vert
+                                </span> -->
+                             <div class="btn-group" dropdown>
+                                <span id="button-basic" dropdownToggle class="material-icons three-dots">
+                                more_vert
+                                </span>
+                                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                                   aria-labelledby="button-basic">
+                                   <li role="menuitem">
+                                      <a class="dropdown-item" href="/"><i class="feather-rotate-ccw"></i>
+                                      Unpublished</a>
+                                   </li>
+                                   <li role="menuitem">
+                                      <a class="dropdown-item" href="/">
+                                      <i class="feather-edit"></i>
+                                      Rename
+                                      </a>
+                                   </li>
+                                   <li role="menuitem">
+                                      <a class="dropdown-item" href="javascript:void(0)"><i class="feather-trash-2">
+                                      </i>Delete</a>
+                                   </li>
+                                </ul>
+                             </div>
+                          </div>
+                       </ng-template>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <!-- <div class="paginate">
+              <ul>
+                  <li>
+                      <a href="" class="page_prev">
+                          <span class="material-icons">
+                              arrow_back
+                          </span>
+                      </a>
+                  </li>
+                  <li><a href="">1</a></li>
+                  <li><a href="">2</a></li>
+                  <li><a href="">3</a></li>
+                  <li><a href="">4</a></li>
+                  <li><a href="">5</a></li>
+                  <li>
+                      <a href="" class="page_next">
+                          <span class="material-icons">
+                              arrow_forward
+                          </span>
+                      </a>
+                  </li>
+              </ul>
+              </div> -->
+        </div>
+     </ng-template>
+     <ng-template [ngIf]="isList">
+        <table class="table">
+           <thead>
+              <th>Project Name</th>
+              <th>Last Updated</th>
+              <th>Status</th>
+              <th colspan="4">Modified</th>
+           </thead>
+           <tbody>
+              <tr *ngFor="let itemList of itemProjects">
+                 <td>{{itemList.name}}</td>
+                 <td>{{itemList.time}}</td>
+                 <td>
+                    <ng-template [ngIf]="itemList.status === 1">
+                       <span style="color: #9dcb7a">Draft</span>
+                    </ng-template>
+                    <ng-template [ngIf]="itemList.status === 0">
+                       <span style="color: orange">Pending</span>
+                    </ng-template>
+                 </td>
+                 <td class="list__edit"
+                 [style.color]="itemList.status !== 1 ? 'rgba(0, 0, 232, 0.5)' : ' rgba(0, 0, 232, 1)' "
+                 [style.pointerEvents]="itemList.status? 'none' : 'visible' ">Edit Site</td>
+                 <td class="list__preview">Preview Site</td>
+                 <td [style.color]="itemList.status !== 1 ? 'rgba(0, 0, 232, 0.5)' : ' rgba(0, 0, 232, 1)' "
+                 [style.pointerEvents]="itemList.status !== 1 ? 'none' : 'visible' ">
+                 Publish
+                 </td>
+                 <td class="list__publish">
+                    <ng-template [ngIf]="itemList.status === 1">
+                       <div class="control-extend">
+                          <!-- <span class="material-icons three-dots">
+                             more_vert
+                             </span> -->
+                          <div class="btn-group" dropdown>
+                             <span id="button-basic" dropdownToggle class="material-icons three-dots">
+                             more_vert
+                             </span>
+                             <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                                aria-labelledby="button-basic">
+                                <li role="menuitem">
+                                   <a class="dropdown-item" href="/"><i class="feather-plus-circle"></i>
+                                   Duplicate</a>
+                                </li>
+                                <li role="menuitem">
+                                   <a class="dropdown-item" href="/"><i class="feather-edit"></i>
+                                   Rename</a>
+                                </li>
+                                <li role="menuitem">
+                                   <a class="dropdown-item" href="javascript:void(0)"><i class="feather-trash-2">
+                                   </i>Delete</a>
+                                </li>
+                             </ul>
+                          </div>
+                       </div>
+                    </ng-template>
+                    <ng-template [ngIf]="itemList.status !== 1">
+                       <div class="control-extend">
+                          <!-- <span class="material-icons three-dots">
+                             more_vert
+                             </span> -->
+                          <div class="btn-group" dropdown>
+                             <span id="button-basic" dropdownToggle class="material-icons three-dots">
+                             more_vert
+                             </span>
+                             <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                                aria-labelledby="button-basic">
+                                <li role="menuitem">
+                                   <a class="dropdown-item" href="#myModal" data-toggle="modal">
+                                   <i class="feather-rotate-ccw"></i>Unpublished</a>
+                                </li>
+                                <li role="menuitem">
+                                   <a class="dropdown-item" href="javascript:void(0)"><i class="feather-trash-2">
+                                   </i>Delete</a>
+                                </li>
+                             </ul>
+                          </div>
+                       </div>
+                    </ng-template>
+                 </td>
+              </tr>
+           </tbody>
+        </table>
+        <div class="paginate">
+           <ul>
+              <li>
+                 <a href="" class="page_prev">
+                 <span class="material-icons">
+                 arrow_back
+                 </span>
+                 </a>
+              </li>
+              <li><a href="">1</a></li>
+              <li><a href="">2</a></li>
+              <li><a href="">3</a></li>
+              <li><a href="">4</a></li>
+              <li><a href="">5</a></li>
+              <li>
+                 <a href="" class="page_next">
+                 <span class="material-icons">
+                 arrow_forward
+                 </span>
+                 </a>
+              </li>
+           </ul>
+        </div>
+     </ng-template>
+  </section>
+  <!-- footer  -->
+  <app-footer></app-footer>
+</main>

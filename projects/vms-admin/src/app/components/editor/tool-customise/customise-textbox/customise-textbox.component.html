@@ -1,0 +1,28 @@
+<div [ngDraggable]="true" [handle]="DragHandle" [bounds]="myBounds" [inBounds]="true" (click)="$event.stopImmediatePropagation()" class="customise_textbox row p-1 m-1">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center text-primary my-2">
+            <div class="d-flex justify-content-start align-items-center cursor_move" #DragHandle>
+                <img src="assets/images/Icon-Edit tool-Customise.png" alt="Icon-Edit tool-Customise">
+                <span class="h6 m-0 pl-1 font-weight-bold">Customise/Textbox</span>
+            </div>
+            <img src="assets/images/Icon-Edit tool-Close.png" alt="Icon-Edit tool-Close" (click)="onClose(); $event.stopImmediatePropagation()" class="cursor_pointer">
+        </div>
+        <p class="text-secondary mt-4">Style</p>
+        <!-- Do not typing -->
+        <!-- <form (keydown)="$event.preventDefault()" (keydown.shift)="$event.preventDefault()"> -->
+        <form>
+            <div class="mb-4 focus_within" [class.active]="this.currentWidget.widget.config.inputStyle == 'roundCorner'">
+                <input type="text" class="form-control" (click)="onClickStyle('roundCorner')" (input)="onChange($event.target.value)" [value]="this.currentWidget.widget.config.placeholder" [placeholder]="placeholder">
+            </div>
+            <div class="mb-4 focus_within" [class.active]="this.currentWidget.widget.config.inputStyle == 'underline'">
+                <input type="text" class="form-control radius_0 border_button" (click)="onClickStyle('underline')" (input)="onChange($event.target.value)" [value]="this.currentWidget.widget.config.placeholder" [placeholder]="placeholder">
+            </div>
+            <div class="mb-4 focus_within" [class.active]="this.currentWidget.widget.config.inputStyle == 'capsule'">
+                <input type="text" class="form-control input_pill" (click)="onClickStyle('capsule')" (input)="onChange($event.target.value)" [value]="this.currentWidget.widget.config.placeholder" [placeholder]="placeholder">
+            </div>
+            <div class="mb-4 focus_within" [class.active]="this.currentWidget.widget.config.inputStyle == 'rectangle'">
+                <input type="text" class="form-control radius_0"  (click)="onClickStyle('rectangle')" (input)="onChange($event.target.value)" [value]="this.currentWidget.widget.config.placeholder" [placeholder]="placeholder">
+            </div>
+        </form>
+    </div>
+</div>

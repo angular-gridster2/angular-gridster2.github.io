@@ -1,0 +1,17 @@
+// Core PrimeNG
+@import "~primeng/resources/themes/nova-light/theme.css";
+@import "~primeng/resources/primeng.min.css";
+@import "~primeicons/primeicons.css";
+
+// Override here!
+p-calendar {
+  input {
+    &:enabled {
+      &:hover {
+        &:not(.ui-state-error) {
+          border-color: #EAEAEA !important;
+        }
+      }
+    }
+  }
+}

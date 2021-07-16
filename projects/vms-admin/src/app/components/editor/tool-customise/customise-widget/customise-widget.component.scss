@@ -1,0 +1,5 @@
+@import '../tool-customise.component.scss';
+// widget
+.widget {
+    @include box;
+}

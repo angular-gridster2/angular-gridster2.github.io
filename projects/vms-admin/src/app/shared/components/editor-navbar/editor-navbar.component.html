@@ -1,0 +1,117 @@
+<nav class="d-flex justify-content-between align-items-center">
+  <div class="d-flex justify-content-between align-items-center">
+    <a [routerLink]="['/']" class="logo">
+      <img src="assets/images/Logo-The Deliver-Dark.png" alt="Logo-The Deliver-Dark">
+    </a>
+    <div *ngIf="!currentWidgetId && !preview" class="dropdown">
+      <button class="btn dropdown-toggle-custom d-flex justify-content-between align-items-center text-capitalize"
+        type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Page: <span>{{currentPageName()}}</span>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="z-index: 10;">
+        <a class="dropdown-item d-flex justify-content-between align-items-center my-3" [routerLink]="['/editor']"
+          [queryParams]="{ page: 'login', layout: 'full' }" routerLinkActive="active">
+          <div>Page: Login</div>
+          <i class="feather-arrow-right"></i>
+        </a>
+        <hr />
+        <ng-container *ngIf="!preview">
+          <!-- Loop ngFor + Edit mode -->
+          <div *ngFor="let item of items">
+            <div class="dropdown-item d-flex justify-content-between align-items-center my-3 dropdown dropright"
+              (mouseenter)="showDropdown($event, item.id)" (mouseleave)="hideDropdown($event)">
+              <span [class.active]="isLinkActive(item.id)" style="white-space: normal;">Page: {{item.name}}</span>
+              <i class="feather-more-vertical dropright"></i>
+              <div *ngIf="showMenu === item.id" class="dropdown-menu show first-link">
+                <a class="dropdown-item more-func" [routerLink]="['/editor']" [queryParams]="{ page: item.id, layout: 'full' }" (click)="closeWidget()">
+                  <i class="feather-arrow-right"></i><span>Go to Dashboard</span>
+                </a>
+                <a class="dropdown-item more-func" href="javascript:void(0)" (click)="onDuplicate(item.id)">
+                  <i class="fa fa-clone" aria-hidden="true"></i><span>Duplicate Dashboard</span>
+                </a>
+                <a class="dropdown-item more-func" href="javascript:void(0)" (click)="rename=item.id;newDashboardName=item.name">
+                  <i class="feather-edit"></i><span>Rename</span>
+                </a>
+                <a class="dropdown-item more-func" href="javascript:void(0)" (click)="onDeleteDashboard(item.id)">
+                  <i class="feather-trash-2"></i><span class="_delete">Delete</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="preview">
+          <!-- Loop ngFor + Preview mode -->
+          <div *ngFor="let item of items">
+            <a class="dropdown-item d-flex justify-content-between align-items-center my-3" [routerLink]="['/editor']"
+              [queryParams]="{ page: item.id, layout: 'full' }" routerLinkActive="active">
+              <div style="white-space: normal;">Page: {{item.name}}</div>
+              <i class="feather-arrow-right"></i>
+            </a>
+          </div>
+        </ng-container>
+        <!-- Create Dashboard -->
+        <a *ngIf="!preview" (click)="createDashboard()" class="dropdown-item d-flex justify-content-between align-items-center my-3 cursor_pointer">
+          <div class="add-new-dashboard">Add new dashboard</div>
+          <i class="feather-plus"></i>
+        </a>
+        <hr />
+        <!-- All Thing - Thing Detail -->
+        <a class="dropdown-item d-flex justify-content-between align-items-center my-3"  [routerLink]="['/editor']" [queryParams]="{ page: 'all-thing' }"
+          routerLinkActive="active">
+          <div>Page: All Thing</div>
+          <i class="feather-arrow-right"></i>
+        </a>
+        <a class="dropdown-item d-flex justify-content-between align-items-center my-3" [routerLink]="['/editor']" [queryParams]="{ page: 'thing-detail' }"
+          routerLinkActive="active">
+          <div>Page: Thing Detail</div>
+          <i class="feather-arrow-right"></i>
+        </a>
+        <hr />
+        <!-- User Management -->
+        <a class="dropdown-item d-flex justify-content-between align-items-center my-3" [routerLink]="['/editor']" [queryParams]="{ page: 'user-management' }"
+          routerLinkActive="active">
+          <div>Page: User Management</div>
+          <i class="feather-arrow-right"></i>
+        </a>
+        <hr />
+        <!-- User Information -->
+        <a class="dropdown-item d-flex justify-content-between align-items-center my-3" [routerLink]="['/editor']"
+          [queryParams]="{ page: 'user-information' }" routerLinkActive="active">
+          <div>Page: User Information</div>
+          <i class="feather-arrow-right"></i>
+        </a>
+      </div>
+      <!-- end tiennx -->
+    </div>
+  </div>
+  <div class="title__template">
+    <button class="btn btn-light" [disabled]="currentWidgetId">
+      <img src="assets/images/Icon-Edit tool-Desktop-Blue.png" alt="Icon-Edit tool-Desktop-Blue" class="btn_pc" />
+    </button>
+    <button class="btn btn-light" [disabled]="currentWidgetId">
+      <img src="assets/images/Icon-Edit tool-Mobile-Black.png" alt="Icon-Edit tool-Mobile-Black" class="btn_mobile" />
+    </button>
+    <button *ngIf="!preview" class="btn btn-light" [disabled]="currentWidgetId" (click)="prevPage()">
+      <img src="assets/images/Icon-Arrows-Normal-left-Black.png" alt="Icon-Arrows-Normal-left-Black" class="btn_arrow_left"/>
+    </button>
+    <button *ngIf="!preview" class="btn btn-light" [disabled]="currentWidgetId" (click)="nextPage()">
+      <img src="assets/images/Icon-Arrows-Normal-Right-Black.png" alt="Icon-Arrows-Normal-Right-Black" class="btn_arrow_right"/>
+    </button>
+    <button *ngIf="!preview" class="text-dark btn_save btn btn-light" (click)="saveModal.show()" [disabled]="currentWidgetId">Save </button>
+    <button class="text-dark btn_edit btn btn-light" (click)="toggleMode()" [disabled]="currentWidgetId">{{preview?'Edit':'Preview'}}</button>
+    <button class="btn btn-primary btn_publish ui-button-rounded" type="submit" (click)="publish()" [disabled]="currentWidgetId">Publish</button>
+  </div>
+</nav>
+<!-- Modal save -->
+<app-save-modal #saveModal></app-save-modal>
+<div id="ngprime-modal-change-dashboard-name">
+  <p-dialog modal="true" header="Dashboard Name" [(visible)]="rename" [style]="{width: '400px', height: '200px'}" [baseZIndex]="10000" [closable]="false">
+    <div class="p-body">
+      <input class="form-control" [(ngModel)]="newDashboardName"/>
+    </div>
+    <div class="p-footer d-flex">
+      <button type="button" class="btn btn-primary btn_pill mr-2" (click)="renameDashBoard()">Save</button>
+      <button type="button" class="btn btn-danger btn_pill" (click)="rename=null">Cancel</button>
+    </div>
+  </p-dialog>
+</div>

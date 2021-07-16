@@ -1,0 +1,162 @@
+:host ::ng-deep {
+  .gauge3 {
+    color: #FFFFFF;
+
+    ngx-gauge,
+    .display_center {
+      width: 100% !important;
+      height: 100% !important;
+      position: absolute;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .mode_square {
+
+    .display_center {
+      top: -8%;
+
+      i {
+        font-size: 38px;
+        position: absolute;
+        text-align: center;
+      }
+    }
+
+    .gauge_ {
+      &arch, &semi {
+        canvas {
+          margin-bottom: 8%;
+        }
+      }
+    }
+
+    ngx-gauge {
+      justify-content: center;
+      top: -8%;
+
+      canvas {
+        width: 58%;
+      }
+
+      .reading-block {
+        display: none;
+      }
+
+      .reading-label {
+        bottom: 0px;
+        font-size: 16px !important;
+        transform: none !important;
+        font-family: "SF Pro Text-Regular";
+      }
+    }
+  }
+
+  .mode_rectangle {
+    i {
+      font-size: 38px;
+    }
+
+    .gauge_ {
+      &arch, &semi {
+        canvas {
+          margin-bottom: 8%;
+        }
+      }
+    }
+
+    ngx-gauge {
+      justify-content: center;
+      top: 0;
+
+      canvas {
+        width: 58%;
+      }
+
+      .reading-block {
+        display: none;
+      }
+
+      .reading-label {
+        display: none;
+      }
+
+    }
+
+    .center_variable {
+      font-size: 36px;
+      color: #FFFFFF;
+      font-family: "SF Pro Rounded-Bold";
+    }
+
+    .button_variable {
+      margin-top: 10%;
+      font-size: 16px;
+      color: #959393;
+      font-family: "SF Pro Text-Regular";
+    }
+  }
+
+  .mode_vertical {
+
+    .gauge_ {
+      &arch, &semi {
+        canvas {
+          margin-bottom: 8%;
+        }
+      }
+    }
+
+    .gauge_container {
+      .icon_container {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 25%;
+        left: 50%;
+        text-align: center;
+        line-height: normal;
+        i {
+          font-size: 38px;
+        }
+      }
+    }
+
+    ngx-gauge {
+      justify-content: center;
+      top: 0;
+      height: 50% !important;
+
+      canvas {
+        width: 58%;
+      }
+
+      .reading-block {
+        display: none;
+      }
+
+      .reading-label {
+        display: none;
+      }
+
+    }
+
+    .content {
+      text-align: center;
+      &:nth-child(1) {
+        font-size: 36px;
+        margin: 15% 0;
+        color: #FFFFFF;
+        font-family: "SF Pro Rounded-Bold";
+        line-height: normal;
+      }
+
+      :nth-child(2) {
+        font-size: 16px;
+        text-align: center;
+        color: #959393;
+        font-family: "SF Pro Text-Regular";
+      }
+    }
+  }
+}

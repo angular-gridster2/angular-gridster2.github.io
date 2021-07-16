@@ -1,0 +1,20 @@
+<div class="float-right main">
+    <div class="row">
+        <div class="col-12 header">
+            <p>Notifications</p>
+        </div>
+    </div>
+    <div *ngFor="let noti of dataNoti; let i = index" class="row content" [ngClass]="{active: i == 0}"
+        (click)="notificationsDetail()">
+        <div class="col-2 parent-noti">
+            <div class="logo-rounded">
+                <img class="logo" src="../../../../assets/images/Logo-The Deliver.png">
+            </div>
+        </div>
+        <div class="col-10">
+            <span class="content-text">{{noti.notiText}}</span>
+            <p class="date">{{noti.notiDate}}</p>
+        </div>
+    </div>
+    <div class="col-12 see_all" *ngIf="dataNoti.length> 5" (click)="SeeAll()">See All</div>
+</div>

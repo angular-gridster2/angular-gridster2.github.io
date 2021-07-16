@@ -1,0 +1,8 @@
+<app-topbar *ngIf="page && page!='login'"></app-topbar>
+<div class="w-100" [ngStyle]="{ height:(page && page!='login')?'calc( 100vh - 50px)':'100vh' }">
+  <gridster [options]="options" [ngStyle]="{ background: parseGradient(bg) }" >
+    <gridster-item [item]="item" *ngFor="let item of dataLayout;">
+      <app-widget-container [item]="item" [viewOnly]="true"></app-widget-container>
+    </gridster-item>
+  </gridster>
+</div>

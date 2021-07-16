@@ -1,0 +1,13 @@
+<a [href]="widget.config?.url" class="link-widget-content d-block" [style]="widget.config?.styles" [ngStyle]="{'color': getColor()}">
+  {{widget.config?.value}}
+  <i *ngIf="canActivate('faRight')" [class]="widget.config?.faRight" class="pull-right"></i>
+</a>
+
+<!-- <a [href]="widget.config?.url" class="link-widget-content d-block">
+  <textarea class="border-0 w-100 h-100"
+    [ngClass]="widget.config?.class"
+    [style]="widget.config?.styles"
+    [style.color]="getColor()"
+    disabled>{{widget.config?.value}}</textarea>
+    <i *ngIf="canActivate('faRight')" [class]="widget.config?.faRight" [style.color]="getColor()" class="pull-right"></i>
+</a> -->

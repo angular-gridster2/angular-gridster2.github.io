@@ -1,0 +1,8 @@
+<input 
+  [id]="widget?.id"
+  [type]="widget.config?.type"
+  [ngClass]="widget.config?.class"
+  [ngStyle]="widget.config?.styles"
+  [class]="widget.config?.inputStyle | i18nSelect: inputStyles"
+  [placeholder]="widget.config?.placeholder"
+  class="textbox-widget-content form-control">

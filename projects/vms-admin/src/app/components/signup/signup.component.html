@@ -1,0 +1,134 @@
+<div class="make_background"></div>
+<app-layout-login-base>
+  <!-- form1 -->
+  <form [formGroup]="formEmail" (submit)="checkEmail()">
+    <div class="form-1" [class.form-1__appear]="form1">
+      <div class="title">
+        <h2>Welcome to Deliver</h2>
+        <p>
+          Minim eiusmod ea esse anim reprehenderit pariatur. Et sunt excepteur
+          tempor officia.
+        </p>
+      </div>
+      <div class="form-group m-0">
+        <input type="text" class="form-control" placeholder="Enter your Email Address" formControlName="email"
+          type="email" />
+      </div>
+      <div class="form-group m-0 isAccept">
+        <!-- Support Safari OK -->
+        <p-checkbox [formControl]="formEmail.controls['isAccept']" value="true"></p-checkbox>
+        <p class="m-0">
+          I have read and accept the
+          <a [routerLink]="['/term']" [queryParams]="{ source : 'signup'}">Customer Terms of Service, User Terms
+            of Service</a>
+          and <a [routerLink]="['/term']" [queryParams]="{ source : 'signup'}" routerLinkActive="active"> Privary
+            Policy</a>
+        </p>
+      </div>
+      <button class="btn btn-primary btn_pill w-100"
+        [attr.disabled]="((f1?.isAccept?.value != false) && f1.email.valid && form1) ? null : ''">
+        Next
+      </button>
+      <hr style="margin: 30px 0">
+      <button class="btn btn_pill login-with-ais w-100">
+        <a href="https://aisplayground.ais.co.th" style="color:#000000"> <img src="assets/images/Icon-Logo-AIS.png" />
+          Continue with AIS Playground
+        </a>
+      </button>
+    </div>
+  </form>
+
+  <!-- form-2 -->
+  <form [formGroup]="formOTP" (submit)="checkOTP()">
+    <div class="form-2" [class.form-2__appear]="form2">
+      <div class="back-step cursor_pointer" (click)="backStep(2)">
+        <i class="feather-chevron-left"></i>Back
+      </div>
+      <div class="title">
+        <h2>Check your email</h2>
+        <div>
+          <p>A 6-digit code was sent to </p>
+          <p>Georgia.young@example.com</p>
+          <p>Enter within 15 minutes.</p>
+        </div>
+      </div>
+      <div class="form-group inp-otp">
+        <input type="text" maxlength="1" class="form-control" autofocus
+          id="1" (keyup)="focusItem($event, 'a')" formControlName="code1" autocomplete="off" numbersOnly/>
+        <input type="text" maxlength="1" class="form-control"
+          id="a" (keyup)="focusItem($event, 'b')" formControlName="code2" autocomplete="off" numbersOnly/>
+        <input type="text" maxlength="1" class="form-control"
+          id="b" (keyup)="focusItem($event, 'c')" formControlName="code3" autocomplete="off" numbersOnly/>
+        <span style="font-size: 25px; color: #212121">-</span>
+        <input type="text" maxlength="1" class="form-control"
+          id="c" (keyup)="focusItem($event, 'd')" formControlName="code4" autocomplete="off" numbersOnly/>
+        <input type="text" maxlength="1" class="form-control"
+          id="d" (keyup)="focusItem($event, 'e')" formControlName="code5" autocomplete="off" numbersOnly/>
+        <input type="text" maxlength="1" class="form-control"
+          id="e" formControlName="code6" autocomplete="off" numbersOnly/>
+      </div>
+      <p class="otp-message">
+        You will get OTP in 20 seconds
+      </p>
+      <button class="btn btn-primary btn_pill w-100" [disabled]="!formOTP.valid">
+        Next
+      </button>
+      <p class="time-send-OTP" (click)="timeOTP == 0 ? checkEmail() : false" [class.cursor_pointer]="timeOTP == 0">
+        Resend OTP ( {{ timeOTP }} )</p>
+    </div>
+  </form>
+
+  <!-- form3 -->
+  <form [formGroup]="formDetail" (submit)="signUpDone()">
+    <div *ngIf="form3" class="form-3" [class.form-3__appear]="form3">
+      <div class="back-step cursor_pointer" (click)="backStep(3)">
+        <i class="feather-chevron-left"></i>Back
+      </div>
+      <div class="title">
+        <h2>Complete your account detail</h2>
+        <p>
+          Please enter your fullname and set password. Et sunt excepteur
+          tempor officia.
+        </p>
+      </div>
+
+      <div class="form-group form-name">
+        <input autofocus type="text" name="name" class="form-control" placeholder="Enter Name" formControlName="name"
+          autofocus />
+        <input type="text" name="lastName" class="form-control" placeholder="Enter Lastname"
+          formControlName="lastName" />
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="georgia.young@example.com" formControlName="email">
+      </div>
+
+      <div class="form-group input-phone">
+        <select>
+          <option value="vn">+84</option>
+          <option value="us" selected>+66</option>
+          <option value="es">+33</option>
+        </select>
+        <span>|</span>
+        <input type="text" maxlength="9" (keyup)="focusItem($event, null)" class="form-control"
+          placeholder="Enter your mobile phone" formControlName="phone" (focus)="inputSelected = 'inp-phone'"
+          (focusout)="inputSelected = null" numbersOnly />
+      </div>
+
+      <div class="form-group input-password">
+        <input [type]="passActive ? 'text' : 'password'" class="form-control" placeholder="Enter your password"
+          formControlName="password" (focus)="inputSelected = 'inp-password'" (focusout)="inputSelected = null" />
+        <i class="{{passActive ? 'feather-eye' : 'feather-eye-off'}}" (click)="togglePwd($event)"></i>
+      </div>
+      <div class="form-group input-password">
+        <input [type]="passActive ? 'text' : 'password'" class="form-control" placeholder="Confirm password"
+          formControlName="confirmPassword" (focus)="inputSelected = 're-password'" (focusout)="inputSelected = null" />
+        <i class="{{passActive ? 'feather-eye' : 'feather-eye-off'}}" (click)="togglePwd($event)"></i>
+      </div>
+
+      <button class="btn btn-primary btn_pill w-100" [disabled]="!formDetail.valid">
+        Get Started
+      </button>
+    </div>
+
+  </form>
+</app-layout-login-base>

@@ -1,0 +1,67 @@
+:host {
+  width: 100%;
+  min-width: 1349px;
+  margin: 0 auto;
+  main {
+    color: #212121;
+
+    // CONTENT
+    section {
+      display: table;
+      margin: 0 auto;
+      position: relative;
+      margin-top: 80px;
+
+      .form-project {
+        text-align: center;
+
+        p:nth-child(1) {
+          color: #212121;
+          font-size: 40px;
+          font-family: "SF Pro Text-Heavy";
+          margin-bottom: 10px;
+          line-height: normal;
+        }
+
+        p:nth-child(2) {
+          color: #3F3B3B;
+          font-size: 24px;
+          font-family: "SF Pro Text-Regular";
+        }
+
+        // create a project
+        .project-name {
+          margin: 70px 0;
+
+          input {
+            width: 350px;
+            height: 48px;
+            margin: 0 auto;
+            border-radius: 6px;
+            border: 1px solid #EAEAEA;
+            font-size: 16px;
+            font-family: "SF Pro Text-Regular";
+
+            &::placeholder {
+              color: #959393;
+              font-size: 16px;
+              font-family: "SF Pro Text-Regular";
+            }
+          }
+        }
+
+        button {
+          width: 100%;
+          height: 48px;
+          max-width: 350px;
+          border-radius: 100px;
+          background-color: #0000E8;
+          margin-bottom: 370px;
+          font-size: 20px;
+          font-family: "SF Pro Text-Bold";
+        }
+      }
+    }
+
+  }
+}

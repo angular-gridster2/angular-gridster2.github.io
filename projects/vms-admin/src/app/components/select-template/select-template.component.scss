@@ -1,0 +1,234 @@
+@mixin justify-content-between {
+  display: flex;
+  justify-content: space-between;
+}
+:host {
+  width: 100%;
+  min-width: 1349px;
+  margin: 0 auto;
+  
+  main {
+    color: #000;
+
+    section {
+      max-width: 1110px;
+      margin: 0 auto;
+
+      .search {
+        padding: 40px 0 48px 0;
+        border-bottom: 1px solid #eaeaea;
+        @include justify-content-between;
+        align-items: center;
+
+        .title {
+          font-size: 32px;
+          font-family: SF Pro Text-Heavy;
+        }
+
+        ::ng-deep {
+          .input_icon_container {
+            position: relative;
+
+            .input_icon_addon {
+              position: absolute;
+              top: 10px;
+              left: 10px;
+            }
+
+            input[type="text"] {
+              width: 300px;
+              height: 48px;
+              background: #ffffff 0% 0% no-repeat padding-box;
+              border: 1px solid #eaeaea;
+              border-radius: 100px;
+              padding-left: 50px;
+              font-style: normal;
+              font-family: "SF PRO TEXT";
+
+              &::placeholder {
+                font-size: 16px;
+                font-family: "SF Pro Text-Regular";
+              }
+            }
+
+            &:focus {
+              border: 1px solid #eaeaea;
+              border-radius: 100px;
+            }
+          }
+        }
+      }
+
+      .select_template {
+        margin-top: 35px;
+        text-align: center;
+
+        .btn {
+          width: 250px;
+          height: 48px;
+          margin: 0 5px;
+          border-radius: 100px;
+          font-size: 16px;
+          font-family: SF Pro Text-Regular;
+        }
+
+        .btn-secondary {
+          color: #000000;
+          background: #ffffff 0% 0% no-repeat padding-box;
+          border-radius: 100px;
+          border: none !important;
+        }
+
+        .btn-primary {
+          background-color: #0000e8;
+          font-family: SF Pro Text-Bold;
+        }
+      }
+
+      .template {
+        margin-top: 35px;
+
+        .title {
+          color: #000000;
+          font-size: 24px;
+          font-family: SF Pro Text-Semibold;
+        }
+
+        .template_box {
+          display: flex;
+          justify-content: space-around;
+          .card {
+            width: 100%;
+            margin-top: 29px;
+            border-radius: 24px;
+            border: none;
+
+            .card-body {
+              padding: 20px;
+              height: 193px;
+              box-shadow: 0 0 7px 1px #00000040;
+              border-bottom-left-radius: 24px;
+              border-bottom-right-radius: 24px;
+          
+              .card-title {
+                font-size: 28px;
+                font-family: "SF Pro Text-Bold";
+                margin-bottom: 20px;
+                margin-left: 10px;
+                line-height: 1.1;
+              }
+
+              .card-text {
+                color: #959393;
+                font-size: 16px;
+                font-family: "SF Pro Text-Regular";
+                margin-left: 10px;
+                margin-bottom: 32px;
+              }
+
+              .card_link {
+                margin-top: 32px;
+                @include justify-content-between;
+                align-items: center;
+
+                a {
+                  color: #0000e8;
+                  font-size: 16px;
+                  font-family: "SF Pro Text-Semibold";
+                }
+
+                .btn {
+                  width: 200px;
+                  height: 48px;
+                  border-radius: 100px;
+                }
+
+                .btn-primary {
+                  background-color: #0000e8;
+                }
+
+                .explore {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+
+                  a {
+                    background-color: #fafafa;
+                    display: flex;
+                    align-items: center;
+                    border: none;
+                    border-radius: 999px;
+                    height: 48px;
+                    width: 170px;
+                    justify-content: center;
+
+                    span {
+                      padding-left: 0.7rem;
+                      color: #0000e8;
+                      transition: transform 0.4s ease-out;
+                    }
+
+                    &:hover > span {
+                      transform: translateX(1rem);
+                    }
+
+                    &:focus {
+                      outline: none;
+                    }
+                  }
+                }
+
+                .three-dots {
+                  background-color: #fafafa;
+                  border-radius: 50%;
+                  width: 3rem;
+                  height: 3rem;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  color: #c4c4c4;
+                  cursor: pointer;
+                  transition: color 0.4s linear;
+                }
+              }
+            }
+          }
+
+          .card:nth-child(1) {
+            margin-right: 15px;
+          }
+
+          .card:nth-child(2) {
+            margin-left: 15px;
+          }
+        }
+      }
+
+      .popular {
+        margin-top: 51px;
+
+        .title {
+          color: #000000;
+          font-size: 24px;
+          font-family: SF Pro Text-Semibold;
+        }
+      }
+    }
+    .coming_soon {
+      width: 1171px;
+      margin: 31px auto 117px auto;
+      position: relative;
+      text-align: center;
+
+      p {
+        font-size: 40px;
+        font-family: "SF Pro Text-Heavy";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        color: #0000e8;
+      }
+    }
+  }
+}

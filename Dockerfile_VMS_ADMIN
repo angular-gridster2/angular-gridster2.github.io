@@ -1,0 +1,15 @@
+# stage 1
+
+FROM node:alpine AS vms-admin-build
+WORKDIR /usr/src/app
+COPY package.json .
+RUN npm install
+COPY . .
+RUN npm install && npm run build vms-admin
+
+# stage 2
+FROM nginx:alpine
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=vms-admin-build /usr/src/app/dist/vms-admin /usr/share/nginx/html
+EXPOSE 80
+

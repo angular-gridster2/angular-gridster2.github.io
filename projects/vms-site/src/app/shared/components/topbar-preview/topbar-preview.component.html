@@ -1,0 +1,149 @@
+<div class="topbar">
+  <div class="overlay1"></div>
+  <!-- Change Logo -->
+  <div class="topbar__logo position-relative" style="z-index: 1;">
+    <i class="fas fa-bars fa-2x cursor_pointer" (click)="move()" style="font-size: 21px;"></i>
+    <div class="active_resizers">
+      <!-- image -->
+      <img [class.disable]="!isShowLogo" [class.invisible]="!isShowLogo"
+        [src]="logoUrl ? logoUrl : 'assets/images/Graphic-Sample logo 2.png'" alt="logo" />
+    </div>
+  </div>
+
+  <!-- MENU Right  -->
+  <div class="topbar__search position-relative" style="z-index: 1;">
+    <div class="search-group">
+      <i class="feather-search"></i>
+      <input type="text" placeholder="Search" class="font-regular" style="font-size: 16px;" />
+    </div>
+  </div>
+  <div class="topbar__profile position-relative" style="z-index: 2;">
+    <div class="avatar">
+      <img src="https://i0.wp.com/danongonline.com.vn/wp-content/uploads/2018/02/anh-girl-xinh-9x-kute-24.jpg"
+        width="48" height="48" alt="avatar" />
+    </div>
+    <!-- Dropdown Menu 2 -->
+    <div class="dropdown cursor_pointer ml-sm-2 ml-md-3 dropdown2">
+      <p class="d-table-cell align-middle dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Rachel Bradley
+      </p>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+        [ngStyle]="{'background':globalConfig?.AreaContainerWidget.backgroundColor}">
+        <div class="_user">
+          <div class="avatar">
+            <img src="https://i0.wp.com/danongonline.com.vn/wp-content/uploads/2018/02/anh-girl-xinh-9x-kute-24.jpg"
+              alt="avatar" />
+          </div>
+          <div class="_profile">
+            <span class="_name">Rachel Bradley </span>
+            <span class="_role">Admin</span>
+          </div>
+        </div>
+        <div class="_edit cursor_pointer" (click)="editProfile()">
+          <i class="fas fa-cog" [ngStyle]="{'color':globalConfig?.ButtonWidget.background}"></i>
+          <span>Edit Profile</span>
+        </div>
+        <div class="_change_password cursor_pointer" (click)="changePassword()">
+          <i class="material-icons" [ngStyle]="{'color':globalConfig?.ButtonWidget.background}">https</i>
+          <span>Change password</span>
+        </div>
+        <hr>
+        <div class="_logout cursor_pointer">
+          <i class="feather-log-out"></i>
+          <span>Log out</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MENU Left -->
+<div class="title-manager text-capitalize">
+  <div class="overlay2"></div>
+  <ng-template [ngIf]="pageType !== 'dashboard'">
+    <div class="d-flex justify-content-start align-items-center position-relative">
+      <div style="color: rgba(255, 255, 255, .5); cursor: pointer" [routerLink]="[ '/private' ]"
+        [queryParams]="{ page: 'all-thing' }">All Thing</div> <i class="feather-chevron-right"
+        style="font-size: 1.3rem; margin: auto 10px;"></i>{{breadcumb}}
+    </div>
+  </ng-template>
+  <ng-template [ngIf]="pageType === 'dashboard'">
+    <div class="d-flex justify-content-between align-items-center position-relative">
+      <div class="d-flex align-items-center">
+        <!-- Dropdown Menu 1 -->
+        <div class="dropdown cursor_pointer dropdown1">
+          <p class="d-table-cell align-middle dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            {{getDashboardName()}}
+          </p>
+          <div class="dropdown-menu scroll-gray" aria-labelledby="dropdownMenuButton"
+            [ngStyle]="{'background':globalConfig?.AreaContainerWidget.backgroundColor}">
+            <ng-container *ngFor="let item of dashboardItems">
+              <a [routerLink]="[ '/private' ]" [queryParams]="{ page: item.link }" class="dropdown-item">
+                <span class="material-icons arrow-explore"
+                  [ngStyle]="{'color':globalConfig?.ButtonWidget.background}">dashboard</span>
+                <p>{{item.name}}</p>
+              </a>
+              <hr>
+            </ng-container>
+          </div>
+        </div>
+        <div class="vertical_line"></div>
+        <img src="assets/images/Icon-Dashboard Edit-White.png" alt="Icon-Dashboard Edit-White">
+      </div>
+      <div class="d-flex align-items-center">
+        <i class="feather-arrow-left mx-2 cursor_pointer" (click)="prevPage()"></i>
+        <i class="feather-arrow-right mx-2 cursor_pointer" (click)="nextPage()"></i>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+<!-- Hamburger - Menu sidebar -->
+<div class="sidebar" [ngClass]="(sidebarActive === true) ? 'sidebar-move' : 'sidebar'"
+  [ngStyle]="{'background':globalConfig?.AreaContainerWidget.backgroundColor}">
+  <div class="sidebar__logo">
+    <img [class.disable]="!isShowLogo" [class.invisible]="!isShowLogo"
+      [src]="logoUrl ? logoUrl : 'assets/images/Graphic-Sample logo 2.png'" alt="logo">
+    <i class="fas fa-bars fa-2x cursor_pointer" (click)="move()" style="font-size: 21px;"></i>
+  </div>
+  <div class="container_link">
+    <hr>
+    <div class="link" (click)="isCollapsed = !isCollapsed">
+      <div class="dashboard">
+        <div>
+          <img src="assets/images/Icon-Dashboard-White.png" alt="Icon-Dashboard-White">
+          <span>Dashboard</span>
+        </div>
+        <i [hidden]="!isCollapsed" class="feather-chevron-up"></i>
+        <i [hidden]="isCollapsed" class="feather-chevron-down"></i>
+      </div>
+    </div>
+    <div class="link" *ngFor="let item of dashboardItems" [collapse]="!isCollapsed">
+      <a [routerLink]="[ '/private' ]" [queryParams]="{ page: item.link }" routerLinkActive="active"
+        style="margin-left: 40px">{{item.name}}</a>
+    </div>
+    <hr>
+    <div class="link">
+      <a [routerLink]="[ '/private' ]" [queryParams]="{ page: 'all-thing' }" routerLinkActive="active">
+        <img src="assets/images/Icon-All Thing-White.png" alt="Icon-Dashboard-White">
+        <span>All Thing</span>
+      </a>
+    </div>
+    <hr>
+    <div class="link">
+      <a [routerLink]="['/private']" [queryParams]="{ page: 'user-management' }" routerLinkActive="active">
+        <img src="assets/images/Icon-User-White.png" alt="Icon-Dashboard-White">
+        <span>User Management</span>
+      </a>
+    </div>
+    <div class="link">
+      <a>
+        <img src="assets/images/Icon-Role-White.png" alt="Icon-Dashboard-White">
+        <span>Role Management</span>
+      </a>
+    </div>
+  </div>
+
+</div>
